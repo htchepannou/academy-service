@@ -1,0 +1,49 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL5Dialect
+
+  datasource:
+    poolName: K.Travel.CP
+    driverClass: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/academy?useSSL=false&requireSSL=false&serverTimezone=UTC
+    username: root
+    #password:
+    dbcp2:
+      max-total: 1
+
+swagger:
+  version: "1.0"
+  title: Academy API
+  description: Academy API
+  termsPath: ""
+  email: "herve.tchepannou@gmail.com"
+  licenceType: ""
+  licencePath: "#"
+  protocol: http
+
+server:
+  port: 8080
+
+endpoints:
+  enabled: false
+  sensitive: false
+  health:
+    enabled: true
+
+logging:
+  level:
+    root: INFO
+    com.amazonaws: ERROR
+    org.springframework: INFO
+    org.hibernate: ERROR
+    org.hibernate.engine.jdbc.spi.SqlExceptionHelper: OFF
+    springfox: ERROR
+
+  pattern:
+    console: "%d Type=%level Logger=%c Thread=%thread %m%n"
+    file: "%d Type=%level Logger=%c Thread=%thread %m%n"

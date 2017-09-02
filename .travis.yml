@@ -16,6 +16,9 @@ before_script:
 script:
   - mvn -q compile flyway:clean flyway:migrate install --settings settings.xml
 
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
 notifications:
   email:
   - herve.tchepannou@gmail.com

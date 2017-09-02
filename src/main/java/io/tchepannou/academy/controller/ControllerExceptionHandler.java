@@ -21,7 +21,7 @@ public class ControllerExceptionHandler extends BaseController{
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-        final ErrorResponse response = new ErrorResponse();
+        final ErrorResponse response = init(new ErrorResponse());
         final List<ObjectError> validationErrors = ex.getBindingResult().getAllErrors();
         for (ObjectError validationError : validationErrors){
             ErrorDto error;
@@ -64,9 +64,8 @@ public class ControllerExceptionHandler extends BaseController{
 
 
     private ErrorResponse createErrorResponse(final BusinessException ex){
-        final ErrorResponse response = new ErrorResponse();
+        final ErrorResponse response = init(new ErrorResponse());
         response.getErrors().add(createError(ex.getErrorCode()));
-        init(response);
         return response;
     }
 

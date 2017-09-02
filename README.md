@@ -1,5 +1,5 @@
 ### Build Status
-Master: [![Build Status](https://travis-ci.org/htchepannou/traval-service.svg?branch=master)](https://travis-ci.org/htchepannou/traval-service)
+Master: [![Build Status](https://travis-ci.org/htchepannou/traval-service.svg?branch=master)](https://travis-ci.org/htchepannou/academy-service)
 
 # Prerequises
 - Java 8+

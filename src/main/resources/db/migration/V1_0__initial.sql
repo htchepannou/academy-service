@@ -47,6 +47,7 @@ CREATE TABLE T_VIDEO(
   video_id          VARCHAR(32) NOT NULL,
   duration_second   INT,
 
+  UNIQUE(type_fk, video_id),
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 
@@ -116,4 +117,4 @@ INSERT INTO T_COURSE_LEVEL(id, name, rank) VALUES(4, 'advanced', 3);
 INSERT INTO T_SEGMENT_TYPE(id, name, rank) VALUES(1, 'video', 0);
 INSERT INTO T_SEGMENT_TYPE(id, name, rank) VALUES(2, 'quiz', 1);
 
-INSERT INTO T_VIDEO_TYPE(id, name, rank, url_regexp, video_id_index)  VALUES(1, 'youtube', 0, '^https?://.*(?:youtu.be/|v/|u/\\w/|embed/|watch?v=)([^#&?]*).*$', 1);
+INSERT INTO T_VIDEO_TYPE(id, name, rank, url_regexp, video_id_index)  VALUES(1, 'youtube', 0, 'https://(?:www\\.)?youtu(?:\\.be/|be\\.com/(?:watch\\?v=|v/|embed/|user/(?:[\\w#]+/)+))([^&#?\n]+)', 1);

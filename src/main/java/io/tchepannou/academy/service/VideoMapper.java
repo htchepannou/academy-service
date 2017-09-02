@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class VideoMapper {
-    public VideoDto toVideo (final Video video, final VideoType videoType){
+    public VideoDto toVideoDto(final Video video, final VideoType videoType){
         final VideoDto dto = new VideoDto();
         dto.setDurationSecond(video.getDurationSecond());
         dto.setId(video.getId());

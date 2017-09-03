@@ -28,6 +28,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -163,7 +164,7 @@ public class CourseControllerIT extends ControllerITSupport {
                 .andExpect(jsonPath("$.course.summary", is("Summary of...")))
                 .andExpect(jsonPath("$.course.status", is("published")))
                 .andExpect(jsonPath("$.course.title", is("Title of...")))
-                .andExpect(jsonPath("$.course.publishedDateTime", is("2017-01-02T03:30:00-0500")))
+                .andExpect(jsonPath("$.course.publishedDateTime", startsWith("2017-01-02")))
 
                 .andExpect(jsonPath("$.course.legs.length()", is(3)))
                 .andExpect(jsonPath("$.course.legs[0].id", is(310)))

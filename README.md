@@ -1,6 +1,6 @@
 ### Build Status
 Master: [![Build Status](https://travis-ci.org/htchepannou/traval-service.svg?branch=master)](https://travis-ci.org/htchepannou/academy-service)
-[![Code Coverage](https://img.shields.io/codecov/c/github/pvorb/property-providers/develop.svg)](https://codecov.io/github/pvorb/property-providers?branch=master)
+[![Code Coverage](https://coveralls.io/repos/htchepannou/academy-service/badge.svg?branch=master)](https://codecov.io/r/htchepannou/academy-service?branch=master)
 
 # Prerequises
 - Java 8+

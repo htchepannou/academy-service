@@ -40,6 +40,22 @@ CREATE TABLE T_VIDEO_TYPE(
 ) ENGINE = InnoDB;
 
 
+
+
+CREATE TABLE T_ASSET(
+  id          INT NOT NULL AUTO_INCREMENT,
+
+  name            VARCHAR(200),
+  url             TEXT,
+  content_type    VARCHAR(100),
+  content_length  INT,
+
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+
+
+
 CREATE TABLE T_VIDEO(
   id                INT NOT NULL AUTO_INCREMENT,
   type_fk           INT NOT NULL REFERENCES T_VIDEO_TYPE(id),
@@ -50,6 +66,7 @@ CREATE TABLE T_VIDEO(
   UNIQUE(type_fk, video_id),
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
+
 
 
 
@@ -72,7 +89,7 @@ CREATE TABLE T_COURSE(
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 
-CREATE TABLE T_LEG(
+CREATE TABLE T_LESSON(
   id            INT NOT NULL AUTO_INCREMENT,
   course_fk     INT NOT NULL REFERENCES T_COURSE(id),
 
@@ -88,7 +105,7 @@ CREATE TABLE T_LEG(
 CREATE TABLE T_SEGMENT(
   id            INT NOT NULL AUTO_INCREMENT,
   course_fk     INT NOT NULL REFERENCES T_COURSE(id),
-  leg_fk        INT NOT NULL REFERENCES T_LEG(id),
+  lesson_fk     INT NOT NULL REFERENCES T_LESSON(id),
   type_fk       INT NOT NULL REFERENCES T_SEGMENT_TYPE(id),
   video_fk      INT          REFERENCES T_VIDEO(id),
 

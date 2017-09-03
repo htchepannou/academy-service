@@ -1,4 +1,4 @@
-package io.tchepannou.academy.dto.leg;
+package io.tchepannou.academy.dto.lesson;
 
 import io.tchepannou.academy.dto.segment.SegmentDto;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("CPD-START")
-public class LegDto {
+public class LessonDto {
     private Integer id;
     private String title;
     private Integer rank;

@@ -3,13 +3,13 @@ package io.tchepannou.academy.service;
 import io.tchepannou.academy.dao.CourseDao;
 import io.tchepannou.academy.dao.CourseLevelDao;
 import io.tchepannou.academy.dao.CourseStatusDao;
-import io.tchepannou.academy.dao.LegDao;
+import io.tchepannou.academy.dao.LessonDao;
 import io.tchepannou.academy.dao.SegmentDao;
 import io.tchepannou.academy.dao.SegmentTypeDao;
 import io.tchepannou.academy.domain.Course;
 import io.tchepannou.academy.domain.CourseLevel;
 import io.tchepannou.academy.domain.CourseStatus;
-import io.tchepannou.academy.domain.Leg;
+import io.tchepannou.academy.domain.Lesson;
 import io.tchepannou.academy.domain.Segment;
 import io.tchepannou.academy.domain.SegmentType;
 import io.tchepannou.academy.dto.course.CourseDto;
@@ -20,7 +20,7 @@ import io.tchepannou.academy.dto.course.UpdateCourseRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseResponse;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusResponse;
-import io.tchepannou.academy.dto.leg.LegDto;
+import io.tchepannou.academy.dto.lesson.LessonDto;
 import io.tchepannou.academy.dto.segment.SegmentDto;
 import io.tchepannou.academy.exception.BusinessError;
 import io.tchepannou.academy.exception.InvalidRequestException;
@@ -48,13 +48,13 @@ public class CourseService {
     private CourseDao courseDao;
 
     @Autowired
-    private LegDao legDao;
+    private LessonDao legDao;
 
     @Autowired
     private CourseMapper courseMapper;
 
     @Autowired
-    private LegMapper legMapper;
+    private LessonMapper legMapper;
 
     @Autowired
     private SegmentDao segmentDao;
@@ -132,18 +132,18 @@ public class CourseService {
 
         /* legs */
         final PageRequest pageRequest = new PageRequest(0, Integer.MAX_VALUE, Sort.Direction.ASC, "rank");
-        final List<Leg> legs = legDao.findByCourseId(id, pageRequest);
-        final List<LegDto> legDtos = legs.stream()
+        final List<Lesson> legs = legDao.findByCourseId(id, pageRequest);
+        final List<LessonDto> legDtos = legs.stream()
                 .map(leg -> legMapper.toLegDto(leg))
                 .collect(Collectors.toList());
-        dto.setLegs(legDtos);
+        dto.setLessons(legDtos);
 
         /* Segments */
-        final Map<Integer, LegDto> legDtoMap = legDtos.stream()
-                .collect(Collectors.toMap(LegDto::getId, leg -> leg));
+        final Map<Integer, LessonDto> legDtoMap = legDtos.stream()
+                .collect(Collectors.toMap(LessonDto::getId, leg -> leg));
         final List<Segment> segments = segmentDao.findByCourseId(id, pageRequest);
         for (final Segment segment : segments){
-            final LegDto legDto = legDtoMap.get(segment.getLegId());
+            final LessonDto legDto = legDtoMap.get(segment.getLessonId());
             final SegmentType segmentType = segmentTypeDao.findOne(segment.getTypeId());
             final SegmentDto segmentDto = segmentMapper.toSegmentDto(segment, segmentType);
             legDto.add(segmentDto);

@@ -14,8 +14,8 @@ public class Segment extends CourseItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name="leg_fk")
-    private Integer legId;
+    @Column(name="lesson_fk")
+    private Integer lessonId;
 
     @Column(name="type_fk")
     private Integer typeId;
@@ -41,12 +41,12 @@ public class Segment extends CourseItem {
         this.id = id;
     }
 
-    public Integer getLegId() {
-        return legId;
+    public Integer getLessonId() {
+        return lessonId;
     }
 
-    public void setLegId(final Integer legId) {
-        this.legId = legId;
+    public void setLessonId(final Integer lessonId) {
+        this.lessonId = lessonId;
     }
 
     public Integer getTypeId() {

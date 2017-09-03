@@ -7,16 +7,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "T_LEG")
-public class Leg extends CourseItem {
+@Table( name = "T_LESSON")
+public class Lesson extends CourseItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    public Leg() {
+    public Lesson() {
     }
 
-    public Leg(final Course course) {
+    public Lesson(final Course course) {
         super(course);
     }
 

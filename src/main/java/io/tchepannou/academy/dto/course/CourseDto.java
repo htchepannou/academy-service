@@ -1,6 +1,6 @@
 package io.tchepannou.academy.dto.course;
 
-import io.tchepannou.academy.dto.leg.LegDto;
+import io.tchepannou.academy.dto.lesson.LessonDto;
 
 import java.util.Date;
 import java.util.List;
@@ -16,7 +16,7 @@ public class CourseDto {
     private String status;
     private Date publishedDateTime;
     private Date updatedDateTime;
-    private List<LegDto> legs;
+    private List<LessonDto> lessons;
 
     public Integer getId() {
         return id;
@@ -90,11 +90,11 @@ public class CourseDto {
         this.updatedDateTime = updatedDateTime;
     }
 
-    public List<LegDto> getLegs() {
-        return legs;
+    public List<LessonDto> getLessons() {
+        return lessons;
     }
 
-    public void setLegs(final List<LegDto> legs) {
-        this.legs = legs;
+    public void setLessons(final List<LessonDto> lessons) {
+        this.lessons = lessons;
     }
 }

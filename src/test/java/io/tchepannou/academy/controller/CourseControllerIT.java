@@ -3,16 +3,16 @@ package io.tchepannou.academy.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.tchepannou.academy.ControllerITSupport;
 import io.tchepannou.academy.dao.CourseDao;
-import io.tchepannou.academy.dao.LegDao;
+import io.tchepannou.academy.dao.LessonDao;
 import io.tchepannou.academy.domain.Course;
-import io.tchepannou.academy.domain.Leg;
+import io.tchepannou.academy.domain.Lesson;
 import io.tchepannou.academy.dto.course.CreateCourseRequest;
 import io.tchepannou.academy.dto.course.CreateCourseResponse;
 import io.tchepannou.academy.dto.course.UpdateCourseRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusRequest;
-import io.tchepannou.academy.dto.leg.CreateLegRequest;
-import io.tchepannou.academy.dto.leg.CreateLegResponse;
-import io.tchepannou.academy.dto.leg.UpdateLegRequest;
+import io.tchepannou.academy.dto.lesson.CreateLessonRequest;
+import io.tchepannou.academy.dto.lesson.CreateLessonResponse;
+import io.tchepannou.academy.dto.lesson.UpdateLessonRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,7 +48,7 @@ public class CourseControllerIT extends ControllerITSupport {
     private CourseDao courseDao;
 
     @Autowired
-    private LegDao legDao;
+    private LessonDao lessonDao;
 
     @Autowired
     private ObjectMapper mapper;
@@ -166,50 +166,50 @@ public class CourseControllerIT extends ControllerITSupport {
                 .andExpect(jsonPath("$.course.title", is("Title of...")))
                 .andExpect(jsonPath("$.course.publishedDateTime", startsWith("2017-01-02")))
 
-                .andExpect(jsonPath("$.course.legs.length()", is(3)))
-                .andExpect(jsonPath("$.course.legs[0].id", is(310)))
-                .andExpect(jsonPath("$.course.legs[0].rank", is(1)))
-                .andExpect(jsonPath("$.course.legs[0].title", is("Introduction")))
-                .andExpect(jsonPath("$.course.legs[0].segments.length()", is(3)))
-                .andExpect(jsonPath("$.course.legs[0].segments[0].id", is(3101)))
-                .andExpect(jsonPath("$.course.legs[0].segments[0].videoId", is(3101)))
-                .andExpect(jsonPath("$.course.legs[0].segments[0].rank", is(1)))
-                .andExpect(jsonPath("$.course.legs[0].segments[0].type", is("video")))
-                .andExpect(jsonPath("$.course.legs[0].segments[0].title", is("Welcome")))
-                .andExpect(jsonPath("$.course.legs[0].segments[0].summary", is("Greeting from author")))
-                .andExpect(jsonPath("$.course.legs[0].segments[1].id", is(3102)))
-                .andExpect(jsonPath("$.course.legs[0].segments[1].videoId", is(3102)))
-                .andExpect(jsonPath("$.course.legs[0].segments[1].rank", is(2)))
-                .andExpect(jsonPath("$.course.legs[0].segments[1].type", is("video")))
-                .andExpect(jsonPath("$.course.legs[0].segments[1].title", is("What is a database?")))
-                .andExpect(jsonPath("$.course.legs[0].segments[2].id", is(3103)))
-                .andExpect(jsonPath("$.course.legs[0].segments[2].rank", is(3)))
-                .andExpect(jsonPath("$.course.legs[0].segments[2].type", is("quiz")))
-                .andExpect(jsonPath("$.course.legs[0].segments[2].title", is("Quiz #1")))
+                .andExpect(jsonPath("$.course.lessons.length()", is(3)))
+                .andExpect(jsonPath("$.course.lessons[0].id", is(310)))
+                .andExpect(jsonPath("$.course.lessons[0].rank", is(1)))
+                .andExpect(jsonPath("$.course.lessons[0].title", is("Introduction")))
+                .andExpect(jsonPath("$.course.lessons[0].segments.length()", is(3)))
+                .andExpect(jsonPath("$.course.lessons[0].segments[0].id", is(3101)))
+                .andExpect(jsonPath("$.course.lessons[0].segments[0].videoId", is(3101)))
+                .andExpect(jsonPath("$.course.lessons[0].segments[0].rank", is(1)))
+                .andExpect(jsonPath("$.course.lessons[0].segments[0].type", is("video")))
+                .andExpect(jsonPath("$.course.lessons[0].segments[0].title", is("Welcome")))
+                .andExpect(jsonPath("$.course.lessons[0].segments[0].summary", is("Greeting from author")))
+                .andExpect(jsonPath("$.course.lessons[0].segments[1].id", is(3102)))
+                .andExpect(jsonPath("$.course.lessons[0].segments[1].videoId", is(3102)))
+                .andExpect(jsonPath("$.course.lessons[0].segments[1].rank", is(2)))
+                .andExpect(jsonPath("$.course.lessons[0].segments[1].type", is("video")))
+                .andExpect(jsonPath("$.course.lessons[0].segments[1].title", is("What is a database?")))
+                .andExpect(jsonPath("$.course.lessons[0].segments[2].id", is(3103)))
+                .andExpect(jsonPath("$.course.lessons[0].segments[2].rank", is(3)))
+                .andExpect(jsonPath("$.course.lessons[0].segments[2].type", is("quiz")))
+                .andExpect(jsonPath("$.course.lessons[0].segments[2].title", is("Quiz #1")))
 
-                .andExpect(jsonPath("$.course.legs[1].id", is(302)))
-                .andExpect(jsonPath("$.course.legs[1].rank", is(2)))
-                .andExpect(jsonPath("$.course.legs[1].title", is("Querying the database")))
-                .andExpect(jsonPath("$.course.legs[1].segments.length()", is(2)))
-                .andExpect(jsonPath("$.course.legs[1].segments[0].id", is(3029)))
-                .andExpect(jsonPath("$.course.legs[1].segments[0].videoId", is(3021)))
-                .andExpect(jsonPath("$.course.legs[1].segments[0].rank", is(1)))
-                .andExpect(jsonPath("$.course.legs[1].segments[0].type", is("video")))
-                .andExpect(jsonPath("$.course.legs[1].segments[0].title", is("Using SELECT")))
-                .andExpect(jsonPath("$.course.legs[1].segments[1].id", is(3022)))
-                .andExpect(jsonPath("$.course.legs[1].segments[1].rank", is(2)))
-                .andExpect(jsonPath("$.course.legs[1].segments[1].type", is("quiz")))
-                .andExpect(jsonPath("$.course.legs[1].segments[1].title", is("Quiz #2")))
+                .andExpect(jsonPath("$.course.lessons[1].id", is(302)))
+                .andExpect(jsonPath("$.course.lessons[1].rank", is(2)))
+                .andExpect(jsonPath("$.course.lessons[1].title", is("Querying the database")))
+                .andExpect(jsonPath("$.course.lessons[1].segments.length()", is(2)))
+                .andExpect(jsonPath("$.course.lessons[1].segments[0].id", is(3029)))
+                .andExpect(jsonPath("$.course.lessons[1].segments[0].videoId", is(3021)))
+                .andExpect(jsonPath("$.course.lessons[1].segments[0].rank", is(1)))
+                .andExpect(jsonPath("$.course.lessons[1].segments[0].type", is("video")))
+                .andExpect(jsonPath("$.course.lessons[1].segments[0].title", is("Using SELECT")))
+                .andExpect(jsonPath("$.course.lessons[1].segments[1].id", is(3022)))
+                .andExpect(jsonPath("$.course.lessons[1].segments[1].rank", is(2)))
+                .andExpect(jsonPath("$.course.lessons[1].segments[1].type", is("quiz")))
+                .andExpect(jsonPath("$.course.lessons[1].segments[1].title", is("Quiz #2")))
 
-                .andExpect(jsonPath("$.course.legs[2].id", is(303)))
-                .andExpect(jsonPath("$.course.legs[2].rank", is(3)))
-                .andExpect(jsonPath("$.course.legs[2].title", is("Conclusion")))
-                .andExpect(jsonPath("$.course.legs[2].segments.length()", is(1)))
-                .andExpect(jsonPath("$.course.legs[2].segments[0].id", is(3031)))
-                .andExpect(jsonPath("$.course.legs[2].segments[0].videoId", is(3031)))
-                .andExpect(jsonPath("$.course.legs[2].segments[0].rank", is(1)))
-                .andExpect(jsonPath("$.course.legs[2].segments[0].type", is("video")))
-                .andExpect(jsonPath("$.course.legs[2].segments[0].title", is("Project")))
+                .andExpect(jsonPath("$.course.lessons[2].id", is(303)))
+                .andExpect(jsonPath("$.course.lessons[2].rank", is(3)))
+                .andExpect(jsonPath("$.course.lessons[2].title", is("Conclusion")))
+                .andExpect(jsonPath("$.course.lessons[2].segments.length()", is(1)))
+                .andExpect(jsonPath("$.course.lessons[2].segments[0].id", is(3031)))
+                .andExpect(jsonPath("$.course.lessons[2].segments[0].videoId", is(3031)))
+                .andExpect(jsonPath("$.course.lessons[2].segments[0].rank", is(1)))
+                .andExpect(jsonPath("$.course.lessons[2].segments[0].type", is("video")))
+                .andExpect(jsonPath("$.course.lessons[2].segments[0].title", is("Project")))
         ;
     }
 
@@ -326,17 +326,17 @@ public class CourseControllerIT extends ControllerITSupport {
 
     //--- LEG
     @Test
-    public void shouldCreateLeg() throws Exception{
+    public void shouldCreateLesson() throws Exception{
         // Given
-        final CreateLegRequest req = new CreateLegRequest();
+        final CreateLessonRequest req = new CreateLessonRequest();
         req.setRank(1);
-        req.setTitle("shouldCreateLeg");
+        req.setTitle("shouldCreateLesson");
 
         // When
         final String jsonRequest = mapper.writeValueAsString(req);
         final String jsonResponse = mockMvc
                 .perform(
-                        post("/academy/v1/course/400/legs")
+                        post("/academy/v1/course/400/lessons")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonRequest)
                 )
@@ -344,32 +344,32 @@ public class CourseControllerIT extends ControllerITSupport {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.transactionId", notNullValue()))
-                .andExpect(jsonPath("$.leg.title", is("shouldCreateLeg")))
-                .andExpect(jsonPath("$.leg.rank", is(1)))
+                .andExpect(jsonPath("$.lesson.title", is("shouldCreateLesson")))
+                .andExpect(jsonPath("$.lesson.rank", is(1)))
                 .andReturn()
                 .getResponse()
                 .getContentAsString()
                 ;
-        CreateLegResponse resp = mapper.readValue(jsonResponse, CreateLegResponse.class);
+        CreateLessonResponse resp = mapper.readValue(jsonResponse, CreateLessonResponse.class);
 
         // Then
-        final Leg leg = legDao.findOne(resp.getLeg().getId());
-        assertThat(leg.getTitle()).isEqualTo("shouldCreateLeg");
-        assertThat(leg.getRank()).isEqualTo(1);
+        final Lesson lesson = lessonDao.findOne(resp.getLesson().getId());
+        assertThat(lesson.getTitle()).isEqualTo("shouldCreateLesson");
+        assertThat(lesson.getRank()).isEqualTo(1);
     }
 
     @Test
-    public void shouldUpdateLeg() throws Exception{
+    public void shouldUpdateLesson() throws Exception{
         // Given
-        final UpdateLegRequest req = new UpdateLegRequest();
+        final UpdateLessonRequest req = new UpdateLessonRequest();
         req.setRank(10);
-        req.setTitle("shouldUpdateLeg");
+        req.setTitle("shouldUpdateLesson");
 
         // When
         final String jsonRequest = mapper.writeValueAsString(req);
         mockMvc
                 .perform(
-                        post("/academy/v1/course/400/leg/401")
+                        post("/academy/v1/course/400/lesson/401")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonRequest)
                 )
@@ -377,14 +377,14 @@ public class CourseControllerIT extends ControllerITSupport {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.transactionId", notNullValue()))
-                .andExpect(jsonPath("$.leg.title", is("shouldUpdateLeg")))
-                .andExpect(jsonPath("$.leg.rank", is(10)))
+                .andExpect(jsonPath("$.lesson.title", is("shouldUpdateLesson")))
+                .andExpect(jsonPath("$.lesson.rank", is(10)))
         ;
 
         // Then
-        final Leg leg = legDao.findOne(401);
-        assertThat(leg.getTitle()).isEqualTo("shouldUpdateLeg");
-        assertThat(leg.getRank()).isEqualTo(10);
+        final Lesson lesson = lessonDao.findOne(401);
+        assertThat(lesson.getTitle()).isEqualTo("shouldUpdateLesson");
+        assertThat(lesson.getRank()).isEqualTo(10);
     }
 
 }

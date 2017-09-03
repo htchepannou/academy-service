@@ -9,11 +9,11 @@ import io.tchepannou.academy.dto.course.UpdateCourseRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseResponse;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusResponse;
-import io.tchepannou.academy.dto.leg.CreateLegRequest;
-import io.tchepannou.academy.dto.leg.LegResponse;
-import io.tchepannou.academy.dto.leg.UpdateLegRequest;
+import io.tchepannou.academy.dto.lesson.CreateLessonRequest;
+import io.tchepannou.academy.dto.lesson.LessonResponse;
+import io.tchepannou.academy.dto.lesson.UpdateLessonRequest;
 import io.tchepannou.academy.service.CourseService;
-import io.tchepannou.academy.service.LegService;
+import io.tchepannou.academy.service.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +32,7 @@ public class CourseController extends BaseController {
     private CourseService courseService;
 
     @Autowired
-    private LegService legService;
+    private LessonService legService;
 
 
     @RequestMapping(path = "/courses", method = RequestMethod.POST)
@@ -73,18 +73,18 @@ public class CourseController extends BaseController {
         return init(courseService.findById(id));
     }
 
-    @RequestMapping(path = "/course/{courseId}/legs", method = RequestMethod.POST)
+    @RequestMapping(path = "/course/{courseId}/lessons", method = RequestMethod.POST)
     @ApiOperation(value = "addLeg", notes = "Add a leg to a course")
-    public LegResponse addLeg(@PathVariable Integer courseId, @RequestBody @Valid CreateLegRequest request) {
+    public LessonResponse addLeg(@PathVariable Integer courseId, @RequestBody @Valid CreateLessonRequest request) {
         return init(legService.addLeg(courseId, request));
     }
 
-    @RequestMapping(path = "/course/{courseId}/leg/{legId}", method = RequestMethod.POST)
+    @RequestMapping(path = "/course/{courseId}/lesson/{legId}", method = RequestMethod.POST)
     @ApiOperation(value = "updateLeg", notes = "Update a leg")
-    public LegResponse updateLeg(
+    public LessonResponse updateLeg(
             @PathVariable Integer courseId,
             @PathVariable Integer legId,
-            @RequestBody @Valid UpdateLegRequest request
+            @RequestBody @Valid UpdateLessonRequest request
     ) {
         return init(legService.updateLeg(courseId, legId, request));
     }

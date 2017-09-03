@@ -2,7 +2,10 @@ language: java
 dist: trusty
 sudo: required
 
-jdk: oraclejdk8
+jdk:
+  - oraclejdk8
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
 
 services:
@@ -16,8 +19,6 @@ before_script:
 script:
   - mvn -q compile flyway:clean flyway:migrate install --settings settings.xml
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash) -t 950f795f-761b-42cb-8c12-39c555b48382
 
 notifications:
   email:

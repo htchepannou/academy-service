@@ -1,6 +1,6 @@
-### Build Status
-Master: [![Build Status](https://travis-ci.org/htchepannou/traval-service.svg?branch=master)](https://travis-ci.org/htchepannou/academy-service)
-[![Code Coverage](https://coveralls.io/repos/htchepannou/academy-service/badge.svg?branch=master)](https://codecov.io/r/htchepannou/academy-service?branch=master)
+Master: [![Build Status](https://travis-ci.org/htchepannou/academy-service.svg?branch=master)](https://travis-ci.org/htchepannou/academy-service)
+[![Code Coverage](https://img.shields.io/codecov/c/github/htchepannou/academy-service/master.svg)](https://codecov.io/r/htchepannou/academy-service?branch=master)
+[![JDK](https://img.shields.io/badge/jdk-1.8-brightgreen.svg)](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
 
 # Prerequises
 - Java 8+

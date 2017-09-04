@@ -61,7 +61,6 @@ CREATE TABLE T_COURSE(
   summary             VARCHAR(255),
   description         TEXT,
   language            VARCHAR(2),
-  status              INT,
   published_datetime  DATETIME,
   updated_datetime    DATETIME,
 

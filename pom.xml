@@ -32,14 +32,13 @@
         <assertj.version>3.0.0</assertj.version>
         <mockito.version>1.9.5</mockito.version>
 
-        <maven-failsafe-plugin>2.19.1</maven-failsafe-plugin>
-        <maven-pmd-plugin.version>3.7</maven-pmd-plugin.version>
-        <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
-
         <jacoco-maven-plugin.version>0.7.4.201502262128</jacoco-maven-plugin.version>
         <jacoco.threshold.line>0.90</jacoco.threshold.line>
         <jacoco.threshold.class>0.90</jacoco.threshold.class>
-
+        <maven-failsafe-plugin>2.19.1</maven-failsafe-plugin>
+        <maven-pmd-plugin.version>3.7</maven-pmd-plugin.version>
+        <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
+        <sql-maven-plugin.version>1.5</sql-maven-plugin.version>
         <pmd.ruleset.location>src/main/resources/buildtools/pmd/ruleset.xml</pmd.ruleset.location>
     </properties>
 
@@ -179,7 +178,7 @@
             </plugin>
 
 
-            <!-- DATABASE -->
+            <!-- FLYWAY -->
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
@@ -341,6 +340,44 @@
                 </executions>
             </plugin>
 
+
+            <!-- DEFAULT DATA -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <version>${sql-maven-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <driver>com.mysql.jdbc.Driver</driver>
+                    <url>jdbc:mysql://localhost/academy</url>
+                    <username>root</username>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <delimiter>/</delimiter>
+                            <delimiterType>normal</delimiterType>
+                            <autocommit>true</autocommit>
+                            <fileset>
+                                <basedir>src/main/sql/sample</basedir>
+                                <includes>
+                                    <include>course_01.sql</include>
+                                </includes>
+                            </fileset>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
 
     </build>

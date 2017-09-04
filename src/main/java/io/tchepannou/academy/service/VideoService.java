@@ -11,6 +11,7 @@ import io.tchepannou.academy.dto.video.VideoResponse;
 import io.tchepannou.academy.exception.BusinessError;
 import io.tchepannou.academy.exception.InvalidRequestException;
 import io.tchepannou.academy.exception.NotFoundException;
+import io.tchepannou.academy.mapper.VideoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

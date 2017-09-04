@@ -11,6 +11,7 @@ import io.tchepannou.academy.dto.lesson.UpdateLessonRequest;
 import io.tchepannou.academy.dto.lesson.UpdateLessonResponse;
 import io.tchepannou.academy.exception.BusinessError;
 import io.tchepannou.academy.exception.NotFoundException;
+import io.tchepannou.academy.mapper.LessonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

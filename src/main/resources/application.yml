@@ -8,13 +8,13 @@ spring:
           dialect: org.hibernate.dialect.MySQL5Dialect
 
   datasource:
-    poolName: K.Travel.CP
+    poolName: K.Academy.CP
     driverClass: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/academy?useSSL=false&requireSSL=false&serverTimezone=UTC
     username: root
     #password:
     dbcp2:
-      max-total: 1
+      max-total: 8
 
 swagger:
   version: "1.0"
@@ -30,10 +30,14 @@ server:
   port: 8080
 
 endpoints:
-  enabled: false
-  sensitive: false
+  enabled: true
+  sensitive: true
   health:
-    enabled: true
+    sensitive: false
+  info:
+    sensitive: false
+  metrics:
+    sensitive: false
 
 logging:
   level:

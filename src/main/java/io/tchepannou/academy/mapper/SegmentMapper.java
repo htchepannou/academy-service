@@ -1,4 +1,4 @@
-package io.tchepannou.academy.service;
+package io.tchepannou.academy.mapper;
 
 import io.tchepannou.academy.domain.Segment;
 import io.tchepannou.academy.domain.SegmentType;

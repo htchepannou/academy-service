@@ -1,4 +1,29 @@
 -- SCHEMA
+CREATE TABLE T_VIDEO_TYPE(
+  id          INT         NOT NULL AUTO_INCREMENT,
+  name        VARCHAR(20) NOT NULL,
+  rank        INT         NOT NULL,
+
+  url_regexp      TEXT    NOT NULL,
+  video_id_index  INT,
+
+  UNIQUE(name),
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+CREATE TABLE T_VIDEO(
+  id                INT NOT NULL AUTO_INCREMENT,
+  type_fk           INT NOT NULL REFERENCES T_VIDEO_TYPE(id),
+
+  video_id          VARCHAR(32) NOT NULL,
+  duration_second   INT,
+
+  UNIQUE(type_fk, video_id),
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+
+
 CREATE TABLE T_COURSE_STATUS(
   id          INT         NOT NULL AUTO_INCREMENT,
   name        VARCHAR(20) NOT NULL,
@@ -26,49 +51,6 @@ CREATE TABLE T_SEGMENT_TYPE(
   UNIQUE(name),
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
-
-CREATE TABLE T_VIDEO_TYPE(
-  id          INT         NOT NULL AUTO_INCREMENT,
-  name        VARCHAR(20) NOT NULL,
-  rank        INT         NOT NULL,
-
-  url_regexp      TEXT    NOT NULL,
-  video_id_index  INT,
-
-  UNIQUE(name),
-  PRIMARY KEY (id)
-) ENGINE = InnoDB;
-
-
-
-
-CREATE TABLE T_ASSET(
-  id          INT NOT NULL AUTO_INCREMENT,
-
-  name            VARCHAR(200),
-  url             TEXT,
-  content_type    VARCHAR(100),
-  content_length  INT,
-
-  PRIMARY KEY (id)
-) ENGINE = InnoDB;
-
-
-
-
-CREATE TABLE T_VIDEO(
-  id                INT NOT NULL AUTO_INCREMENT,
-  type_fk           INT NOT NULL REFERENCES T_VIDEO_TYPE(id),
-
-  video_id          VARCHAR(32) NOT NULL,
-  duration_second   INT,
-
-  UNIQUE(type_fk, video_id),
-  PRIMARY KEY (id)
-) ENGINE = InnoDB;
-
-
-
 
 CREATE TABLE T_COURSE(
   id            INT NOT NULL AUTO_INCREMENT,
@@ -121,7 +103,57 @@ CREATE TABLE T_SEGMENT(
 
 
 
+CREATE TABLE T_ASSET_TYPE(
+  id          INT         NOT NULL AUTO_INCREMENT,
+  name        VARCHAR(20) NOT NULL,
+  rank        INT         NOT NULL,
+
+  url_regexp      TEXT    NOT NULL,
+  video_id_index  INT,
+
+  UNIQUE(name),
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+CREATE TABLE T_ASSET(
+  id          INT NOT NULL AUTO_INCREMENT,
+
+  name            VARCHAR(200)  NOT NULL,
+  url             TEXT          NOT NULL,
+  content_type    VARCHAR(100),
+  content_length  INT,
+
+  insert_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP,
+  update_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+CREATE TABLE T_COURSE_ASSET(
+  course_fk   INT NOT NULL REFERENCES T_COURSE(id),
+  asset_fk    INT NOT NULL REFERENCES T_ASSET(id),
+
+  insert_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP,
+  update_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (asset_fk, course_fk)
+) ENGINE = InnoDB;
+
+CREATE TABLE T_LESSON_ASSET(
+  lesson_fk   INT NOT NULL REFERENCES T_LESSON(id),
+  asset_fk    INT NOT NULL REFERENCES T_ASSET(id),
+
+  insert_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP,
+  update_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (asset_fk, lesson_fk)
+) ENGINE = InnoDB;
+
+
 -- DATA
+INSERT INTO T_VIDEO_TYPE(id, name, rank, url_regexp, video_id_index)  VALUES(1, 'youtube', 0, 'https://(?:www\\.)?youtu(?:\\.be/|be\\.com/(?:watch\\?v=|v/|embed/|user/(?:[\\w#]+/)+))([^&#?\n]+)', 1);
+
 INSERT INTO T_COURSE_STATUS(id, name, rank) VALUES(1, 'draft', 0);
 INSERT INTO T_COURSE_STATUS(id, name, rank, published) VALUES(2, 'published', 1, true);
 INSERT INTO T_COURSE_STATUS(id, name, rank) VALUES(3, 'archived', 2);
@@ -133,5 +165,3 @@ INSERT INTO T_COURSE_LEVEL(id, name, rank) VALUES(4, 'advanced', 3);
 
 INSERT INTO T_SEGMENT_TYPE(id, name, rank) VALUES(1, 'video', 0);
 INSERT INTO T_SEGMENT_TYPE(id, name, rank) VALUES(2, 'quiz', 1);
-
-INSERT INTO T_VIDEO_TYPE(id, name, rank, url_regexp, video_id_index)  VALUES(1, 'youtube', 0, 'https://(?:www\\.)?youtu(?:\\.be/|be\\.com/(?:watch\\?v=|v/|embed/|user/(?:[\\w#]+/)+))([^&#?\n]+)', 1);

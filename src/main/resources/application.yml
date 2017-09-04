@@ -14,7 +14,7 @@ spring:
     username: root
     #password:
     dbcp2:
-      max-total: 8
+      max-total: 2
 
 swagger:
   version: "1.0"

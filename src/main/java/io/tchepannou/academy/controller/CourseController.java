@@ -32,7 +32,7 @@ public class CourseController extends BaseController {
     private CourseService courseService;
 
     @Autowired
-    private LessonService legService;
+    private LessonService lessonService;
 
 
     @RequestMapping(path = "/courses", method = RequestMethod.POST)
@@ -74,19 +74,19 @@ public class CourseController extends BaseController {
     }
 
     @RequestMapping(path = "/course/{courseId}/lessons", method = RequestMethod.POST)
-    @ApiOperation(value = "addLeg", notes = "Add a leg to a course")
-    public LessonResponse addLeg(@PathVariable Integer courseId, @RequestBody @Valid CreateLessonRequest request) {
-        return init(legService.addLeg(courseId, request));
+    @ApiOperation(value = "addLesson", notes = "Add a lesson to a course")
+    public LessonResponse addLesson(@PathVariable Integer courseId, @RequestBody @Valid CreateLessonRequest request) {
+        return init(lessonService.addLeg(courseId, request));
     }
 
-    @RequestMapping(path = "/course/{courseId}/lesson/{legId}", method = RequestMethod.POST)
-    @ApiOperation(value = "updateLeg", notes = "Update a leg")
-    public LessonResponse updateLeg(
+    @RequestMapping(path = "/course/{courseId}/lesson/{lessonId}", method = RequestMethod.POST)
+    @ApiOperation(value = "updateLesson", notes = "Update a lesson")
+    public LessonResponse updateLesson(
             @PathVariable Integer courseId,
-            @PathVariable Integer legId,
+            @PathVariable Integer lessonId,
             @RequestBody @Valid UpdateLessonRequest request
     ) {
-        return init(legService.updateLeg(courseId, legId, request));
+        return init(lessonService.updateLeg(courseId, lessonId, request));
     }
 
 }

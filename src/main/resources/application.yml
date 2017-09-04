@@ -25,19 +25,17 @@ swagger:
   licenceType: ""
   licencePath: "#"
   protocol: http
+  path: "/academy/v1/.*?"
 
 server:
   port: 8080
 
 endpoints:
   enabled: true
-  sensitive: true
   health:
     sensitive: false
-  info:
-    sensitive: false
   metrics:
-    sensitive: false
+    enabled: true
 
 logging:
   level:

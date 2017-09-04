@@ -28,6 +28,7 @@ public class SwaggerConfiguration {
     private String licenceType;
     private String licencePath;
     private String protocol;
+    private String path;
 
     @Bean
     public Docket documentation() {
@@ -35,7 +36,7 @@ public class SwaggerConfiguration {
                 .useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(or(regex("/travel/v1/.*?")))
+                .paths(or(regex(path)))
                 .build()
                 .pathMapping("/")
                 .protocols(Collections.singleton(protocol))
@@ -117,5 +118,13 @@ public class SwaggerConfiguration {
 
     public void setProtocol(final String protocol) {
         this.protocol = protocol;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(final String path) {
+        this.path = path;
     }
 }

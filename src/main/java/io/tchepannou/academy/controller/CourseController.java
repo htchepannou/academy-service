@@ -104,7 +104,7 @@ public class CourseController extends BaseController {
     }
 
     @RequestMapping(path = "/course/{courseId}/segments", method = RequestMethod.GET)
-    @ApiOperation(value = "findSegmentsByLessonId", notes = "Find all the segments of a lesson")
+    @ApiOperation(value = "findSegments", notes = "Find all the segments of a lesson")
     public SegmentListResponse findSegmentsByLessonId(
             @PathVariable Integer courseId,
             @RequestParam(name="lessonId", required = true) Integer lessonId

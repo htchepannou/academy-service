@@ -76,7 +76,7 @@ public class SegmentService {
 
         Lesson lesson = lessonDao.findOne(lessonId);
         if (lesson == null || !lesson.getCourseId().equals(course.getId())){
-            throw new NotFoundException(BusinessError.LEG_NOT_FOUND);
+            throw new NotFoundException(BusinessError.LESSON_NOT_FOUND);
         }
         return lesson;
     }

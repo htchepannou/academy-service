@@ -228,7 +228,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
 
         // When
         final String jsonRequest = mapper.writeValueAsString(req);
-        expectBusinessError(0, BusinessError.LEG_NOT_FOUND,
+        expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
                 mockMvc
                         .perform(
                                 post("/academy/v1/course/400/lesson/99999")
@@ -251,7 +251,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
 
         // When
         final String jsonRequest = mapper.writeValueAsString(req);
-        expectBusinessError(0, BusinessError.LEG_NOT_FOUND,
+        expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
                 mockMvc
                         .perform(
                                 post("/academy/v1/course/100/lesson/401")
@@ -332,6 +332,42 @@ public class CourseControllerErrorIT extends ControllerITSupport{
                 mockMvc
                         .perform(
                                 get("/academy/v1/course/100/segment/3101")
+                                        .contentType(MediaType.APPLICATION_JSON)
+                        )
+
+                        .andDo(MockMvcResultHandlers.print())
+                        .andExpect(status().isNotFound())
+                        .andExpect(jsonPath("$.transactionId", notNullValue()))
+                        .andExpect(jsonPath("$.errors.length()", is(1)))
+        );
+    }
+
+    @Test
+    public void shouldReturn404WhenFindSegmentListForInvalidCourse() throws Exception {
+        // When
+        expectBusinessError(0, BusinessError.COURSE_NOT_FOUND,
+                mockMvc
+                        .perform(
+                                get("/academy/v1/course/99999/segments")
+                                        .param("lessonId", "310")
+                                        .contentType(MediaType.APPLICATION_JSON)
+                        )
+
+                        .andDo(MockMvcResultHandlers.print())
+                        .andExpect(status().isNotFound())
+                        .andExpect(jsonPath("$.transactionId", notNullValue()))
+                        .andExpect(jsonPath("$.errors.length()", is(1)))
+        );
+    }
+
+    @Test
+    public void shouldReturn404WhenFindSegmentListForInvalidLesson() throws Exception {
+        // When
+        expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
+                mockMvc
+                        .perform(
+                                get("/academy/v1/course/300/segments")
+                                        .param("lessonId", "77777")
                                         .contentType(MediaType.APPLICATION_JSON)
                         )
 

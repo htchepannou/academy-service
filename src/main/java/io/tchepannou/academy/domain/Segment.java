@@ -24,6 +24,7 @@ public class Segment extends CourseItem {
     private Integer videoId;
 
     private String summary;
+    private String description;
 
     public Segment() {
     }
@@ -71,5 +72,13 @@ public class Segment extends CourseItem {
 
     public void setSummary(final String summary) {
         this.summary = summary;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(final String description) {
+        this.description = description;
     }
 }

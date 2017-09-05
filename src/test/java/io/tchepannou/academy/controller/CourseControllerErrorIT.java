@@ -131,7 +131,6 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         ;
     }
 
-
     @Test
     public void shouldReturn404WhenUpdateCourseStatusWithInvlidId() throws Exception {
         // Given
@@ -267,7 +266,6 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         );
     }
 
-
     @Test
     public void shouldReturn404WhenUpdatingLegWithInknownCourseId() throws Exception {
         // Given
@@ -282,6 +280,59 @@ public class CourseControllerErrorIT extends ControllerITSupport{
                                 post("/academy/v1/course/9999999/lesson/401")
                                         .contentType(MediaType.APPLICATION_JSON)
                                         .content(jsonRequest)
+                        )
+
+                        .andDo(MockMvcResultHandlers.print())
+                        .andExpect(status().isNotFound())
+                        .andExpect(jsonPath("$.transactionId", notNullValue()))
+                        .andExpect(jsonPath("$.errors.length()", is(1)))
+        );
+    }
+
+
+    //-- SEGMENT
+    @Test
+    public void shouldReturn404WhenFindSegmentWithInvalidId() throws Exception {
+        // When
+        expectBusinessError(0, BusinessError.SEGMENT_NOT_FOUND,
+                mockMvc
+                        .perform(
+                                get("/academy/v1/course/300/segment/999999")
+                                        .contentType(MediaType.APPLICATION_JSON)
+                        )
+
+                        .andDo(MockMvcResultHandlers.print())
+                        .andExpect(status().isNotFound())
+                        .andExpect(jsonPath("$.transactionId", notNullValue()))
+                        .andExpect(jsonPath("$.errors.length()", is(1)))
+        );
+    }
+
+    @Test
+    public void shouldReturn404WhenFindSegmentWithForInvalidCourseId() throws Exception {
+        // When
+        expectBusinessError(0, BusinessError.COURSE_NOT_FOUND,
+                mockMvc
+                        .perform(
+                                get("/academy/v1/course/9999999/segment/3101")
+                                        .contentType(MediaType.APPLICATION_JSON)
+                        )
+
+                        .andDo(MockMvcResultHandlers.print())
+                        .andExpect(status().isNotFound())
+                        .andExpect(jsonPath("$.transactionId", notNullValue()))
+                        .andExpect(jsonPath("$.errors.length()", is(1)))
+        );
+    }
+
+    @Test
+    public void shouldReturn404WhenFindSegmentWithWithIdMismatch() throws Exception {
+        // When
+        expectBusinessError(0, BusinessError.SEGMENT_NOT_FOUND,
+                mockMvc
+                        .perform(
+                                get("/academy/v1/course/100/segment/3101")
+                                        .contentType(MediaType.APPLICATION_JSON)
                         )
 
                         .andDo(MockMvcResultHandlers.print())

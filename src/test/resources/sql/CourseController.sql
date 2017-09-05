@@ -7,7 +7,7 @@ INSERT INTO T_COURSE(id, title, level_fk, status_fk, published_datetime, updated
 INSERT INTO T_COURSE(id, title, level_fk, status_fk, published_datetime, updated_datetime) VALUES(202, 'draft -> published (V2)', 1, 1, '2017-02-01 10:00:00', '2017-02-01 10:00:00');
 INSERT INTO T_COURSE(id, title, level_fk, status_fk, published_datetime, updated_datetime) VALUES(203, 'published -> published', 1, 2, '2017-02-01 10:00:00', '2017-02-01 10:00:00');
 
--- findById
+-- findById - findSegmentById
 INSERT INTO T_COURSE(id, level_fk, status_fk, language, title, summary, description, published_datetime) VALUES(300, 3, 2, 'en', 'Title of...', 'Summary of...', 'Description of...', '2017-01-02 03:30:00');
 INSERT INTO T_LESSON(id, course_fk, rank, title) VALUES(310, 300, 1, 'Introduction');
 INSERT INTO T_LESSON(id, course_fk, rank, title) VALUES(302, 300, 2, 'Querying the database');
@@ -18,7 +18,7 @@ INSERT INTO T_VIDEO(id, type_fk, video_id) VALUES(3102, 1, '3102');
 INSERT INTO T_VIDEO(id, type_fk, video_id) VALUES(3021, 1, '3021');
 INSERT INTO T_VIDEO(id, type_fk, video_id) VALUES(3031, 1, '3031');
 
-INSERT INTO T_SEGMENT(id, course_fk, lesson_fk, type_fk, video_fk, rank, title, summary) VALUES(3101, 300, 310, 1, 3101, 1, 'Welcome', 'Greeting from author');
+INSERT INTO T_SEGMENT(id, course_fk, lesson_fk, type_fk, video_fk, rank, title, summary, description) VALUES(3101, 300, 310, 1, 3101, 1, 'Welcome', 'Greeting from author', 'Presentation of the course and objectives from the author <b>Ray Sponsible</b>');
 INSERT INTO T_SEGMENT(id, course_fk, lesson_fk, type_fk, video_fk, rank, title) VALUES(3102, 300, 310, 1, 3102, 2, 'What is a database?');
 INSERT INTO T_SEGMENT(id, course_fk, lesson_fk, type_fk, rank, title) VALUES(3103, 300, 310, 2, 3, 'Quiz #1');
 

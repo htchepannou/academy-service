@@ -15,6 +15,7 @@ public class SegmentMapper {
         dto.setSummary(segment.getSummary());
         dto.setTitle(segment.getTitle());
         dto.setType(type.getName());
+        dto.setDescription(segment.getDescription());
         return dto;
     }
 }

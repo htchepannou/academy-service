@@ -8,6 +8,7 @@ public class SegmentDto {
     private String title;
     private Integer rank;
     private String summary;
+    private String description;
 
     public Integer getId() {
         return id;
@@ -55,5 +56,13 @@ public class SegmentDto {
 
     public void setSummary(final String summary) {
         this.summary = summary;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(final String description) {
+        this.description = description;
     }
 }

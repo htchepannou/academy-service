@@ -365,7 +365,7 @@
                             <goal>execute</goal>
                         </goals>
                         <configuration>
-                            <delimiter>/</delimiter>
+                            <delimiter>;</delimiter>
                             <delimiterType>normal</delimiterType>
                             <autocommit>true</autocommit>
                             <fileset>

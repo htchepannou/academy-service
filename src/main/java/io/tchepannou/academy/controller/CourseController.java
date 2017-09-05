@@ -12,8 +12,10 @@ import io.tchepannou.academy.dto.course.UpdateCourseStatusResponse;
 import io.tchepannou.academy.dto.lesson.CreateLessonRequest;
 import io.tchepannou.academy.dto.lesson.LessonResponse;
 import io.tchepannou.academy.dto.lesson.UpdateLessonRequest;
+import io.tchepannou.academy.dto.segment.SegmentResponse;
 import io.tchepannou.academy.service.CourseService;
 import io.tchepannou.academy.service.LessonService;
+import io.tchepannou.academy.service.SegmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +36,8 @@ public class CourseController extends BaseController {
     @Autowired
     private LessonService lessonService;
 
+    @Autowired
+    private SegmentService segmentService;
 
     @RequestMapping(path = "/courses", method = RequestMethod.POST)
     @ApiOperation(value = "create", notes = "Create a new travel course")
@@ -89,4 +93,11 @@ public class CourseController extends BaseController {
         return init(lessonService.updateLeg(courseId, lessonId, request));
     }
 
+
+    //----- SEGMENT
+    @RequestMapping(path = "/course/{courseId}/segment/{segmentId}", method = RequestMethod.GET)
+    @ApiOperation(value = "findSegmentById", notes = "Find a segment")
+    public SegmentResponse findSegmentById(@PathVariable Integer courseId, @PathVariable Integer segmentId) {
+        return init(segmentService.findById(courseId, segmentId));
+    }
 }

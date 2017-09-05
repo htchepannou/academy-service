@@ -324,7 +324,7 @@ public class CourseControllerIT extends ControllerITSupport {
     }
 
 
-    //--- LEG
+    //--- LESSON
     @Test
     public void shouldCreateLesson() throws Exception{
         // Given
@@ -387,4 +387,27 @@ public class CourseControllerIT extends ControllerITSupport {
         assertThat(lesson.getRank()).isEqualTo(10);
     }
 
+
+    //-- SEGMENT
+    @Test
+    public void shouldFindSegment() throws Exception{
+        // When
+        mockMvc
+                .perform(
+                        get("/academy/v1/course/300/segment/3101")
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.transactionId", notNullValue()))
+                .andExpect(jsonPath("$.segment.id", is(3101)))
+                .andExpect(jsonPath("$.segment.videoId", is(3101)))
+                .andExpect(jsonPath("$.segment.rank", is(1)))
+                .andExpect(jsonPath("$.segment.type", is("video")))
+                .andExpect(jsonPath("$.segment.title", is("Welcome")))
+                .andExpect(jsonPath("$.segment.summary", is("Greeting from author")))
+                .andExpect(jsonPath("$.segment.description", is("Presentation of the course and objectives from the author <b>Ray Sponsible</b>")))
+        ;
+    }
 }

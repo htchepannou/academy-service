@@ -4,14 +4,10 @@ import io.tchepannou.academy.dao.CourseDao;
 import io.tchepannou.academy.dao.CourseLevelDao;
 import io.tchepannou.academy.dao.CourseStatusDao;
 import io.tchepannou.academy.dao.LessonDao;
-import io.tchepannou.academy.dao.SegmentDao;
-import io.tchepannou.academy.dao.SegmentTypeDao;
 import io.tchepannou.academy.domain.Course;
 import io.tchepannou.academy.domain.CourseLevel;
 import io.tchepannou.academy.domain.CourseStatus;
 import io.tchepannou.academy.domain.Lesson;
-import io.tchepannou.academy.domain.Segment;
-import io.tchepannou.academy.domain.SegmentType;
 import io.tchepannou.academy.dto.course.CourseDto;
 import io.tchepannou.academy.dto.course.CourseResponse;
 import io.tchepannou.academy.dto.course.CreateCourseRequest;
@@ -21,13 +17,11 @@ import io.tchepannou.academy.dto.course.UpdateCourseResponse;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusResponse;
 import io.tchepannou.academy.dto.lesson.LessonDto;
-import io.tchepannou.academy.dto.segment.SegmentDto;
 import io.tchepannou.academy.exception.BusinessError;
 import io.tchepannou.academy.exception.InvalidRequestException;
 import io.tchepannou.academy.exception.NotFoundException;
 import io.tchepannou.academy.mapper.CourseMapper;
 import io.tchepannou.academy.mapper.LessonMapper;
-import io.tchepannou.academy.mapper.SegmentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -36,7 +30,6 @@ import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
@@ -58,15 +51,6 @@ public class CourseService {
 
     @Autowired
     private LessonMapper legMapper;
-
-    @Autowired
-    private SegmentDao segmentDao;
-
-    @Autowired
-    private SegmentTypeDao segmentTypeDao;
-
-    @Autowired
-    private SegmentMapper segmentMapper;
 
 
     //-- Public
@@ -140,17 +124,6 @@ public class CourseService {
                 .map(leg -> legMapper.toLegDto(leg))
                 .collect(Collectors.toList());
         dto.setLessons(legDtos);
-
-        /* Segments */
-        final Map<Integer, LessonDto> legDtoMap = legDtos.stream()
-                .collect(Collectors.toMap(LessonDto::getId, leg -> leg));
-        final List<Segment> segments = segmentDao.findByCourseId(id, pageRequest);
-        for (final Segment segment : segments){
-            final LessonDto legDto = legDtoMap.get(segment.getLessonId());
-            final SegmentType segmentType = segmentTypeDao.findOne(segment.getTypeId());
-            final SegmentDto segmentDto = segmentMapper.toSegmentDto(segment, segmentType);
-            legDto.add(segmentDto);
-        }
 
         return new CourseResponse(dto);
     }

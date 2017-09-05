@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table( name = "T_SEGMENT")
-public class Segment extends CourseItem {
+public class Segment extends Persistent {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -23,15 +23,10 @@ public class Segment extends CourseItem {
     @Column(name="video_fk")
     private Integer videoId;
 
+    private String title;
+    private Integer rank;
     private String summary;
     private String description;
-
-    public Segment() {
-    }
-
-    public Segment(final Course course) {
-        super(course);
-    }
 
     @Override
     public Integer getId() {
@@ -41,6 +36,15 @@ public class Segment extends CourseItem {
     public void setId(final Integer id) {
         this.id = id;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(final String title) {
+        this.title = title;
+    }
+
 
     public Integer getLessonId() {
         return lessonId;
@@ -80,5 +84,13 @@ public class Segment extends CourseItem {
 
     public void setDescription(final String description) {
         this.description = description;
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
+
+    public void setRank(final Integer rank) {
+        this.rank = rank;
     }
 }

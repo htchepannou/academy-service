@@ -10,5 +10,4 @@ import java.util.List;
 @Repository
 public interface SegmentDao extends CrudRepository<Segment, Integer>{
     List<Segment> findByLessonId(Integer lessonId, Pageable pageable);
-    List<Segment> findByCourseId(Integer courseId, Pageable pageable);
 }

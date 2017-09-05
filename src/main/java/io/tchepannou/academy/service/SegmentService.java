@@ -40,7 +40,16 @@ public class SegmentService {
 
 
     public SegmentResponse findById (Integer courseId, Integer segmentId){
-        final Segment segment = findSegmentById(courseId, segmentId);
+        final Segment segment = segmentDao.findOne(segmentId);
+        if (segment == null){
+            throw new NotFoundException(BusinessError.SEGMENT_NOT_FOUND);
+        }
+
+        final Lesson lesson = lessonDao.findOne(segment.getLessonId());
+        if (!lesson.getCourseId().equals(courseId)){
+            throw new NotFoundException(BusinessError.SEGMENT_NOT_FOUND);
+        }
+
         final SegmentType type = segmentTypeDao.findOne(segment.getTypeId());
         final SegmentDto dto = mapper.toSegmentDto(segment, type);
         return new SegmentResponse(dto);
@@ -60,16 +69,6 @@ public class SegmentService {
         return response;
     }
 
-
-    private Segment findSegmentById(final Integer courseId, final Integer segmentId){
-        final Course course = findCourseById(courseId);
-
-        final Segment segment = segmentDao.findOne(segmentId);
-        if (segment == null || !segment.getCourseId().equals(course.getId())){
-            throw new NotFoundException(BusinessError.SEGMENT_NOT_FOUND);
-        }
-        return segment;
-    }
 
     private Lesson findLessonById(final Integer courseId, final Integer lessonId){
         Course course = findCourseById(courseId);

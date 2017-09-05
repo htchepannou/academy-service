@@ -311,7 +311,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
     @Test
     public void shouldReturn404WhenFindSegmentWithForInvalidCourseId() throws Exception {
         // When
-        expectBusinessError(0, BusinessError.COURSE_NOT_FOUND,
+        expectBusinessError(0, BusinessError.SEGMENT_NOT_FOUND,
                 mockMvc
                         .perform(
                                 get("/academy/v1/course/9999999/segment/3101")

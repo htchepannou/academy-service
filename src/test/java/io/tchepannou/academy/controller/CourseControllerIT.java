@@ -28,6 +28,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -410,4 +411,44 @@ public class CourseControllerIT extends ControllerITSupport {
                 .andExpect(jsonPath("$.segment.description", is("Presentation of the course and objectives from the author <b>Ray Sponsible</b>")))
         ;
     }
+
+    @Test
+    public void shouldFindSegmentsByLesson() throws Exception{
+        // When
+        mockMvc
+                .perform(
+                        get("/academy/v1/course/300/segments")
+                                .param("lessonId", "310")
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.transactionId", notNullValue()))
+                .andExpect(jsonPath("$.size", is(3)))
+                .andExpect(jsonPath("$.segments.length()", is(3)))
+
+                .andExpect(jsonPath("$.segments[0].id", is(3101)))
+                .andExpect(jsonPath("$.segments[0].rank", is(1)))
+                .andExpect(jsonPath("$.segments[0].type", is("video")))
+                .andExpect(jsonPath("$.segments[0].title", is("Welcome")))
+                .andExpect(jsonPath("$.segments[0].summary", is("Greeting from author")))
+                .andExpect(jsonPath("$.segments[0].description", nullValue()))
+                .andExpect(jsonPath("$.segments[0].videoId", nullValue()))
+
+                .andExpect(jsonPath("$.segments[1].id", is(3102)))
+                .andExpect(jsonPath("$.segments[1].rank", is(2)))
+                .andExpect(jsonPath("$.segments[1].type", is("video")))
+                .andExpect(jsonPath("$.segments[1].title", is("What is a database?")))
+                .andExpect(jsonPath("$.segments[1].description", nullValue()))
+                .andExpect(jsonPath("$.segments[1].videoId", nullValue()))
+
+                .andExpect(jsonPath("$.segments[2].id", is(3103)))
+                .andExpect(jsonPath("$.segments[2].rank", is(3)))
+                .andExpect(jsonPath("$.segments[2].type", is("quiz")))
+                .andExpect(jsonPath("$.segments[2].title", is("Quiz #1")))
+                .andExpect(jsonPath("$.segments[2].description", nullValue()))
+                .andExpect(jsonPath("$.segments[2].videoId", nullValue()))
+        ;
+    }    
 }

@@ -3,11 +3,9 @@ package io.tchepannou.academy.service;
 import io.tchepannou.academy.dao.CourseDao;
 import io.tchepannou.academy.dao.CourseLevelDao;
 import io.tchepannou.academy.dao.CourseStatusDao;
-import io.tchepannou.academy.dao.LessonDao;
 import io.tchepannou.academy.domain.Course;
 import io.tchepannou.academy.domain.CourseLevel;
 import io.tchepannou.academy.domain.CourseStatus;
-import io.tchepannou.academy.domain.Lesson;
 import io.tchepannou.academy.dto.course.CourseDto;
 import io.tchepannou.academy.dto.course.CourseResponse;
 import io.tchepannou.academy.dto.course.CreateCourseRequest;
@@ -16,21 +14,15 @@ import io.tchepannou.academy.dto.course.UpdateCourseRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseResponse;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusResponse;
-import io.tchepannou.academy.dto.lesson.LessonDto;
 import io.tchepannou.academy.exception.BusinessError;
 import io.tchepannou.academy.exception.InvalidRequestException;
 import io.tchepannou.academy.exception.NotFoundException;
 import io.tchepannou.academy.mapper.CourseMapper;
-import io.tchepannou.academy.mapper.LessonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class CourseService {
@@ -44,13 +36,7 @@ public class CourseService {
     private CourseDao courseDao;
 
     @Autowired
-    private LessonDao legDao;
-
-    @Autowired
     private CourseMapper courseMapper;
-
-    @Autowired
-    private LessonMapper legMapper;
 
 
     //-- Public
@@ -112,18 +98,9 @@ public class CourseService {
             throw new NotFoundException(BusinessError.COURSE_NOT_FOUND);
         }
 
-        /* course */
         final CourseStatus status = statusDao.findOne(course.getStatusId());
         final CourseLevel level = levelDao.findOne(course.getLevelId());
         final CourseDto dto = courseMapper.toCourseDto(course, level, status);
-
-        /* legs */
-        final PageRequest pageRequest = new PageRequest(0, Integer.MAX_VALUE, Sort.Direction.ASC, "rank");
-        final List<Lesson> legs = legDao.findByCourseId(id, pageRequest);
-        final List<LessonDto> legDtos = legs.stream()
-                .map(leg -> legMapper.toLegDto(leg))
-                .collect(Collectors.toList());
-        dto.setLessons(legDtos);
 
         return new CourseResponse(dto);
     }

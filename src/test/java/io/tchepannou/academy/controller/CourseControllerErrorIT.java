@@ -5,8 +5,6 @@ import io.tchepannou.academy.ControllerITSupport;
 import io.tchepannou.academy.dto.course.CreateCourseRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusRequest;
-import io.tchepannou.academy.dto.lesson.CreateLessonRequest;
-import io.tchepannou.academy.dto.lesson.UpdateLessonRequest;
 import io.tchepannou.academy.exception.BusinessError;
 import org.junit.Before;
 import org.junit.Test;
@@ -195,99 +193,6 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         );
     }
 
-
-    //-- LEG
-    @Test
-    public void shouldReturn404WhenAddingLegIntoInvalidCourse() throws Exception {
-        // Given
-        final CreateLessonRequest req = new CreateLessonRequest();
-        req.setTitle("Leg");
-
-        // When
-        final String jsonRequest = mapper.writeValueAsString(req);
-        expectBusinessError(0, BusinessError.COURSE_NOT_FOUND,
-                mockMvc
-                        .perform(
-                                post("/academy/v1/course/9999999/lessons")
-                                        .contentType(MediaType.APPLICATION_JSON)
-                                        .content(jsonRequest)
-                        )
-
-                        .andDo(MockMvcResultHandlers.print())
-                        .andExpect(status().isNotFound())
-                        .andExpect(jsonPath("$.transactionId", notNullValue()))
-                        .andExpect(jsonPath("$.errors.length()", is(1)))
-        );
-    }
-
-    @Test
-    public void shouldReturn404WhenUpdatingLegWithInvalidLegId() throws Exception {
-        // Given
-        final UpdateLessonRequest req = new UpdateLessonRequest();
-        req.setTitle("Leg");
-
-        // When
-        final String jsonRequest = mapper.writeValueAsString(req);
-        expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
-                mockMvc
-                        .perform(
-                                post("/academy/v1/course/400/lesson/99999")
-                                        .contentType(MediaType.APPLICATION_JSON)
-                                        .content(jsonRequest)
-                        )
-
-                        .andDo(MockMvcResultHandlers.print())
-                        .andExpect(status().isNotFound())
-                        .andExpect(jsonPath("$.transactionId", notNullValue()))
-                        .andExpect(jsonPath("$.errors.length()", is(1)))
-        );
-    }
-
-    @Test
-    public void shouldReturn404WhenUpdatingLegWithInvalidCourseId() throws Exception {
-        // Given
-        final UpdateLessonRequest req = new UpdateLessonRequest();
-        req.setTitle("Leg");
-
-        // When
-        final String jsonRequest = mapper.writeValueAsString(req);
-        expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
-                mockMvc
-                        .perform(
-                                post("/academy/v1/course/100/lesson/401")
-                                        .contentType(MediaType.APPLICATION_JSON)
-                                        .content(jsonRequest)
-                        )
-
-                        .andDo(MockMvcResultHandlers.print())
-                        .andExpect(status().isNotFound())
-                        .andExpect(jsonPath("$.transactionId", notNullValue()))
-                        .andExpect(jsonPath("$.errors.length()", is(1)))
-        );
-    }
-
-    @Test
-    public void shouldReturn404WhenUpdatingLegWithInknownCourseId() throws Exception {
-        // Given
-        final UpdateLessonRequest req = new UpdateLessonRequest();
-        req.setTitle("Leg");
-
-        // When
-        final String jsonRequest = mapper.writeValueAsString(req);
-        expectBusinessError(0, BusinessError.COURSE_NOT_FOUND,
-                mockMvc
-                        .perform(
-                                post("/academy/v1/course/9999999/lesson/401")
-                                        .contentType(MediaType.APPLICATION_JSON)
-                                        .content(jsonRequest)
-                        )
-
-                        .andDo(MockMvcResultHandlers.print())
-                        .andExpect(status().isNotFound())
-                        .andExpect(jsonPath("$.transactionId", notNullValue()))
-                        .andExpect(jsonPath("$.errors.length()", is(1)))
-        );
-    }
 
 
     //-- SEGMENT

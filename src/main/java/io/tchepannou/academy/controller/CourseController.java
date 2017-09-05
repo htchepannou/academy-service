@@ -9,9 +9,8 @@ import io.tchepannou.academy.dto.course.UpdateCourseRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseResponse;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusResponse;
-import io.tchepannou.academy.dto.lesson.CreateLessonRequest;
+import io.tchepannou.academy.dto.lesson.LessonListResponse;
 import io.tchepannou.academy.dto.lesson.LessonResponse;
-import io.tchepannou.academy.dto.lesson.UpdateLessonRequest;
 import io.tchepannou.academy.dto.segment.SegmentListResponse;
 import io.tchepannou.academy.dto.segment.SegmentResponse;
 import io.tchepannou.academy.service.CourseService;
@@ -79,20 +78,18 @@ public class CourseController extends BaseController {
         return init(courseService.findById(id));
     }
 
-    @RequestMapping(path = "/course/{courseId}/lessons", method = RequestMethod.POST)
-    @ApiOperation(value = "addLesson", notes = "Add a lesson to a course")
-    public LessonResponse addLesson(@PathVariable Integer courseId, @RequestBody @Valid CreateLessonRequest request) {
-        return init(lessonService.addLeg(courseId, request));
+
+    //----- LESSON
+    @RequestMapping(path = "/course/{courseId}/lesson/{lessonId}", method = RequestMethod.GET)
+    @ApiOperation(value = "findLessonById", notes = "Find a lesson")
+    public LessonResponse findLessonById(@PathVariable Integer courseId, @PathVariable Integer lessonId) {
+        return init(lessonService.findById(courseId, lessonId));
     }
 
-    @RequestMapping(path = "/course/{courseId}/lesson/{lessonId}", method = RequestMethod.POST)
-    @ApiOperation(value = "updateLesson", notes = "Update a lesson")
-    public LessonResponse updateLesson(
-            @PathVariable Integer courseId,
-            @PathVariable Integer lessonId,
-            @RequestBody @Valid UpdateLessonRequest request
-    ) {
-        return init(lessonService.updateLeg(courseId, lessonId, request));
+    @RequestMapping(path = "/course/{courseId}/lessons", method = RequestMethod.GET)
+    @ApiOperation(value = "findSegments", notes = "Find all the lessons of a course")
+    public LessonListResponse findSegmentsByLessonId(@PathVariable Integer courseId){
+        return init(lessonService.findByCourse(courseId));
     }
 
 

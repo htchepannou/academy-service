@@ -4,18 +4,18 @@ import io.tchepannou.academy.dao.CourseDao;
 import io.tchepannou.academy.dao.LessonDao;
 import io.tchepannou.academy.domain.Course;
 import io.tchepannou.academy.domain.Lesson;
-import io.tchepannou.academy.dto.lesson.CreateLessonRequest;
-import io.tchepannou.academy.dto.lesson.CreateLessonResponse;
 import io.tchepannou.academy.dto.lesson.LessonDto;
-import io.tchepannou.academy.dto.lesson.UpdateLessonRequest;
-import io.tchepannou.academy.dto.lesson.UpdateLessonResponse;
+import io.tchepannou.academy.dto.lesson.LessonListResponse;
+import io.tchepannou.academy.dto.lesson.LessonResponse;
 import io.tchepannou.academy.exception.BusinessError;
 import io.tchepannou.academy.exception.NotFoundException;
 import io.tchepannou.academy.mapper.LessonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
 @Component
 public class LessonService {
@@ -28,27 +28,27 @@ public class LessonService {
     @Autowired
     private LessonMapper mapper;
 
-    @Transactional
-    public CreateLessonResponse addLeg(final Integer courseId, final CreateLessonRequest request){
-        final Course course = findCourseById(courseId);
 
-        final Lesson lesson = new Lesson(course);
-        mapper.toLeg(request, lesson);
-        lessonDao.save(lesson);
+    public LessonResponse findById(final Integer courseId, final Integer lessonId) {
+        final Lesson lesson = lessonDao.findOne(lessonId);
+        if (lesson == null || !lesson.getCourseId().equals(courseId)){
+            throw new NotFoundException(BusinessError.LESSON_NOT_FOUND);
+        }
 
-        final LessonDto dto = mapper.toLegDto(lesson);
-        return new CreateLessonResponse(dto);
+        final LessonDto dto = mapper.toLessonDto(lesson);
+        return new LessonResponse(dto);
     }
 
-    @Transactional
-    public UpdateLessonResponse updateLeg(final Integer courseId, final Integer lessonId, final UpdateLessonRequest request){
-        final Lesson lesson = findLegById(lessonId, courseId);
+    public LessonListResponse findByCourse(final Integer courseId){
+        final PageRequest pageable = new PageRequest(0, Integer.MAX_VALUE, Sort.Direction.ASC, "rank");
+        final List<Lesson> lessons = lessonDao.findByCourseId(courseId, pageable);
 
-        mapper.toLeg(request, lesson);
-        lessonDao.save(lesson);
-
-        final LessonDto dto = mapper.toLegDto(lesson);
-        return new UpdateLessonResponse(dto);
+        final LessonListResponse response = new LessonListResponse();
+        for (final Lesson lesson : lessons){
+            final LessonDto dto = mapper.toLessonDto(lesson);
+            response.add(dto);
+        }
+        return response;
     }
 
     private Course findCourseById(final Integer id){
@@ -57,15 +57,5 @@ public class LessonService {
             throw new NotFoundException(BusinessError.COURSE_NOT_FOUND);
         }
         return course;
-    }
-
-    private Lesson findLegById(final Integer id, final Integer courseId){
-        Course course = findCourseById(courseId);
-
-        Lesson lesson = lessonDao.findOne(id);
-        if (lesson == null || !lesson.getCourseId().equals(course.getId())){
-            throw new NotFoundException(BusinessError.LESSON_NOT_FOUND);
-        }
-        return lesson;
     }
 }

@@ -195,9 +195,80 @@ public class CourseControllerErrorIT extends ControllerITSupport{
 
 
 
+    //-- LESSON
+    @Test
+    public void shouldReturn404WhenFindLessonWithInvalidLessonId() throws Exception {
+        // When
+        expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
+                mockMvc
+                        .perform(
+                                get("/academy/v1/course/300/lesson/999999")
+                                        .contentType(MediaType.APPLICATION_JSON)
+                        )
+
+                        .andDo(MockMvcResultHandlers.print())
+                        .andExpect(status().isNotFound())
+                        .andExpect(jsonPath("$.transactionId", notNullValue()))
+                        .andExpect(jsonPath("$.errors.length()", is(1)))
+        );
+    }
+
+    @Test
+    public void shouldReturn404WhenFindLessonWithInvalidCourseId() throws Exception {
+        // When
+        expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
+                mockMvc
+                        .perform(
+                                get("/academy/v1/course/99999999/lesson/310")
+                                        .contentType(MediaType.APPLICATION_JSON)
+                        )
+
+                        .andDo(MockMvcResultHandlers.print())
+                        .andExpect(status().isNotFound())
+                        .andExpect(jsonPath("$.transactionId", notNullValue()))
+                        .andExpect(jsonPath("$.errors.length()", is(1)))
+        );
+    }
+
+    @Test
+    public void shouldReturn404WhenFindLessonWithInvalidCourseIdMismatch() throws Exception {
+        // When
+        expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
+                mockMvc
+                        .perform(
+                                get("/academy/v1/course/100/lesson/310")
+                                        .contentType(MediaType.APPLICATION_JSON)
+                        )
+
+                        .andDo(MockMvcResultHandlers.print())
+                        .andExpect(status().isNotFound())
+                        .andExpect(jsonPath("$.transactionId", notNullValue()))
+                        .andExpect(jsonPath("$.errors.length()", is(1)))
+        );
+    }
+
+    @Test
+    public void shouldReturn404WhenFindLessonListForInvalidCourse() throws Exception {
+        // When
+        expectBusinessError(0, BusinessError.COURSE_NOT_FOUND,
+                mockMvc
+                        .perform(
+                                get("/academy/v1/course/99999/lessons")
+                                        .contentType(MediaType.APPLICATION_JSON)
+                        )
+
+                        .andDo(MockMvcResultHandlers.print())
+                        .andExpect(status().isNotFound())
+                        .andExpect(jsonPath("$.transactionId", notNullValue()))
+                        .andExpect(jsonPath("$.errors.length()", is(1)))
+        );
+    }
+
+
+
     //-- SEGMENT
     @Test
-    public void shouldReturn404WhenFindSegmentWithInvalidId() throws Exception {
+    public void shouldReturn404WhenFindSegmentWithInvalidSegmentId() throws Exception {
         // When
         expectBusinessError(0, BusinessError.SEGMENT_NOT_FOUND,
                 mockMvc
@@ -231,7 +302,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
     }
 
     @Test
-    public void shouldReturn404WhenFindSegmentWithWithIdMismatch() throws Exception {
+    public void shouldReturn404WhenFindSegmentWithWithCourseIdMismatch() throws Exception {
         // When
         expectBusinessError(0, BusinessError.SEGMENT_NOT_FOUND,
                 mockMvc
@@ -250,7 +321,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
     @Test
     public void shouldReturn404WhenFindSegmentListForInvalidCourse() throws Exception {
         // When
-        expectBusinessError(0, BusinessError.COURSE_NOT_FOUND,
+        expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
                 mockMvc
                         .perform(
                                 get("/academy/v1/course/99999/segments")
@@ -282,6 +353,4 @@ public class CourseControllerErrorIT extends ControllerITSupport{
                         .andExpect(jsonPath("$.errors.length()", is(1)))
         );
     }
-
-    //-- Private
 }

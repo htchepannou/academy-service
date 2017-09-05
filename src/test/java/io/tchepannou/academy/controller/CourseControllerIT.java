@@ -3,7 +3,6 @@ package io.tchepannou.academy.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.tchepannou.academy.ControllerITSupport;
 import io.tchepannou.academy.dao.CourseDao;
-import io.tchepannou.academy.dao.LessonDao;
 import io.tchepannou.academy.domain.Course;
 import io.tchepannou.academy.dto.course.CreateCourseRequest;
 import io.tchepannou.academy.dto.course.CreateCourseResponse;
@@ -42,9 +41,6 @@ public class CourseControllerIT extends ControllerITSupport {
 
     @Autowired
     private CourseDao courseDao;
-
-    @Autowired
-    private LessonDao lessonDao;
 
     @Autowired
     private ObjectMapper mapper;
@@ -358,8 +354,8 @@ public class CourseControllerIT extends ControllerITSupport {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.transactionId", notNullValue()))
-                .andExpect(jsonPath("$.size", is(3)))
-                .andExpect(jsonPath("$.segments.length()", is(3)))
+                .andExpect(jsonPath("$.size", is(4)))
+                .andExpect(jsonPath("$.segments.length()", is(4)))
 
                 .andExpect(jsonPath("$.segments[0].id", is(3101)))
                 .andExpect(jsonPath("$.segments[0].rank", is(1)))
@@ -374,8 +370,13 @@ public class CourseControllerIT extends ControllerITSupport {
 
                 .andExpect(jsonPath("$.segments[2].id", is(3103)))
                 .andExpect(jsonPath("$.segments[2].rank", is(3)))
-                .andExpect(jsonPath("$.segments[2].type", is("quiz")))
-                .andExpect(jsonPath("$.segments[2].title", is("Quiz #1")))
+                .andExpect(jsonPath("$.segments[2].type", is("text")))
+                .andExpect(jsonPath("$.segments[2].title", is("SQL cheat sheet")))
+
+                .andExpect(jsonPath("$.segments[3].id", is(3104)))
+                .andExpect(jsonPath("$.segments[3].rank", is(4)))
+                .andExpect(jsonPath("$.segments[3].type", is("quiz")))
+                .andExpect(jsonPath("$.segments[3].title", is("Quiz: Search data")))
         ;
     }    
 }

@@ -40,8 +40,13 @@ public class LessonService {
     }
 
     public LessonListResponse findByCourse(final Integer courseId){
+        Course course = courseDao.findOne(courseId);
+        if (course == null){
+            throw new NotFoundException(BusinessError.COURSE_NOT_FOUND);
+        }
+
         final PageRequest pageable = new PageRequest(0, Integer.MAX_VALUE, Sort.Direction.ASC, "rank");
-        final List<Lesson> lessons = lessonDao.findByCourseId(courseId, pageable);
+        final List<Lesson> lessons = lessonDao.findByCourseId(course.getId(), pageable);
 
         final LessonListResponse response = new LessonListResponse();
         for (final Lesson lesson : lessons){
@@ -51,11 +56,4 @@ public class LessonService {
         return response;
     }
 
-    private Course findCourseById(final Integer id){
-        Course course = courseDao.findOne(id);
-        if (course == null){
-            throw new NotFoundException(BusinessError.COURSE_NOT_FOUND);
-        }
-        return course;
-    }
 }

@@ -4,7 +4,6 @@ import io.tchepannou.academy.dao.CourseDao;
 import io.tchepannou.academy.dao.LessonDao;
 import io.tchepannou.academy.dao.SegmentDao;
 import io.tchepannou.academy.dao.SegmentTypeDao;
-import io.tchepannou.academy.domain.Course;
 import io.tchepannou.academy.domain.Lesson;
 import io.tchepannou.academy.domain.Segment;
 import io.tchepannou.academy.domain.SegmentType;
@@ -56,7 +55,11 @@ public class SegmentService {
     }
 
     public SegmentListResponse findByLessonId(Integer courseId, Integer lessonId){
-        final Lesson lesson = findLessonById(courseId, lessonId);
+        Lesson lesson = lessonDao.findOne(lessonId);
+        if (lesson == null || !lesson.getCourseId().equals(courseId)){
+            throw new NotFoundException(BusinessError.LESSON_NOT_FOUND);
+        }
+
         final PageRequest pageable = new PageRequest(0, Integer.MAX_VALUE, Sort.Direction.ASC, "rank");
         final List<Segment> segments = segmentDao.findByLessonId(lesson.getId(), pageable);
 
@@ -68,25 +71,5 @@ public class SegmentService {
         }
         return response;
     }
-
-
-    private Lesson findLessonById(final Integer courseId, final Integer lessonId){
-        Course course = findCourseById(courseId);
-
-        Lesson lesson = lessonDao.findOne(lessonId);
-        if (lesson == null || !lesson.getCourseId().equals(course.getId())){
-            throw new NotFoundException(BusinessError.LESSON_NOT_FOUND);
-        }
-        return lesson;
-    }
-
-    private Course findCourseById(final Integer id){
-        Course course = courseDao.findOne(id);
-        if (course == null){
-            throw new NotFoundException(BusinessError.COURSE_NOT_FOUND);
-        }
-        return course;
-    }
-
 
 }

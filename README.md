@@ -41,7 +41,7 @@ $ mvn compile sql:execute
 $ java -jar target/academy-service.jar
 ```
 
-# Links
+## Links
 - Local Environment
     - [API Documentation](http://localhost:8080/swagger-ui.html) 
     - [Service Health](http://localhost:8080/health) 
@@ -49,3 +49,6 @@ $ java -jar target/academy-service.jar
 - Integration Environment
     - [API Documentation](https://io-tchepannou-academy-service.herokuapp.com/swagger-ui.html) 
     - [Service Health](https://io-tchepannou-academy-service.herokuapp.com/health) 
+
+## License
+This project is open source sofware under the [MIT License](https://opensource.org/licenses/MIT)

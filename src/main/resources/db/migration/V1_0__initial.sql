@@ -163,4 +163,5 @@ INSERT INTO T_COURSE_LEVEL(id, name, rank) VALUES(3, 'intermediate', 2);
 INSERT INTO T_COURSE_LEVEL(id, name, rank) VALUES(4, 'advanced', 3);
 
 INSERT INTO T_SEGMENT_TYPE(id, name, rank) VALUES(1, 'video', 0);
-INSERT INTO T_SEGMENT_TYPE(id, name, rank) VALUES(2, 'quiz', 1);
+INSERT INTO T_SEGMENT_TYPE(id, name, rank) VALUES(2, 'simple', 1);
+INSERT INTO T_SEGMENT_TYPE(id, name, rank) VALUES(3, 'quiz', 1);

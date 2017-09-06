@@ -1,37 +1,15 @@
-Skip to content
-        This repository
-        Search
-        Pull requests
-        Issues
-        Marketplace
-        Explore
-        @htchepannou
-        Sign out
-        Watch 164
-        Star 2,247
-        Fork 1,078 checkstyle/checkstyle
-        Code  Issues 398  Pull requests 29  Projects 5  Wiki Insights
-        Branch: master Find file Copy pathcheckstyle/src/main/resources/google_checks.xml
-        fd7fb45  25 days ago
-        @rnveach rnveach Issue #3671: removed maxLineLength in LeftCurlyCheck
-        10 contributors @MEZk @rnveach @romani @alexkravin @mkordas @Vladlis @MaksimP @Luolc @kazachka @agcuda
-        RawBlameHistory
-        234 lines (225 sloc)  11.6 KB
-        <?xml version="1.0"?>
-        <!DOCTYPE module PUBLIC
-                "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
-                "http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd">
+<?xml version="1.0"?>
 
-        <!--
-            Checkstyle configuration that checks the Google coding conventions from Google Java Style
-            that can be found at https://google.github.io/styleguide/javaguide.html.
-            Checkstyle is very configurable. Be sure to read the documentation at
-            http://checkstyle.sf.net (or in your downloaded distribution).
-            To completely disable a check, just comment it out or delete it from the file.
-            Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
-         -->
+<!--
+    Checkstyle configuration that checks the Google coding conventions from Google Java Style
+    that can be found at https://google.github.io/styleguide/javaguide.html.
+    Checkstyle is very configurable. Be sure to read the documentation at
+    http://checkstyle.sf.net (or in your downloaded distribution).
+    To completely disable a check, just comment it out or delete it from the file.
+    Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
+ -->
 
-<module name = "Checker">
+<module name="Checker">
     <property name="charset" value="UTF-8"/>
 
     <property name="severity" value="warning"/>
@@ -203,7 +181,8 @@ Skip to content
         <module name="ParenPad"/>
         <module name="OperatorWrap">
             <property name="option" value="NL"/>
-            <property name="tokens" value="BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF, LOR, LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR, METHOD_REF "/>
+            <property name="tokens"
+                      value="BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF, LOR, LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR, METHOD_REF "/>
         </module>
         <module name="AnnotationLocation">
             <property name="id" value="AnnotationLocationMostCases"/>

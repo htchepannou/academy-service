@@ -13,7 +13,7 @@ INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(10114, 1, 'rr
 
 
 INSERT INTO T_COURSE(id, status_fk, level_fk, title, summary, description, language, published_datetime, updated_datetime)
-  VALUES(100, 2, 1, 'How to write README', 'Learn the importance of well documented code and see how to craft meaningful READMEs.', null, 'en', now(), now());
+  VALUES(100, 2, 1, 'How to write README', 'Learn the importance of well documented code and see how to craft meaningful READMEs.', 'Documentation is an important part of the development process. Learn to write READMEs using Markdown so your code can be used by other humans!', 'en', now(), now());
 
 INSERT INTO T_LESSON(id, course_fk, title, rank) VALUE(101, 100, 'Writing READMEs', 1);
 
@@ -75,4 +75,4 @@ INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, description
 <p>If you are using Sublime Text, there is a <a target="_blank" href="https://packagecontrol.io/packages/GitHub%20Flavored%20Markdown%20Preview">plugin</a> you can download to let you preview Markdown files right on your computer. If you are using Atom text editor, Markdown preview is baked right into the program (in the ''Packages'' menu).</p>');
 
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10113, 101, 1, 10113, 'Markdown Syntax Practice', 13);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10114, 101, 1, 10114, 'Markdown Syntax Practice', 14);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10114, 101, 1, 10114, 'Document Everything!', 14);

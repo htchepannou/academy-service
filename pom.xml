@@ -371,7 +371,7 @@
                             <fileset>
                                 <basedir>src/main/sql/sample</basedir>
                                 <includes>
-                                    <include>course_01.sql</include>
+                                    <include>course-how_to_write_README.sql</include>
                                 </includes>
                             </fileset>
                         </configuration>

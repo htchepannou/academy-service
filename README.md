@@ -22,19 +22,10 @@ Clone the code repository locally and build it.
 ```
 $ git clone git@github.com:htchepannou/academy-service.git
 $ cd academy-service
-$ mvn compile flyway:clean flyway:migrate
 $ mvn clean install
 ```
 
 This will generate the service binary ``target/academy-service.jar``
-
-## Run
-### Database Setup 
-Initialize the local database with the sample data:
-```
-$ mvn compile flyway:clean flyway:migrate
-$ mvn compile sql:execute
-```
 
 ### Run the server
 ```

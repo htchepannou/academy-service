@@ -75,4 +75,4 @@ INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, description
 <p>If you are using Sublime Text, there is a <a target="_blank" href="https://packagecontrol.io/packages/GitHub%20Flavored%20Markdown%20Preview">plugin</a> you can download to let you preview Markdown files right on your computer. If you are using Atom text editor, Markdown preview is baked right into the program (in the ''Packages'' menu).</p>');
 
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10113, 101, 1, 10113, 'Markdown Syntax Practice', 13);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10114, 101, 1, 10114, 'Markdown Syntax Practice', 14);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10114, 101, 1, 10114, 'Document Everything!', 14);

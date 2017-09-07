@@ -17,7 +17,7 @@ before_script:
   - mysql -e 'CREATE DATABASE academy;'
 
 script:
-  - mvn -q compile flyway:clean flyway:migrate install --settings settings.xml
+  - mvn -q install --settings settings.xml
 
 
 notifications:

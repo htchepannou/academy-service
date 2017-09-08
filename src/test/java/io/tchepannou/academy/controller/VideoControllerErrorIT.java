@@ -48,7 +48,7 @@ public class VideoControllerErrorIT extends ControllerITSupport {
         expectBusinessError(0, BusinessError.VIDEO_NOT_FOUND,
             mockMvc
                 .perform(
-                        get("/academy/v1/video/999999")
+                        get("/academy/v1/videos/999999")
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
 

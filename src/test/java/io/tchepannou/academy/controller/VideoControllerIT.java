@@ -114,7 +114,7 @@ public class VideoControllerIT extends ControllerITSupport {
         // When
         mockMvc
                 .perform(
-                        get("/academy/v1/video/100")
+                        get("/academy/v1/videos/100")
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
 

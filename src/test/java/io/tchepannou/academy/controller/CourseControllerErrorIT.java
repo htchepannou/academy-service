@@ -88,7 +88,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         expectBusinessError(0, BusinessError.COURSE_NOT_FOUND,
             mockMvc
                 .perform(
-                        post("/academy/v1/course/9999999")
+                        post("/academy/v1/courses/9999999")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonRequest)
                 )
@@ -115,7 +115,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         final String jsonRequest = mapper.writeValueAsString(req);
         mockMvc
                 .perform(
-                        post("/academy/v1/course/100")
+                        post("/academy/v1/courses/100")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonRequest)
                 )
@@ -139,7 +139,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         final String jsonRequest = mapper.writeValueAsString(req);
         mockMvc
                 .perform(
-                        post("/academy/v1/course/9999999/status")
+                        post("/academy/v1/courses/9999999/status")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonRequest)
                 )
@@ -159,7 +159,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         expectBusinessError(0, BusinessError.COURSE_NOT_FOUND,
             mockMvc
                 .perform(
-                        get("/academy/v1/course/999999")
+                        get("/academy/v1/courses/999999")
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
 
@@ -181,7 +181,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         expectBusinessError(0, BusinessError.BAD_COURSE_STATUS,
                 mockMvc
                         .perform(
-                                post("/academy/v1/course/200/status")
+                                post("/academy/v1/courses/200/status")
                                         .contentType(MediaType.APPLICATION_JSON)
                                         .content(jsonRequest)
                         )
@@ -202,7 +202,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
                 mockMvc
                         .perform(
-                                get("/academy/v1/course/300/lesson/999999")
+                                get("/academy/v1/courses/300/lessons/999999")
                                         .contentType(MediaType.APPLICATION_JSON)
                         )
 
@@ -219,7 +219,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
                 mockMvc
                         .perform(
-                                get("/academy/v1/course/99999999/lesson/310")
+                                get("/academy/v1/courses/99999999/lessons/310")
                                         .contentType(MediaType.APPLICATION_JSON)
                         )
 
@@ -236,7 +236,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
                 mockMvc
                         .perform(
-                                get("/academy/v1/course/100/lesson/310")
+                                get("/academy/v1/courses/100/lessons/310")
                                         .contentType(MediaType.APPLICATION_JSON)
                         )
 
@@ -253,7 +253,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         expectBusinessError(0, BusinessError.COURSE_NOT_FOUND,
                 mockMvc
                         .perform(
-                                get("/academy/v1/course/99999/lessons")
+                                get("/academy/v1/courses/99999/lessons")
                                         .contentType(MediaType.APPLICATION_JSON)
                         )
 
@@ -273,7 +273,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         expectBusinessError(0, BusinessError.SEGMENT_NOT_FOUND,
                 mockMvc
                         .perform(
-                                get("/academy/v1/course/300/segment/999999")
+                                get("/academy/v1/courses/300/segments/999999")
                                         .contentType(MediaType.APPLICATION_JSON)
                         )
 
@@ -290,7 +290,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         expectBusinessError(0, BusinessError.SEGMENT_NOT_FOUND,
                 mockMvc
                         .perform(
-                                get("/academy/v1/course/9999999/segment/3101")
+                                get("/academy/v1/courses/9999999/segments/3101")
                                         .contentType(MediaType.APPLICATION_JSON)
                         )
 
@@ -307,7 +307,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         expectBusinessError(0, BusinessError.SEGMENT_NOT_FOUND,
                 mockMvc
                         .perform(
-                                get("/academy/v1/course/100/segment/3101")
+                                get("/academy/v1/courses/100/segments/3101")
                                         .contentType(MediaType.APPLICATION_JSON)
                         )
 
@@ -324,7 +324,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
                 mockMvc
                         .perform(
-                                get("/academy/v1/course/99999/segments")
+                                get("/academy/v1/courses/99999/segments")
                                         .param("lessonId", "310")
                                         .contentType(MediaType.APPLICATION_JSON)
                         )
@@ -342,7 +342,7 @@ public class CourseControllerErrorIT extends ControllerITSupport{
         expectBusinessError(0, BusinessError.LESSON_NOT_FOUND,
                 mockMvc
                         .perform(
-                                get("/academy/v1/course/300/segments")
+                                get("/academy/v1/courses/300/segments")
                                         .param("lessonId", "77777")
                                         .contentType(MediaType.APPLICATION_JSON)
                         )

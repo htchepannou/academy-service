@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value="/academy/v1", produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(value = "/academy/v1", description = "Courses")
+@RequestMapping(value="/academy/v1/courses", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(value = "/academy/v1/courses", description = "Courses")
 public class CourseController extends BaseController {
     @Autowired
     private CourseService courseService;
@@ -40,7 +40,7 @@ public class CourseController extends BaseController {
     @Autowired
     private SegmentService segmentService;
 
-    @RequestMapping(path = "/courses", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @ApiOperation(value = "create", notes = "Create a new travel course")
     public CreateCourseResponse create(@RequestBody @Valid CreateCourseRequest request){
         CreateCourseResponse response = courseService.create(request);
@@ -53,7 +53,7 @@ public class CourseController extends BaseController {
 //        return courseService.search(request);
 //    }
 
-    @RequestMapping(path = "/course/{id}", method = RequestMethod.POST)
+    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
     @ApiOperation(value = "update", notes = "Update the information of the course")
     public UpdateCourseResponse update(
             @PathVariable Integer id,
@@ -63,7 +63,7 @@ public class CourseController extends BaseController {
         return init(response);
     }
 
-    @RequestMapping(path = "/course/{id}/status", method = RequestMethod.POST)
+    @RequestMapping(path = "/{id}/status", method = RequestMethod.POST)
     @ApiOperation(value = "status", notes = "Update the status of the course")
     public UpdateCourseStatusResponse status(
             @PathVariable Integer id,
@@ -72,7 +72,7 @@ public class CourseController extends BaseController {
         return courseService.status(id, request);
     }
 
-    @RequestMapping(path = "/course/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     @ApiOperation(value = "findById", notes = "Find a course")
     public CourseResponse findById(@PathVariable Integer id) {
         return init(courseService.findById(id));
@@ -80,13 +80,13 @@ public class CourseController extends BaseController {
 
 
     //----- LESSON
-    @RequestMapping(path = "/course/{courseId}/lesson/{lessonId}", method = RequestMethod.GET)
+    @RequestMapping(path = "/{courseId}/lessons/{lessonId}", method = RequestMethod.GET)
     @ApiOperation(value = "findLessonById", notes = "Find a lesson")
     public LessonResponse findLessonById(@PathVariable Integer courseId, @PathVariable Integer lessonId) {
         return init(lessonService.findById(courseId, lessonId));
     }
 
-    @RequestMapping(path = "/course/{courseId}/lessons", method = RequestMethod.GET)
+    @RequestMapping(path = "/{courseId}/lessons", method = RequestMethod.GET)
     @ApiOperation(value = "findSegments", notes = "Find all the lessons of a course")
     public LessonListResponse findSegmentsByLessonId(@PathVariable Integer courseId){
         return init(lessonService.findByCourse(courseId));
@@ -94,13 +94,13 @@ public class CourseController extends BaseController {
 
 
     //----- SEGMENT
-    @RequestMapping(path = "/course/{courseId}/segment/{segmentId}", method = RequestMethod.GET)
+    @RequestMapping(path = "/{courseId}/segments/{segmentId}", method = RequestMethod.GET)
     @ApiOperation(value = "findSegmentById", notes = "Find a segment")
     public SegmentResponse findSegmentById(@PathVariable Integer courseId, @PathVariable Integer segmentId) {
         return init(segmentService.findById(courseId, segmentId));
     }
 
-    @RequestMapping(path = "/course/{courseId}/segments", method = RequestMethod.GET)
+    @RequestMapping(path = "/{courseId}/segments", method = RequestMethod.GET)
     @ApiOperation(value = "findSegments", notes = "Find all the segments of a lesson")
     public SegmentListResponse findSegmentsByLessonId(
             @PathVariable Integer courseId,

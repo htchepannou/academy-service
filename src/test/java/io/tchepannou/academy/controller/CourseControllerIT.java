@@ -111,7 +111,7 @@ public class CourseControllerIT extends ControllerITSupport {
         final String jsonRequest = mapper.writeValueAsString(req);
         mockMvc
                 .perform(
-                        post("/academy/v1/course/100")
+                        post("/academy/v1/courses/100")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonRequest)
                 )
@@ -143,7 +143,7 @@ public class CourseControllerIT extends ControllerITSupport {
         // When
         mockMvc
                 .perform(
-                        get("/academy/v1/course/300")
+                        get("/academy/v1/courses/300")
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
 
@@ -173,7 +173,7 @@ public class CourseControllerIT extends ControllerITSupport {
         final String jsonRequest = mapper.writeValueAsString(req);
         mockMvc
                 .perform(
-                        post("/academy/v1/course/200/status")
+                        post("/academy/v1/courses/200/status")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonRequest)
                 )
@@ -202,7 +202,7 @@ public class CourseControllerIT extends ControllerITSupport {
         final String jsonRequest = mapper.writeValueAsString(req);
         mockMvc
                 .perform(
-                        post("/academy/v1/course/202/status")
+                        post("/academy/v1/courses/202/status")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonRequest)
                 )
@@ -230,7 +230,7 @@ public class CourseControllerIT extends ControllerITSupport {
         final String jsonRequest = mapper.writeValueAsString(req);
         mockMvc
                 .perform(
-                        post("/academy/v1/course/203/status")
+                        post("/academy/v1/courses/203/status")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonRequest)
                 )
@@ -256,7 +256,7 @@ public class CourseControllerIT extends ControllerITSupport {
         final String jsonRequest = mapper.writeValueAsString(req);
         mockMvc
                 .perform(
-                        post("/academy/v1/course/201/status")
+                        post("/academy/v1/courses/201/status")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonRequest)
                 )
@@ -278,7 +278,7 @@ public class CourseControllerIT extends ControllerITSupport {
         // When
         mockMvc
                 .perform(
-                        get("/academy/v1/course/300/lesson/310")
+                        get("/academy/v1/courses/300/lessons/310")
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
 
@@ -296,7 +296,7 @@ public class CourseControllerIT extends ControllerITSupport {
         // When
         mockMvc
                 .perform(
-                        get("/academy/v1/course/300/lessons")
+                        get("/academy/v1/courses/300/lessons")
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
 
@@ -324,7 +324,7 @@ public class CourseControllerIT extends ControllerITSupport {
         // When
         mockMvc
                 .perform(
-                        get("/academy/v1/course/300/segment/3101")
+                        get("/academy/v1/courses/300/segments/3101")
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
 
@@ -346,7 +346,7 @@ public class CourseControllerIT extends ControllerITSupport {
         // When
         mockMvc
                 .perform(
-                        get("/academy/v1/course/300/segments")
+                        get("/academy/v1/courses/300/segments")
                                 .param("lessonId", "310")
                                 .contentType(MediaType.APPLICATION_JSON)
                 )

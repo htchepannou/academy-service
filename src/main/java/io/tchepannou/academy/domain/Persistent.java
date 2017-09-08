@@ -5,6 +5,7 @@ import java.io.Serializable;
 public abstract class Persistent implements Serializable{
     public abstract Integer getId ();
 
+    @Override
     public boolean equals(Object that){
         if (that == null || !that.getClass().equals(getClass())){
             return false;
@@ -16,5 +17,11 @@ public abstract class Persistent implements Serializable{
         } else {
             return id.equals(((Persistent)that).getId());
         }
+    }
+
+    @Override
+    public int hashCode(){
+        Integer id = getId();
+        return id == null ? super.hashCode() : id.hashCode();
     }
 }

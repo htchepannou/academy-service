@@ -8,8 +8,8 @@ INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(10107, 1, 'i6
 INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(10108, 1, '4sU1LZksOH4', 130);
 INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(10109, 1, 'rWGxZGRwuAM', 130);
 INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(10111, 1, '2fZTSDn1F2o', 9);
-INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(10113, 1, 'sQj7ZSTk0U0', 10);
-INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(10114, 1, 'rrim56YdmY', 40);
+INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(10112, 1, 'sQj7ZSTk0U0', 10);
+INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(10113, 1, '-rrim56YdmY', 40);
 
 
 INSERT INTO T_COURSE(id, status_fk, level_fk, title, summary, description, language, published_datetime, updated_datetime)
@@ -26,53 +26,420 @@ INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(1010
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10107, 101, 1, 10107, 'Anatomy of README', 7);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10108, 101, 3, 10108, 'Quiz: Documenting A Growing Codebase', 9);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10109, 101, 1, 10109, 'Readable READMEs with Markdown', 9);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, description) VALUES(10110, 101, 2, null, 'Basic Markdown Syntax', 10, '<h1 id="markdown-101">Markdown 101</h1>
-<p>Markdown is a light markup language often used for READMEs (though you''ll find other use cases for it, too!). It is fairly straightforward, and much of the syntax is intuitive.</p>
-<p>But as it turns out, there are many different <em>dialects</em> of Markdown, just like in a spoken language. Each of these dialects is known as a <em>flavor</em> of Markdown.
-Most of these dialects are pretty much the same, with only minor differences.</p>
-<p>Since your READMEs will ultimately end up on GitHub, we''ll be using <strong>GitHub Flavored Markdown</strong>.
-I''ve included a link to the full documentation for it in the instructor notes (and we''ll be using that later in this course), but I''ll get you started with a quick crash course.</p>
-<h2 id="feeling-bold-">Feeling Bold?</h2>
-<p>To make text <strong>bold</strong>, surround it with double asterisks. So this code:</p>
-<pre><code>Isn''t today a **wonderful** <span class="hljs-property">day</span>?
-</code></pre><p>becomes: Isn''t today a <strong>wonderful</strong> day?</p>
-<p>This reads a bit more nicely than a <code>&lt;strong&gt;</code> tag would in HTML, and takes considerably fewer keystrokes to type out.</p>
-<h2 id="_italics_-i-tell-you-"><em>Italics</em>, I tell you!</h2>
-<p>To <em>italicize</em> text, surround it with underscores. So this code:</p>
-<pre><code>And <span class="hljs-keyword">in</span> <span class="hljs-keyword">that</span> moment I thought <span class="hljs-keyword">to</span> myself: _Did I turn off <span class="hljs-keyword">the</span> stove?_
-</code></pre><p>becomes: And in that moment I thought to myself: <em>Did I turn off the stove?</em></p>
-<p>Much like the previous example, this code reads much more like English, which is great for when you''re skimming the original document.</p>
-<h2 id="to-code-or-not-to-code-">To <code>code</code>, or not to <code>code</code>?</h2>
-<p>Inline <code>code</code> is useful for indicating that you''re writing code and not a regular word. For this, you''ll surround text in backticks (`, not a single quote). So this code:</p>
-<pre><code>You should <span class="hljs-keyword">use</span> the <span class="hljs-string">`strong`</span> tag.
-</code></pre><p>becomes: You should use the <code>strong</code> tag.</p>
-<p>...which makes much more sense than "You should use the strong tag."</p>
-<h2 id="the-title-sequence">The Title Sequence</h2>
-<p>Headings are even simpler! For <code>h1</code> through <code>h6</code> tags, all you''ll need is a <code>#</code> before your text. The number of <code>#</code>s you include tells Markdown which header tag you''re using. For example:</p>
-<p><code>## This is an h2.</code> </p>
-<p><code>### This is an h3.</code></p>
-<p>becomes...</p>
-<h2 id="this-is-an-h2-">This is an h2.</h2>
-<h3 id="this-is-an-h3-">This is an h3.</h3>
-<p>Let''s practice!</p>');
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, description) VALUES(10110, 101, 2, null, 'Basic Markdown Syntax', 10, 'This is intended as a quick reference and showcase. For more complete info, see [John Gruber''s original spec](http://daringfireball.net/projects/markdown/) and the [Github-flavored Markdown info page](http://github.github.com/github-flavored-markdown/).
+
+Note that there is also a [Cheatsheet specific to Markdown Here](./Markdown-Here-Cheatsheet) if that''s what you''re looking for. You can also check out [more Markdown tools](./Other-Markdown-Tools).
+
+##### Table of Contents
+[Headers](#headers)
+[Emphasis](#emphasis)
+[Lists](#lists)
+[Links](#links)
+[Images](#images)
+[Code and Syntax Highlighting](#code)
+[Tables](#tables)
+[Blockquotes](#blockquotes)
+[Inline HTML](#html)
+[Horizontal Rule](#hr)
+[Line Breaks](#lines)
+[YouTube Videos](#videos)
+
+<a name="headers"/>
+
+## Headers
+
+```no-highlight
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+
+Alternatively, for H1 and H2, an underline-ish style:
+
+Alt-H1
+======
+
+Alt-H2
+------
+```
+
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+
+Alternatively, for H1 and H2, an underline-ish style:
+
+Alt-H1
+======
+
+Alt-H2
+------
+
+<a name="emphasis"/>
+
+## Emphasis
+
+```no-highlight
+Emphasis, aka italics, with *asterisks* or _underscores_.
+
+Strong emphasis, aka bold, with **asterisks** or __underscores__.
+
+Combined emphasis with **asterisks and _underscores_**.
+
+Strikethrough uses two tildes. ~~Scratch this.~~
+```
+
+Emphasis, aka italics, with *asterisks* or _underscores_.
+
+Strong emphasis, aka bold, with **asterisks** or __underscores__.
+
+Combined emphasis with **asterisks and _underscores_**.
+
+Strikethrough uses two tildes. ~~Scratch this.~~
+
+
+<a name="lists"/>
+
+## Lists
+
+(In this example, leading and trailing spaces are shown with with dots: ⋅)
+
+```no-highlight
+1. First ordered list item
+2. Another item
+⋅⋅* Unordered sub-list.
+1. Actual numbers don''t matter, just that it''s a number
+⋅⋅1. Ordered sub-list
+4. And another item.
+
+⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we''ll use three here to also align the raw Markdown).
+
+⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
+⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
+⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
+
+* Unordered list can use asterisks
+- Or minuses
++ Or pluses
+```
+
+1. First ordered list item
+2. Another item
+  * Unordered sub-list.
+1. Actual numbers don''t matter, just that it''s a number
+  1. Ordered sub-list
+4. And another item.
+
+   You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we''ll use three here to also align the raw Markdown).
+
+   To have a line break without a paragraph, you will need to use two trailing spaces.
+   Note that this line is separate, but within the same paragraph.
+   (This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
+
+* Unordered list can use asterisks
+- Or minuses
++ Or pluses
+
+<a name="links"/>
+
+## Links
+
+There are two ways to create links.
+
+```no-highlight
+[I''m an inline-style link](https://www.google.com)
+
+[I''m an inline-style link with title](https://www.google.com "Google''s Homepage")
+
+[I''m a reference-style link][Arbitrary case-insensitive reference text]
+
+[I''m a relative reference to a repository file](../blob/master/LICENSE)
+
+[You can use numbers for reference-style link definitions][1]
+
+Or leave it empty and use the [link text itself].
+
+URLs and URLs in angle brackets will automatically get turned into links.
+http://www.example.com or <http://www.example.com> and sometimes
+example.com (but not on Github, for example).
+
+Some text to show that the reference links can follow later.
+
+[arbitrary case-insensitive reference text]: https://www.mozilla.org
+[1]: http://slashdot.org
+[link text itself]: http://www.reddit.com
+```
+
+[I''m an inline-style link](https://www.google.com)
+
+[I''m an inline-style link with title](https://www.google.com "Google''s Homepage")
+
+[I''m a reference-style link][Arbitrary case-insensitive reference text]
+
+[I''m a relative reference to a repository file](../blob/master/LICENSE)
+
+[You can use numbers for reference-style link definitions][1]
+
+Or leave it empty and use the [link text itself].
+
+URLs and URLs in angle brackets will automatically get turned into links.
+http://www.example.com or <http://www.example.com> and sometimes
+example.com (but not on Github, for example).
+
+Some text to show that the reference links can follow later.
+
+[arbitrary case-insensitive reference text]: https://www.mozilla.org
+[1]: http://slashdot.org
+[link text itself]: http://www.reddit.com
+
+<a name="images"/>
+
+## Images
+
+```no-highlight
+Here''s our logo (hover to see the title text):
+
+Inline-style:
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
+Reference-style:
+![alt text][logo]
+
+[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+```
+
+Here''s our logo (hover to see the title text):
+
+Inline-style:
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
+Reference-style:
+![alt text][logo]
+
+[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+
+<a name="code"/>
+
+## Code and Syntax Highlighting
+
+Code blocks are part of the Markdown spec, but syntax highlighting isn''t. However, many renderers -- like Github''s and *Markdown Here* -- support syntax highlighting. Which languages are supported and how those language names should be written will vary from renderer to renderer. *Markdown Here* supports highlighting for dozens of languages (and not-really-languages, like diffs and HTTP headers); to see the complete list, and how to write the language names, see the [highlight.js demo page](http://softwaremaniacs.org/media/soft/highlight/test.html).
+
+```no-highlight
+Inline `code` has `back-ticks around` it.
+```
+
+Inline `code` has `back-ticks around` it.
+
+Blocks of code are either fenced by lines with three back-ticks <code>```</code>, or are indented with four spaces. I recommend only using the fenced code blocks -- they''re easier and only they support syntax highlighting.
+
+<pre lang="no-highlight"><code>```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
+
+```python
+s = "Python syntax highlighting"
+print s
+```
+
+```
+No language indicated, so no syntax highlighting.
+But let''s throw in a &lt;b&gt;tag&lt;/b&gt;.
+```
+</code></pre>
+
+
+
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
+
+```python
+s = "Python syntax highlighting"
+print s
+```
+
+```
+No language indicated, so no syntax highlighting in Markdown Here (varies on Github).
+But let''s throw in a <b>tag</b>.
+```
+
+
+<a name="tables"/>
+
+## Tables
+
+Tables aren''t part of the core Markdown spec, but they are part of GFM and *Markdown Here* supports them. They are an easy way of adding tables to your email -- a task that would otherwise require copy-pasting from another application.
+
+```no-highlight
+Colons can be used to align columns.
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+There must be at least 3 dashes separating each header cell.
+The outer pipes (|) are optional, and you don''t need to make the
+raw Markdown line up prettily. You can also use inline Markdown.
+
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
+```
+
+Colons can be used to align columns.
+
+| Tables        | Are           | Cool |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don''t need to make the raw Markdown line up prettily. You can also use inline Markdown.
+
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
+
+<a name="blockquotes"/>
+
+## Blockquotes
+
+```no-highlight
+> Blockquotes are very handy in email to emulate reply text.
+> This line is part of the same quote.
+
+Quote break.
+
+> This is a very long line that will still be quoted properly when it wraps. Oh boy let''s keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
+```
+
+> Blockquotes are very handy in email to emulate reply text.
+> This line is part of the same quote.
+
+Quote break.
+
+> This is a very long line that will still be quoted properly when it wraps. Oh boy let''s keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
+
+<a name="html"/>
+
+## Inline HTML
+
+You can also use raw HTML in your Markdown, and it''ll mostly work pretty well.
+
+```no-highlight
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
+```
+
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
+
+<a name="hr"/>
+
+## Horizontal Rule
+
+```
+Three or more...
+
+---
+
+Hyphens
+
+***
+
+Asterisks
+
+___
+
+Underscores
+```
+
+Three or more...
+
+---
+
+Hyphens
+
+***
+
+Asterisks
+
+___
+
+Underscores
+
+<a name="lines"/>
+
+## Line Breaks
+
+My basic recommendation for learning how line breaks work is to experiment and discover -- hit &lt;Enter&gt; once (i.e., insert one newline), then hit it twice (i.e., insert two newlines), see what happens. You''ll soon learn to get what you want. "Markdown Toggle" is your friend.
+
+Here are some things to try out:
+
+```
+Here''s a line for us to start with.
+
+This line is separated from the one above by two newlines, so it will be a *separate paragraph*.
+
+This line is also a separate paragraph, but...
+This line is only separated by a single newline, so it''s a separate line in the *same paragraph*.
+```
+
+Here''s a line for us to start with.
+
+This line is separated from the one above by two newlines, so it will be a *separate paragraph*.
+
+This line is also begins a separate paragraph, but...
+This line is only separated by a single newline, so it''s a separate line in the *same paragraph*.
+
+(Technical note: *Markdown Here* uses GFM line breaks, so there''s no need to use MD''s two-space line breaks.)
+
+<a name="videos"/>
+
+## YouTube Videos
+
+They can''t be added directly but you can add an image with a link to the video like this:
+
+```no-highlight
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE
+" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg"
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+```
+
+Or, in pure Markdown, but losing the image sizing and border:
+
+```no-highlight
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+```
+
+Referencing a bug by #bugID in your git commit links it to the slip. For example #1.
+
+---
+
+License: [CC-BY](https://creativecommons.org/licenses/by/3.0/)');
 
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10111, 101, 3, 10111, 'Readable READMEs with Markdown', 11);
 
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, description) VALUES(10112, 101, 2, null, 'More Markdown Syntax', 12, '<h1 id="more-markdown">More Markdown</h1>
-<p>Now it''s your turn. Dive into the <a target="_blank" href="https://help.github.com/articles/markdown-basics/">Markdown documentation</a>, and explore more ways to write beautiful READMEs.</p>
-<p>A few important items you may want to write and should pay extra attention to include:  </p>
-<ul>
-<li>Ordered and unordered lists</li>
-<li>Links and images</li>
-<li>Large blocks of code</li>
-</ul>
-<h2 id="html-is-still-a-thing">HTML Is Still a Thing</h2>
-<p>Something to keep in mind when using Markdown is that HTML is still valid in Markdown. If there''s ever something fancy you can''t accomplish with just Markdown, it''s okay to fall back to HTML.</p>
-<p>The catch here is that you may be overcomplicating your life. If you need to fall back to plain HTML, there''s a good chance that you could communicate whatever it is you are trying to say in a simpler format.</p>
-<h2 id="working-with-md-files">Working with <code>.md</code> Files</h2>
-<p>Much like how your HTML files should be saved with a <code>.html</code> extension, your Markdown files should be saved with a <code>.md</code> extension.</p>
-<p>Markdown itself can''t be opened in the browser like an HTML document. If you want to preview your Markdown files, <a target="_blank" href="http://dillinger.io/">Dillinger</a> is a great online resource for you to do so.</p>
-<p>If you are using Sublime Text, there is a <a target="_blank" href="https://packagecontrol.io/packages/GitHub%20Flavored%20Markdown%20Preview">plugin</a> you can download to let you preview Markdown files right on your computer. If you are using Atom text editor, Markdown preview is baked right into the program (in the ''Packages'' menu).</p>');
-
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10113, 101, 1, 10113, 'Markdown Syntax Practice', 13);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10114, 101, 1, 10114, 'Document Everything!', 14);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10112, 101, 1, 10112, 'Markdown Syntax Practice', 12);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10113, 101, 1, 10113, 'Document Everything!', 13);

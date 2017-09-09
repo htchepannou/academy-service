@@ -339,45 +339,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-
-            <!-- DEFAULT DATA -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>sql-maven-plugin</artifactId>
-                <version>${sql-maven-plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>${mysql.version}</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <driver>com.mysql.jdbc.Driver</driver>
-                    <url>jdbc:mysql://localhost/academy</url>
-                    <username>root</username>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>default-cli</id>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <delimiter>;</delimiter>
-                            <delimiterType>normal</delimiterType>
-                            <autocommit>true</autocommit>
-                            <fileset>
-                                <basedir>src/main/sql/sample</basedir>
-                                <includes>
-                                    <include>course-how_to_write_README.sql</include>
-                                </includes>
-                            </fileset>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
 
     </build>

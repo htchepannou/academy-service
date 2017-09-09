@@ -19,12 +19,12 @@ INSERT INTO T_LESSON(id, course_fk, title, rank) VALUE(101, 100, 'Writing README
 
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10101, 101, 1, 10101, 'Welcome', 1);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, description) VALUES(10102, 101, 1, 10102, 'What Is Documentation?', 2, 'Check out the <a href="https://github.com/udacity/ud777-writing-readmes">Writing READMEs</a> README over on GitHub.');
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10103, 101, 3, 10104, 'Quiz: Who Is Documentation For?', 3);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10103, 101, 3, 10103, 'Who Is Documentation For?', 3);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10104, 101, 1, 10104, 'How Does Nija Consume Documentation?', 4);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10105, 101, 1, 10105, 'Why Should Art Have Documented His Code?', 5);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10106, 101, 3, 10106, 'Quiz: Introduction To READMEs', 6);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10106, 101, 3, 10106, 'Introduction To READMEs', 6);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10107, 101, 1, 10107, 'Anatomy of README', 7);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10108, 101, 3, 10108, 'Quiz: Documenting A Growing Codebase', 9);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10108, 101, 3, 10108, 'Documenting A Growing Codebase', 9);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10109, 101, 1, 10109, 'Readable READMEs with Markdown', 9);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, description) VALUES(10110, 101, 2, null, 'Basic Markdown Syntax', 10, 'This is intended as a quick reference and showcase. For more complete info, see [John Gruber''s original spec](http://daringfireball.net/projects/markdown/) and the [Github-flavored Markdown info page](http://github.github.com/github-flavored-markdown/).
 
@@ -439,7 +439,7 @@ Referencing a bug by #bugID in your git commit links it to the slip. For example
 
 License: [CC-BY](https://creativecommons.org/licenses/by/3.0/)');
 
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10111, 101, 3, 10111, 'Readable READMEs with Markdown', 11);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10111, 101, 3, 10111, 'Basic Markdown Syntax Quiz', 11);
 
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10112, 101, 1, 10112, 'Markdown Syntax Practice', 12);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10113, 101, 1, 10113, 'Document Everything!', 13);

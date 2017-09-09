@@ -102,54 +102,6 @@ CREATE TABLE T_SEGMENT(
 
 
 
-CREATE TABLE T_ASSET_TYPE(
-  id          INT         NOT NULL AUTO_INCREMENT,
-  name        VARCHAR(20) NOT NULL,
-  rank        INT         NOT NULL,
-
-  url_regexp      TEXT    NOT NULL,
-  video_id_index  INT,
-
-  UNIQUE(name),
-  PRIMARY KEY (id)
-) ENGINE = InnoDB;
-
-CREATE TABLE T_ASSET(
-  id          INT NOT NULL AUTO_INCREMENT,
-
-  name            VARCHAR(200)  NOT NULL,
-  url             TEXT          NOT NULL,
-  content_type    VARCHAR(100),
-  content_length  INT,
-
-  insert_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP,
-  update_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
-
-  PRIMARY KEY (id)
-) ENGINE = InnoDB;
-
-CREATE TABLE T_COURSE_ASSET(
-  course_fk   INT NOT NULL REFERENCES T_COURSE(id),
-  asset_fk    INT NOT NULL REFERENCES T_ASSET(id),
-
-  insert_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP,
-  update_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
-  PRIMARY KEY (asset_fk, course_fk)
-) ENGINE = InnoDB;
-
-CREATE TABLE T_LESSON_ASSET(
-  lesson_fk   INT NOT NULL REFERENCES T_LESSON(id),
-  asset_fk    INT NOT NULL REFERENCES T_ASSET(id),
-
-  insert_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP,
-  update_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
-  PRIMARY KEY (asset_fk, lesson_fk)
-) ENGINE = InnoDB;
-
-
 -- DATA
 INSERT INTO T_VIDEO_TYPE(id, name, rank, url_regexp, video_id_index)  VALUES(1, 'youtube', 0, 'https://(?:www\\.)?youtu(?:\\.be/|be\\.com/(?:watch\\?v=|v/|embed/|user/(?:[\\w#]+/)+))([^&#?\n]+)', 1);
 

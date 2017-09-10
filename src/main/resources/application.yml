@@ -30,6 +30,10 @@ swagger:
 server:
   port: 8080
 
+management:
+  security:
+    enabled: false
+
 endpoints:
   enabled: true
   health:

@@ -102,6 +102,30 @@ CREATE TABLE T_SEGMENT(
 
 
 
+CREATE TABLE T_COURSE_ATTENDANCE(
+  id                  INT NOT NULL AUTO_INCREMENT,
+  student_fk          INT NOT NULL,
+  course_fk           INT NOT NULL REFERENCES T_COURSE(id),
+  current_segment_fk  INT NOT NULL REFERENCES T_SEGMENT(id),
+
+  attendance_datetime DATETIME NOT NULL,
+
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+CREATE TABLE T_SEGMENT_ATTENDANCE(
+  id                    INT NOT NULL AUTO_INCREMENT,
+  course_attendance_fk  INT NOT NULL REFERENCES T_COURSE_ATTENDANCE(id),
+  segment_fk            INT NOT NULL REFERENCES T_SEGMENT(id),
+
+  attendance_datetime   DATETIME,
+
+  UNIQUE (course_attendance_fk, segment_fk),
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+
+
 -- DATA
 INSERT INTO T_VIDEO_TYPE(id, name, rank, url_regexp, video_id_index)  VALUES(1, 'youtube', 0, 'https://(?:www\\.)?youtu(?:\\.be/|be\\.com/(?:watch\\?v=|v/|embed/|user/(?:[\\w#]+/)+))([^&#?\n]+)', 1);
 

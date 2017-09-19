@@ -19,8 +19,14 @@ public class AttendanceController extends BaseController {
     @Autowired
     private AttendanceService attendanceService;
 
+    @RequestMapping(path="/students/{studentId}/segments/{segmentId}/start", method = RequestMethod.POST)
+    @ApiOperation(value = "Start", notes = "Start a segment")
+    public AttendanceResponse start(@PathVariable Integer studentId, @PathVariable Integer segmentId) {
+        return init(attendanceService.start(studentId, segmentId));
+    }
+
     @RequestMapping(path="/students/{studentId}/segments/{segmentId}/done", method = RequestMethod.POST)
-    @ApiOperation(value = "done", notes = "Done attending a segment")
+    @ApiOperation(value = "Done", notes = "Done attending a segment")
     public AttendanceResponse done(@PathVariable Integer studentId, @PathVariable Integer segmentId) {
         return init(attendanceService.done(studentId, segmentId));
     }

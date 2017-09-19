@@ -40,6 +40,24 @@ public class AttendanceService {
     private AttendanceMapper attendanceMapper;
 
     @Transactional
+    public AttendanceResponse start(final Integer studentId, final Integer segmentId){
+        final Integer courseId = getCourseId(segmentId);
+        CourseAttendance attendance = courseAttendanceDao.findByStudentIdAndCourseId(studentId, courseId);
+        if (attendance == null){
+            attendance = createCourseAttendance(studentId, segmentId, courseId);
+            courseAttendanceDao.save(attendance);
+        }
+        attendance.setCurrentSegmentId(segmentId);
+        courseAttendanceDao.save(attendance);
+
+
+        final AttendanceResponse response = new AttendanceResponse();
+        final CourseAttendanceDto attendanceDto = attendanceMapper.toCourseAttendanceDto(attendance);
+        response.setAttendance(attendanceDto);
+        return response;
+    }
+
+    @Transactional
     public AttendanceResponse done(final Integer studentId, final Integer segmentId){
         final Integer courseId = getCourseId(segmentId);
         SegmentAttendance segmentAttendance;

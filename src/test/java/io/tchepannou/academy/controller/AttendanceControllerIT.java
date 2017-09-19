@@ -55,6 +55,69 @@ public class AttendanceControllerIT {
 
 
     @Test
+    public void startShouldCreateCourseAttendance() throws Exception {
+        // Given
+        final Date now = new Date();
+        Thread.sleep(1000);
+
+        // When
+        final String json = mockMvc
+                .perform(
+                        post("/academy/v1/attendances/students/1/segments/3011/start")
+                )
+
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.transactionId", notNullValue()))
+                .andExpect(jsonPath("$.attendance.currentSegmentId", is(3011)))
+                .andExpect(jsonPath("$.attendance.studentId", is(1)))
+                .andExpect(jsonPath("$.attendance.courseId", is(300)))
+                .andExpect(jsonPath("$.attendance.attendanceDateTime", notNullValue()))
+                .andReturn()
+                .getResponse()
+                .getContentAsString()
+                ;
+
+        // Then
+        final AttendanceResponse response = mapper.readValue(json, AttendanceResponse.class);
+        final CourseAttendance attendance = courseAttendanceDao.findOne(response.getAttendance().getId());
+        assertThat(attendance.getCurrentSegmentId()).isEqualTo(3011);
+        assertThat(attendance.getStudentId()).isEqualTo(1);
+        assertThat(attendance.getAttendanceDateTime()).isAfter(now);
+        assertThat(attendance.getCourseId()).isEqualTo(300);
+    }
+
+    @Test
+    public void startShouldModifyCourseAttendance() throws Exception {
+        // When
+        final String json = mockMvc
+                .perform(
+                        post("/academy/v1/attendances/students/1/segments/4013/start")
+                )
+
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.transactionId", notNullValue()))
+                .andExpect(jsonPath("$.attendance.currentSegmentId", is(4013)))
+                .andExpect(jsonPath("$.attendance.studentId", is(1)))
+                .andExpect(jsonPath("$.attendance.courseId", is(400)))
+                .andExpect(jsonPath("$.attendance.attendanceDateTime", notNullValue()))
+                .andReturn()
+                .getResponse()
+                .getContentAsString()
+                ;
+
+        // Then
+        final AttendanceResponse response = mapper.readValue(json, AttendanceResponse.class);
+        final CourseAttendance attendance = courseAttendanceDao.findOne(response.getAttendance().getId());
+        assertThat(attendance.getCurrentSegmentId()).isEqualTo(4013);
+        assertThat(attendance.getStudentId()).isEqualTo(1);
+        assertThat(attendance.getAttendanceDateTime().toString()).startsWith("2017-01-02");
+        assertThat(attendance.getCourseId()).isEqualTo(400);
+    }
+
+
+    @Test
     public void doneShouldCreateSegmentAttendance() throws Exception {
         // Given
         final Date now = new Date();

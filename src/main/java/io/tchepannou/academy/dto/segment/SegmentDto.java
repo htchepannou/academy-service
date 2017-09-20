@@ -3,6 +3,7 @@ package io.tchepannou.academy.dto.segment;
 @SuppressWarnings("CPD-START")
 public class SegmentDto {
     private Integer id;
+    private Integer lessonId;
     private Integer videoId;
     private String type;
     private String title;
@@ -16,6 +17,14 @@ public class SegmentDto {
 
     public void setId(final Integer id) {
         this.id = id;
+    }
+
+    public Integer getLessonId() {
+        return lessonId;
+    }
+
+    public void setLessonId(final Integer lessonId) {
+        this.lessonId = lessonId;
     }
 
     public Integer getVideoId() {

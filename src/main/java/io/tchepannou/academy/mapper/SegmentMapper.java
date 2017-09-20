@@ -17,6 +17,7 @@ public class SegmentMapper {
     public SegmentDto toSegmentSummaryDto(Segment segment, SegmentType type){
         final SegmentDto dto = new SegmentDto();
         dto.setId(segment.getId());
+        dto.setLessonId(segment.getLessonId());
         dto.setRank(segment.getRank());
         dto.setSummary(segment.getSummary());
         dto.setTitle(segment.getTitle());

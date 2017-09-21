@@ -7,6 +7,7 @@ public enum BusinessError {
     BAD_VIDEO_URL("BAD_VIDEO_URL", "The URL of the video is not supported"),
     ATTENDANCE_NOT_FOUND("ATTENDANCE_NOT_FOUND", "Attendance Not found"),
     COURSE_NOT_FOUND("COURSE_NOT_FOUND", "Course Not found"),
+    QUIZ_NOT_FOUND("QUIZ_NOT_FOUND", "Quiz Not found"),
     LESSON_NOT_FOUND("LESSON_NOT_FOUND", "Leg Not found"),
     SEGMENT_NOT_FOUND("SEGMENT_NOT_FOUND", "Segment not found"),
     VIDEO_NOT_FOUND("VIDEO_NOT_FOUND", "Video Not found"),

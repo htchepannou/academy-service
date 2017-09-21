@@ -11,6 +11,17 @@ INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(10111, 1, '2f
 INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(10112, 1, 'sQj7ZSTk0U0', 10);
 INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(10113, 1, '-rrim56YdmY', 40);
 
+INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(101031, 1, 'U7sEUIMH0yI', 37);
+INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(101061, 1, '7ZHhSSBUzoI', 124);
+
+INSERT INTO T_QUIZ(id, type_fk, video_fk, question) VALUES(10103, 2, 101031, 'Who might be a potencial end user of documentation?');
+INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101031, 10103, 1, true, 'You');
+INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101032, 10103, 2, true, 'Your coworkers');
+INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101033, 10103, 3, true, 'Your users');
+
+INSERT INTO T_QUIZ(id, type_fk, video_fk, question) VALUES(10106, 2, 101061, 'Introduction to READMEs');
+INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101061, 10106, 1, true, "I've examied all 3 READMEs");
+
 
 INSERT INTO T_COURSE(id, status_fk, level_fk, title, summary, description, language, published_datetime, updated_datetime)
   VALUES(100, 2, 1, 'How to write README', 'Learn the importance of well documented code and see how to craft meaningful READMEs.', 'Documentation is an important part of the development process. Learn to write READMEs using Markdown so your code can be used by other humans!', 'en', now(), now());
@@ -19,10 +30,10 @@ INSERT INTO T_LESSON(id, course_fk, title, rank) VALUE(101, 100, 'Writing README
 
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10101, 101, 1, 10101, 'Welcome', 1);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, description) VALUES(10102, 101, 1, 10102, 'What Is Documentation?', 2, 'Check out the <a href="https://github.com/udacity/ud777-writing-readmes">Writing READMEs</a> README over on GitHub.');
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10103, 101, 3, 10103, 'Who Is Documentation For?', 3);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, quiz_fk, title, rank) VALUES(10103, 101, 3, 10103, 10103, 'Who Is Documentation For?', 3);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10104, 101, 1, 10104, 'How Does Nija Consume Documentation?', 4);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10105, 101, 1, 10105, 'Why Should Art Have Documented His Code?', 5);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10106, 101, 3, 10106, 'Introduction To READMEs', 6);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, quiz_fk, title, rank) VALUES(10106, 101, 3, 10106, 10106, 'Introduction To READMEs', 6);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10107, 101, 1, 10107, 'Anatomy of README', 7);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10108, 101, 3, 10108, 'Documenting A Growing Codebase', 9);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10109, 101, 1, 10109, 'Readable READMEs with Markdown', 9);

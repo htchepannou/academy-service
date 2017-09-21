@@ -24,6 +24,41 @@ CREATE TABLE T_VIDEO(
 
 
 
+CREATE TABLE T_QUIZ_TYPE(
+  id          INT         NOT NULL AUTO_INCREMENT,
+  name        VARCHAR(20) NOT NULL,
+  rank        INT         NOT NULL,
+
+  UNIQUE(name),
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+CREATE TABLE T_QUIZ(
+  id         INT NOT NULL AUTO_INCREMENT,
+  type_fk    INT NOT NULL REFERENCES T_QUIZ_TYPE(id),
+  video_fk   INT REFERENCES T_VIDEO_TYPE(id),
+
+  question      VARCHAR(100),
+  description   TEXT,
+  answer        TEXT,
+
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+CREATE TABLE T_QUIZ_CHOICE(
+  id        INT NOT NULL AUTO_INCREMENT,
+  quiz_fk   INT NOT NULL REFERENCES T_QUIZ(id),
+
+  rank      INT,
+  text      TEXT,
+  answer    BIT,
+
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+
+
+
 CREATE TABLE T_COURSE_STATUS(
   id          INT         NOT NULL AUTO_INCREMENT,
   name        VARCHAR(20) NOT NULL,
@@ -87,7 +122,8 @@ CREATE TABLE T_SEGMENT(
   id            INT NOT NULL AUTO_INCREMENT,
   lesson_fk     INT NOT NULL REFERENCES T_LESSON(id),
   type_fk       INT NOT NULL REFERENCES T_SEGMENT_TYPE(id),
-  video_fk      INT          REFERENCES T_VIDEO(id),
+  video_fk      INT     NULL REFERENCES T_VIDEO(id),
+  quiz_fk       INT     NULL REFERENCES T_QUIZ(id),
 
   title               VARCHAR(100)  NOT NULL,
   summary             VARCHAR(255),
@@ -141,3 +177,7 @@ INSERT INTO T_COURSE_LEVEL(id, name, rank) VALUES(4, 'advanced', 3);
 INSERT INTO T_SEGMENT_TYPE(id, name, rank) VALUES(1, 'video', 0);
 INSERT INTO T_SEGMENT_TYPE(id, name, rank) VALUES(2, 'text', 1);
 INSERT INTO T_SEGMENT_TYPE(id, name, rank) VALUES(3, 'quiz', 2);
+
+INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(1, 'singlechoice', 0);
+INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(2, 'multichoice', 1);
+INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(3, 'text', 2);

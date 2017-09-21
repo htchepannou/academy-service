@@ -5,6 +5,7 @@ public class SegmentDto {
     private Integer id;
     private Integer lessonId;
     private Integer videoId;
+    private Integer quizId;
     private String type;
     private String title;
     private Integer rank;
@@ -21,6 +22,14 @@ public class SegmentDto {
 
     public Integer getLessonId() {
         return lessonId;
+    }
+
+    public Integer getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(final Integer quizId) {
+        this.quizId = quizId;
     }
 
     public void setLessonId(final Integer lessonId) {

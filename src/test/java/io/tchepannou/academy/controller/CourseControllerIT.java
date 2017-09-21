@@ -272,7 +272,7 @@ public class CourseControllerIT extends ControllerITSupport {
 
 
 
-    //-- SEGMENT
+    //-- LESSON
     @Test
     public void shouldFindLesson() throws Exception{
         // When
@@ -367,6 +367,7 @@ public class CourseControllerIT extends ControllerITSupport {
                 .andExpect(jsonPath("$.segments[1].rank", is(2)))
                 .andExpect(jsonPath("$.segments[1].type", is("video")))
                 .andExpect(jsonPath("$.segments[1].title", is("What is a database?")))
+                .andExpect(jsonPath("$.segments[1].videoId", is(3102)))
 
                 .andExpect(jsonPath("$.segments[2].id", is(3103)))
                 .andExpect(jsonPath("$.segments[2].rank", is(3)))
@@ -377,6 +378,8 @@ public class CourseControllerIT extends ControllerITSupport {
                 .andExpect(jsonPath("$.segments[3].rank", is(4)))
                 .andExpect(jsonPath("$.segments[3].type", is("quiz")))
                 .andExpect(jsonPath("$.segments[3].title", is("Quiz: Search data")))
+                .andExpect(jsonPath("$.segments[3].videoId", is(3104)))
+                .andExpect(jsonPath("$.segments[3].quizId", is(3104)))
         ;
     }    
 }

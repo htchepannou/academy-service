@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 public class SegmentMapper {
     public SegmentDto toSegmentDto(Segment segment, SegmentType type){
         final SegmentDto dto = toSegmentSummaryDto(segment, type);
-        dto.setVideoId(segment.getVideoId());
         dto.setDescription(segment.getDescription());
         return dto;
     }
@@ -22,6 +21,8 @@ public class SegmentMapper {
         dto.setSummary(segment.getSummary());
         dto.setTitle(segment.getTitle());
         dto.setType(type.getName());
+        dto.setVideoId(segment.getVideoId());
+        dto.setQuizId(segment.getQuizId());
         return dto;
     }
 }

@@ -23,6 +23,9 @@ public class Segment extends Persistent {
     @Column(name="video_fk")
     private Integer videoId;
 
+    @Column(name="quiz_fk")
+    private Integer quizId;
+
     private String title;
     private Integer rank;
     private String summary;
@@ -92,5 +95,13 @@ public class Segment extends Persistent {
 
     public void setRank(final Integer rank) {
         this.rank = rank;
+    }
+
+    public Integer getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(final Integer quizId) {
+        this.quizId = quizId;
     }
 }

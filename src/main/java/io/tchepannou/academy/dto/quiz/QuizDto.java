@@ -1,11 +1,9 @@
 package io.tchepannou.academy.dto.quiz;
 
-import io.tchepannou.academy.domain.Persistent;
-
 import java.util.List;
 
 @SuppressWarnings("CPD-START")
-public class QuizDto extends Persistent {
+public class QuizDto {
     private Integer id;
     private String type;
     private Integer videoId;

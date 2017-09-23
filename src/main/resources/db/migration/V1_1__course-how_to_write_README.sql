@@ -14,7 +14,7 @@ INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(10113, 1, '-r
 INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(101031, 1, 'U7sEUIMH0yI', 37);
 INSERT INTO T_VIDEO(id, type_fk, video_id, duration_second) VALUES(101061, 1, '7ZHhSSBUzoI', 124);
 
-INSERT INTO T_QUIZ(id, type_fk, video_fk, question) VALUES(10103, 2, 101031, 'Who might be a potencial end user of documentation?');
+INSERT INTO T_QUIZ(id, type_fk, video_fk, question) VALUES(10103, 2, 101031, 'Who might be a potential end user of documentation?');
 INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101031, 10103, 1, true, 'You');
 INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101032, 10103, 2, true, 'Your coworkers');
 INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101033, 10103, 3, true, 'Your users');

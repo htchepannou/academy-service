@@ -1,6 +1,8 @@
 package io.tchepannou.academy.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.tchepannou.academy.ControllerITSupport;
+import io.tchepannou.academy.dto.quiz.QuizValidationRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,9 +15,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
@@ -25,6 +30,9 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @Sql({"classpath:/sql/clean.sql", "classpath:/sql/QuizController.sql"})
 public class QuizControllerIT extends ControllerITSupport {
     private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper mapper;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -67,6 +75,52 @@ public class QuizControllerIT extends ControllerITSupport {
                 .andExpect(jsonPath("$.quiz.choices[2].answer", is(true)))
                 .andExpect(jsonPath("$.quiz.choices[2].text", is("Your users")))
         ;
+    }
+
+    @Test
+    public void shouldValidateValidAnswer() throws Exception {
+        // Given
+        final QuizValidationRequest req = new QuizValidationRequest();
+        req.setValues(Arrays.asList("101032", "101033"));
+
+        // When
+        final String jsonRequest = mapper.writeValueAsString(req);
+        mockMvc
+                .perform(
+                        post("/academy/v1/quiz/10103/validate")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonRequest)
+                )
+
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.transactionId", notNullValue()))
+                .andExpect(jsonPath("$.valid", is(true)))
+                ;
+
+    }
+
+    @Test
+    public void shouldValidateInValidAnswer() throws Exception {
+        // Given
+        final QuizValidationRequest req = new QuizValidationRequest();
+        req.setValues(Arrays.asList("101032"));
+
+        // When
+        final String jsonRequest = mapper.writeValueAsString(req);
+        mockMvc
+                .perform(
+                        post("/academy/v1/quiz/10103/validate")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonRequest)
+                )
+
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.transactionId", notNullValue()))
+                .andExpect(jsonPath("$.valid", is(false)))
+        ;
+
     }
 
 }

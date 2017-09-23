@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://ffn96u87j5ogvehy.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/fpngoug8qewcl5e7?reconnect=true
-    username: plivwbkhx8r6ftmh
-    password: lmoqznvfp686jmb2
+    url: jdbc:mysql://k.cwj11t2vidmo.us-east-1.rds.amazonaws.com/academy_user?reconnect=true
+    username: ${database.user}
+    password: ${database.password}
 
 flyway:
   user: ${spring.datasource.username}

@@ -14,6 +14,7 @@ public class AnswerValidatorFactory {
         validators.put("singlechoice", new SingleChoiceAnswerValidator());
         validators.put("multichoice", new MultiChoiceAnswerValidator());
         validators.put("text", new TextAnswerValidator());
+        validators.put("longtext", new TextAnswerValidator());
     }
     public AnswerValidator getValidator(final String name){
         final AnswerValidator validator = validators.get(name.toLowerCase());

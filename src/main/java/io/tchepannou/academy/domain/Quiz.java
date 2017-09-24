@@ -24,6 +24,12 @@ public class Quiz extends Persistent {
     private String description;
     private String answer;
 
+    @Column(name="success_message")
+    private String successMessage;
+
+    @Column(name="failure_message")
+    private String failureMessage;
+
     @Override
     public Integer getId() {
         return id;
@@ -71,5 +77,21 @@ public class Quiz extends Persistent {
 
     public void setAnswer(final String answer) {
         this.answer = answer;
+    }
+
+    public String getSuccessMessage() {
+        return successMessage;
+    }
+
+    public void setSuccessMessage(final String successMessage) {
+        this.successMessage = successMessage;
+    }
+
+    public String getFailureMessage() {
+        return failureMessage;
+    }
+
+    public void setFailureMessage(final String failureMessage) {
+        this.failureMessage = failureMessage;
     }
 }

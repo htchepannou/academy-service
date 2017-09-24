@@ -38,9 +38,11 @@ CREATE TABLE T_QUIZ(
   type_fk    INT NOT NULL REFERENCES T_QUIZ_TYPE(id),
   video_fk   INT REFERENCES T_VIDEO_TYPE(id),
 
-  question      VARCHAR(100),
-  description   TEXT,
-  answer        TEXT,
+  question        VARCHAR(100),
+  description     TEXT,
+  answer          TEXT,
+  success_message TEXT,
+  failure_message TEXT,
 
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
@@ -181,3 +183,4 @@ INSERT INTO T_SEGMENT_TYPE(id, name, rank) VALUES(3, 'quiz', 2);
 INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(1, 'singlechoice', 0);
 INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(2, 'multichoice', 1);
 INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(3, 'text', 2);
+INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(4, 'longtext', 3);

@@ -30,19 +30,13 @@ $ mvn clean install
 
 This will generate the service binary ``target/academy-service.jar``
 
-### Run the server
+### Run the server locally
 ```
-$ java -jar target/academy-service.jar
+$ java -Dspring.profiles.active=local -jar target/academy-service.jar
 ```
-
-## Links
-- Local Environment
-    - [API Documentation](http://localhost:8080/swagger-ui.html) 
-    - [Service Health](http://localhost:8080/health) 
-
-- Integration Environment
-    - [API Documentation](https://io-tchepannou-academy-service.herokuapp.com/swagger-ui.html) 
-    - [Service Health](https://io-tchepannou-academy-service.herokuapp.com/health) 
+The server will run locally on the port `18080`
+- Verify the status of the service at [http://localhost:18080/health](http://localhost:18080/health). The status should be `UP`. 
+- Access the API documentation at [http://localhost:18080/swagger-ui.html](http://localhost:18080/swagger-ui.html) 
 
 ## License
 This project is open source sofware under the [MIT License](https://opensource.org/licenses/MIT)

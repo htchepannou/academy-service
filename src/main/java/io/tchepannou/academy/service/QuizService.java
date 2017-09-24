@@ -73,6 +73,9 @@ public class QuizService {
 
         final QuizValidationResponse response = new QuizValidationResponse();
         response.setValid(valid);
+        response.setMessage(
+                valid ? quiz.getSuccessMessage() : quiz.getFailureMessage()
+        );
         return response;
     }
 }

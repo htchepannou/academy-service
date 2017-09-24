@@ -96,6 +96,7 @@ public class QuizControllerIT extends ControllerITSupport {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.transactionId", notNullValue()))
                 .andExpect(jsonPath("$.valid", is(true)))
+                .andExpect(jsonPath("$.message", is("Awesome")))
                 ;
 
     }
@@ -119,6 +120,7 @@ public class QuizControllerIT extends ControllerITSupport {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.transactionId", notNullValue()))
                 .andExpect(jsonPath("$.valid", is(false)))
+                .andExpect(jsonPath("$.message", is("Looser")))
         ;
 
     }

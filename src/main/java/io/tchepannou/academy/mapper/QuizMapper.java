@@ -17,6 +17,8 @@ public class QuizMapper {
         dto.setQuestion(quiz.getQuestion());
         dto.setType(type.getName());
         dto.setVideoId(quiz.getVideoId());
+        dto.setSuccessMessage(quiz.getSuccessMessage());
+        dto.setFailureMessage(quiz.getFailureMessage());
         return dto;
     }
 

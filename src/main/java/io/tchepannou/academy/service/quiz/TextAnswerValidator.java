@@ -13,6 +13,6 @@ public class TextAnswerValidator implements AnswerValidator {
         }
 
         final String answer = answers.get(0);
-        return answer.toLowerCase().equalsIgnoreCase(quiz.getAnswer().toLowerCase());
+        return answer.equalsIgnoreCase(quiz.getAnswer());
     }
 }

@@ -19,6 +19,13 @@ INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101031, 10103,
 INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101032, 10103, 2, true, 'Your coworkers');
 INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101033, 10103, 3, true, 'Your users');
 
+INSERT INTO T_QUIZ(id, type_fk, question) VALUES(10108, 2, 'As your codebase grow, which section would you consider to add into your README file?');
+INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101081, 10108, 1, true, 'Known bugs');
+INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101082, 10108, 2, true, 'Frenquenty Asked Questions');
+INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101083, 10108, 3, false, 'Press your project has received');
+INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101084, 10108, 4, true, 'Table of Content');
+INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101085, 10108, 5, false, 'Picture of your cat');
+
 INSERT INTO T_QUIZ(id, type_fk, video_fk, question) VALUES(10106, 2, 101061, 'Introduction to READMEs');
 INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101061, 10106, 1, true, "I've examied all 3 READMEs");
 
@@ -35,7 +42,7 @@ INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(1010
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10105, 101, 1, 10105, 'Why Should Art Have Documented His Code?', 5);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, quiz_fk, title, rank) VALUES(10106, 101, 3, 10106, 10106, 'Introduction To READMEs', 6);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10107, 101, 1, 10107, 'Anatomy of README', 7);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10108, 101, 3, 10108, 'Documenting A Growing Codebase', 9);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, quiz_fk, title, rank) VALUES(10108, 101, 3, 10108, 10108, 'Documenting A Growing Codebase', 9);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10109, 101, 1, 10109, 'Readable READMEs with Markdown', 9);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, description) VALUES(10110, 101, 2, null, 'Basic Markdown Syntax', 10, 'This is intended as a quick reference and showcase. For more complete info, see [John Gruber''s original spec](http://daringfireball.net/projects/markdown/) and the [Github-flavored Markdown info page](http://github.github.com/github-flavored-markdown/).
 

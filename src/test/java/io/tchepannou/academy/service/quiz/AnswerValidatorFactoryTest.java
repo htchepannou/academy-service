@@ -12,7 +12,7 @@ public class AnswerValidatorFactoryTest {
         assertThat(factory.getValidator("singlechoice")).isInstanceOf(SingleChoiceAnswerValidator.class);
         assertThat(factory.getValidator("multichoice")).isInstanceOf(MultiChoiceAnswerValidator.class);
         assertThat(factory.getValidator("text")).isInstanceOf(TextAnswerValidator.class);
-        assertThat(factory.getValidator("longtext")).isInstanceOf(TextAnswerValidator.class);
+        assertThat(factory.getValidator("longtext")).isInstanceOf(MultiChoiceAnswerValidator.class);
     }
 
     @Test(expected = IllegalArgumentException.class)

@@ -8,8 +8,8 @@ import io.tchepannou.academy.domain.QuizChoice;
 import io.tchepannou.academy.domain.QuizType;
 import io.tchepannou.academy.dto.quiz.QuizDto;
 import io.tchepannou.academy.dto.quiz.QuizResponse;
-import io.tchepannou.academy.dto.quiz.QuizValidationRequest;
-import io.tchepannou.academy.dto.quiz.QuizValidationResponse;
+import io.tchepannou.academy.dto.quiz.QuizAnswerRequest;
+import io.tchepannou.academy.dto.quiz.QuizAnswerResponse;
 import io.tchepannou.academy.exception.BusinessError;
 import io.tchepannou.academy.exception.NotFoundException;
 import io.tchepannou.academy.mapper.QuizMapper;
@@ -60,7 +60,7 @@ public class QuizService {
         return response;
     }
 
-    public QuizValidationResponse validate(final Integer id, final QuizValidationRequest request){
+    public QuizAnswerResponse answer(final Integer id, final QuizAnswerRequest request){
         final Quiz quiz = quizDao.findOne(id);
         if (quiz == null){
             throw new NotFoundException(BusinessError.QUIZ_NOT_FOUND);
@@ -71,7 +71,7 @@ public class QuizService {
         final AnswerValidator validator = answerValidatorFactory.getValidator(type.getName());
         final boolean valid = validator.isValid(request.getValues(), quiz, choices);
 
-        final QuizValidationResponse response = new QuizValidationResponse();
+        final QuizAnswerResponse response = new QuizAnswerResponse();
         response.setValid(valid);
         response.setMessage(
                 valid ? quiz.getSuccessMessage() : quiz.getFailureMessage()

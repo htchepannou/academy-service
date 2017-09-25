@@ -2,7 +2,7 @@ package io.tchepannou.academy.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.tchepannou.academy.ControllerITSupport;
-import io.tchepannou.academy.dto.quiz.QuizValidationRequest;
+import io.tchepannou.academy.dto.quiz.QuizAnswerRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -78,16 +78,16 @@ public class QuizControllerIT extends ControllerITSupport {
     }
 
     @Test
-    public void shouldValidateValidAnswer() throws Exception {
+    public void shouldAnswerValidAnswer() throws Exception {
         // Given
-        final QuizValidationRequest req = new QuizValidationRequest();
+        final QuizAnswerRequest req = new QuizAnswerRequest();
         req.setValues(Arrays.asList("101032", "101033"));
 
         // When
         final String jsonRequest = mapper.writeValueAsString(req);
         mockMvc
                 .perform(
-                        post("/academy/v1/quiz/10103/validate")
+                        post("/academy/v1/quiz/10103/answer")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonRequest)
                 )
@@ -102,16 +102,16 @@ public class QuizControllerIT extends ControllerITSupport {
     }
 
     @Test
-    public void shouldValidateInValidAnswer() throws Exception {
+    public void shouldAnswerInValidAnswer() throws Exception {
         // Given
-        final QuizValidationRequest req = new QuizValidationRequest();
+        final QuizAnswerRequest req = new QuizAnswerRequest();
         req.setValues(Arrays.asList("101032"));
 
         // When
         final String jsonRequest = mapper.writeValueAsString(req);
         mockMvc
                 .perform(
-                        post("/academy/v1/quiz/10103/validate")
+                        post("/academy/v1/quiz/10103/answer")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonRequest)
                 )

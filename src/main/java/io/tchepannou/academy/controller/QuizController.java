@@ -3,8 +3,8 @@ package io.tchepannou.academy.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.tchepannou.academy.dto.quiz.QuizResponse;
-import io.tchepannou.academy.dto.quiz.QuizValidationRequest;
-import io.tchepannou.academy.dto.quiz.QuizValidationResponse;
+import io.tchepannou.academy.dto.quiz.QuizAnswerRequest;
+import io.tchepannou.academy.dto.quiz.QuizAnswerResponse;
 import io.tchepannou.academy.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -29,12 +29,12 @@ public class QuizController extends BaseController {
         return init(service.findById(id));
     }
 
-    @RequestMapping(path = "/{id}/validate", method = RequestMethod.POST)
-    @ApiOperation(value = "validate", notes = "Validate")
-    public QuizValidationResponse validate(
+    @RequestMapping(path = "/{id}/answer", method = RequestMethod.POST)
+    @ApiOperation(value = "answer", notes = "Validate")
+    public QuizAnswerResponse answer(
             @PathVariable Integer id,
-            @RequestBody @Valid QuizValidationRequest request
+            @RequestBody @Valid QuizAnswerRequest request
     ){
-        return init(service.validate(id, request));
+        return init(service.answer(id, request));
     }
 }

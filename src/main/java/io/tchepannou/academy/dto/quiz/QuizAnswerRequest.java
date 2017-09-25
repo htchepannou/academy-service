@@ -3,7 +3,7 @@ package io.tchepannou.academy.dto.quiz;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public class QuizValidationRequest {
+public class QuizAnswerRequest {
     @NotNull
     public List<String> values;
 

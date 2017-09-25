@@ -2,7 +2,7 @@ package io.tchepannou.academy.dto.quiz;
 
 import io.tchepannou.academy.dto.BaseResponse;
 
-public class QuizValidationResponse extends BaseResponse{
+public class QuizAnswerResponse extends BaseResponse{
     private boolean valid;
     private String message;
 

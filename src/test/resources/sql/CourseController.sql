@@ -24,8 +24,8 @@ INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(31041, 3104, 1
 INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(31042, 3104, 2, true, 'Your coworkers');
 INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(310413, 3104, 3, true, 'Your users');
 
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, rank, title, summary, description) VALUES(3101, 310, 1, 3101, 1, 'Welcome', 'Greeting from author', 'Presentation of the course and objectives from the author <b>Ray Sponsible</b>');
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, rank, title) VALUES(3102, 310, 1, 3102, 2, 'What is a database?');
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, rank, duration_second, title, summary, description) VALUES(3101, 310, 1, 3101, 1, 52, 'Welcome', 'Greeting from author', 'Presentation of the course and objectives from the author <b>Ray Sponsible</b>');
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, rank, duration_second, title) VALUES(3102, 310, 1, 3102, 2, 63, 'What is a database?');
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, rank, title) VALUES(3103, 310, 2, 3, 'SQL cheat sheet');
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, quiz_fk, rank, title) VALUES(3104, 310, 3, 3104, 3104, 4, 'Quiz: Search data');
 

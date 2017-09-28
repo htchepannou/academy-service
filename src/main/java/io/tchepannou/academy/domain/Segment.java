@@ -31,6 +31,9 @@ public class Segment extends Persistent {
     private String summary;
     private String description;
 
+    @Column(name="duration_second")
+    private Integer durationSecond;
+
     @Override
     public Integer getId() {
         return id;
@@ -103,5 +106,13 @@ public class Segment extends Persistent {
 
     public void setQuizId(final Integer quizId) {
         this.quizId = quizId;
+    }
+
+    public Integer getDurationSecond() {
+        return durationSecond;
+    }
+
+    public void setDurationSecond(final Integer durationSecond) {
+        this.durationSecond = durationSecond;
     }
 }

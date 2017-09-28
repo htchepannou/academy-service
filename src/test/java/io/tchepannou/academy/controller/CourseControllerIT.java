@@ -362,12 +362,14 @@ public class CourseControllerIT extends ControllerITSupport {
                 .andExpect(jsonPath("$.segments[0].type", is("video")))
                 .andExpect(jsonPath("$.segments[0].title", is("Welcome")))
                 .andExpect(jsonPath("$.segments[0].summary", is("Greeting from author")))
+                .andExpect(jsonPath("$.segments[0].durationSecond", is(52)))
 
                 .andExpect(jsonPath("$.segments[1].id", is(3102)))
                 .andExpect(jsonPath("$.segments[1].rank", is(2)))
                 .andExpect(jsonPath("$.segments[1].type", is("video")))
                 .andExpect(jsonPath("$.segments[1].title", is("What is a database?")))
                 .andExpect(jsonPath("$.segments[1].videoId", is(3102)))
+                .andExpect(jsonPath("$.segments[1].durationSecond", is(63)))
 
                 .andExpect(jsonPath("$.segments[2].id", is(3103)))
                 .andExpect(jsonPath("$.segments[2].rank", is(3)))

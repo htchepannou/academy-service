@@ -131,6 +131,7 @@ CREATE TABLE T_SEGMENT(
   summary             VARCHAR(255),
   rank                INT,
   description         TEXT,
+  duration_second     INT,
 
   insert_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP,
   update_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

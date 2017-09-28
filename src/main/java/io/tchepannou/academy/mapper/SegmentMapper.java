@@ -23,6 +23,7 @@ public class SegmentMapper {
         dto.setType(type.getName());
         dto.setVideoId(segment.getVideoId());
         dto.setQuizId(segment.getQuizId());
+        dto.setDurationSecond(segment.getDurationSecond());
         return dto;
     }
 }

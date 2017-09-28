@@ -1,9 +1,11 @@
 package io.tchepannou.academy.service;
 
 import io.tchepannou.academy.dao.CourseAttendanceDao;
+import io.tchepannou.academy.dao.CourseDao;
 import io.tchepannou.academy.dao.LessonDao;
 import io.tchepannou.academy.dao.SegmentAttendanceDao;
 import io.tchepannou.academy.dao.SegmentDao;
+import io.tchepannou.academy.domain.Course;
 import io.tchepannou.academy.domain.CourseAttendance;
 import io.tchepannou.academy.domain.Lesson;
 import io.tchepannou.academy.domain.Segment;
@@ -20,10 +22,14 @@ import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
 public class AttendanceService {
+    @Autowired
+    private CourseDao courseDao;
+
     @Autowired
     private SegmentDao segmentDao;
 
@@ -40,24 +46,6 @@ public class AttendanceService {
     private AttendanceMapper attendanceMapper;
 
     @Transactional
-    public AttendanceResponse start(final Integer studentId, final Integer segmentId){
-        final Integer courseId = getCourseId(segmentId);
-        CourseAttendance attendance = courseAttendanceDao.findByStudentIdAndCourseId(studentId, courseId);
-        if (attendance == null){
-            attendance = createCourseAttendance(studentId, segmentId, courseId);
-            courseAttendanceDao.save(attendance);
-        }
-        attendance.setCurrentSegmentId(segmentId);
-        courseAttendanceDao.save(attendance);
-
-
-        final AttendanceResponse response = new AttendanceResponse();
-        final CourseAttendanceDto attendanceDto = attendanceMapper.toCourseAttendanceDto(attendance);
-        response.setAttendance(attendanceDto);
-        return response;
-    }
-
-    @Transactional
     public AttendanceResponse done(final Integer studentId, final Integer segmentId){
         final Integer courseId = getCourseId(segmentId);
         SegmentAttendance segmentAttendance;
@@ -68,7 +56,6 @@ public class AttendanceService {
         } else {
             attendance.setCurrentSegmentId(segmentId);
             courseAttendanceDao.save(attendance);
-
         }
 
         segmentAttendance = segmentAttendanceDao.findByCourseAttendanceIdAndSegmentId(attendance.getId(), segmentId);
@@ -76,6 +63,8 @@ public class AttendanceService {
             segmentAttendance = createSegmentAttendance(segmentId, attendance);
             segmentAttendanceDao.save(segmentAttendance);
         }
+
+        updateStats(courseId, attendance);
 
         final AttendanceResponse response = new AttendanceResponse();
         final CourseAttendanceDto attendanceDto = attendanceMapper.toCourseAttendanceDto(attendance);
@@ -112,6 +101,22 @@ public class AttendanceService {
         return attendance;
     }
 
+    private void updateStats(final Integer courseId, final CourseAttendance attendance){
+        final Course course = courseDao.findOne(courseId);
+        attendance.setCourseSegmentCount(course.getSegmentCount());
+
+        final List<SegmentAttendance> segments = segmentAttendanceDao.findByCourseAttendanceId(attendance.getId());
+        final Set<Integer> segmentIds = segments.stream()
+                .map(s -> s.getSegmentId())
+                .collect(Collectors.toSet());
+        attendance.setAttendedSegmentCount(segmentIds.size());
+
+        if (attendance.getAttendedSegmentCount() >= attendance.getCourseSegmentCount()){
+            attendance.setCurrentSegmentId(null);
+        }
+        courseAttendanceDao.save(attendance);
+    }
+
     private SegmentAttendance createSegmentAttendance(final Integer segmentId, final CourseAttendance attendance) {
         final SegmentAttendance segmentAttendance;
         segmentAttendance = new SegmentAttendance();
@@ -120,7 +125,6 @@ public class AttendanceService {
         segmentAttendance.setAttendanceDateTime(now());
         return segmentAttendance;
     }
-
 
     private Integer getCourseId(Integer segmentId){
         final Segment segment = segmentDao.findOne(segmentId);

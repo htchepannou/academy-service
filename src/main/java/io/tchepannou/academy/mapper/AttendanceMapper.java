@@ -15,6 +15,8 @@ public class AttendanceMapper {
         dto.setId(attendance.getId());
         dto.setAttendanceDateTime(attendance.getAttendanceDateTime());
         dto.setStudentId(attendance.getStudentId());
+        dto.setCourseSegmentCount(attendance.getCourseSegmentCount());
+        dto.setAttendedSegmentCount(attendance.getAttendedSegmentCount());
         return dto;
     }
 

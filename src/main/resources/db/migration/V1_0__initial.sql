@@ -100,6 +100,7 @@ CREATE TABLE T_COURSE(
   language            VARCHAR(2),
   published_datetime  DATETIME,
   updated_datetime    DATETIME,
+  segment_count       INT,
 
   insert_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP,
   update_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -142,12 +143,14 @@ CREATE TABLE T_SEGMENT(
 
 
 CREATE TABLE T_COURSE_ATTENDANCE(
-  id                  INT NOT NULL AUTO_INCREMENT,
-  student_fk          INT NOT NULL,
-  course_fk           INT NOT NULL REFERENCES T_COURSE(id),
-  current_segment_fk  INT NOT NULL REFERENCES T_SEGMENT(id),
+  id                      INT NOT NULL AUTO_INCREMENT,
+  student_fk              INT NOT NULL,
+  course_fk               INT NOT NULL REFERENCES T_COURSE(id),
+  current_segment_fk      INT     NULL REFERENCES T_SEGMENT(id),
 
-  attendance_datetime DATETIME NOT NULL,
+  attendance_datetime     DATETIME NOT NULL,
+  course_segment_count    INT,
+  attended_segment_count  INT,
 
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;

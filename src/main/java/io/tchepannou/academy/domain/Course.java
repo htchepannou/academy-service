@@ -32,6 +32,9 @@ public class Course extends Persistent {
     @Column(name="updated_datetime")
     private Timestamp updateDateTime;
 
+    @Column(name="segment_count")
+    private Integer segmentCount;
+
     public Integer getId() {
         return id;
     }
@@ -102,5 +105,13 @@ public class Course extends Persistent {
 
     public void setUpdateDateTime(final Timestamp updateDateTime) {
         this.updateDateTime = updateDateTime;
+    }
+
+    public Integer getSegmentCount() {
+        return segmentCount;
+    }
+
+    public void setSegmentCount(final Integer segmentCount) {
+        this.segmentCount = segmentCount;
     }
 }

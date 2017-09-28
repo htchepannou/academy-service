@@ -27,6 +27,12 @@ public class CourseAttendance {
     @Column(name="attendance_datetime")
     private Timestamp attendanceDateTime;
 
+    @Column(name="course_segment_count")
+    private Integer courseSegmentCount;
+
+    @Column(name="attended_segment_count")
+    private Integer attendedSegmentCount;
+
 
     public Integer getId() {
         return id;
@@ -66,5 +72,21 @@ public class CourseAttendance {
 
     public void setAttendanceDateTime(final Timestamp attendanceDateTime) {
         this.attendanceDateTime = attendanceDateTime;
+    }
+
+    public Integer getCourseSegmentCount() {
+        return courseSegmentCount;
+    }
+
+    public void setCourseSegmentCount(final Integer courseSegmentCount) {
+        this.courseSegmentCount = courseSegmentCount;
+    }
+
+    public Integer getAttendedSegmentCount() {
+        return attendedSegmentCount;
+    }
+
+    public void setAttendedSegmentCount(final Integer attendedSegmentCount) {
+        this.attendedSegmentCount = attendedSegmentCount;
     }
 }

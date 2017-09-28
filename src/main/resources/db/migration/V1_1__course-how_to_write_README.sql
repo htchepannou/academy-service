@@ -39,15 +39,15 @@ INSERT INTO T_COURSE(id, status_fk, level_fk, title, summary, description, langu
 
 INSERT INTO T_LESSON(id, course_fk, title, rank) VALUE(101, 100, 'Writing READMEs', 1);
 
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10101, 101, 1, 10101, 'Welcome', 1);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, description) VALUES(10102, 101, 1, 10102, 'What Is Documentation?', 2, 'Check out the <a href="https://github.com/udacity/ud777-writing-readmes">Writing READMEs</a> README over on GitHub.');
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, duration_second) VALUES(10101, 101, 1, 10101, 'Welcome', 1, 52);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, duration_second, description) VALUES(10102, 101, 1, 10102, 'What Is Documentation?', 2, 56, 'Check out the <a href="https://github.com/udacity/ud777-writing-readmes">Writing READMEs</a> README over on GitHub.');
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, quiz_fk, title, rank) VALUES(10103, 101, 3, 10103, 10103, 'Who Is Documentation For?', 3);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10104, 101, 1, 10104, 'How Does Nija Consume Documentation?', 4);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10105, 101, 1, 10105, 'Why Should Art Have Documented His Code?', 5);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, duration_second) VALUES(10104, 101, 1, 10104, 'How Does Nija Consume Documentation?', 4, 74);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, duration_second) VALUES(10105, 101, 1, 10105, 'Why Should Art Have Documented His Code?', 5, 127);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, quiz_fk, title, rank) VALUES(10106, 101, 3, 10106, 10106, 'Introduction To READMEs', 6);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10107, 101, 1, 10107, 'Anatomy of README', 7);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, duration_second) VALUES(10107, 101, 1, 10107, 'Anatomy of README', 7, 153);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, quiz_fk, title, rank) VALUES(10108, 101, 3, 10108, 10108, 'Documenting A Growing Codebase', 8);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10109, 101, 1, 10109, 'Readable READMEs with Markdown', 9);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, duration_second) VALUES(10109, 101, 1, 10109, 'Readable READMEs with Markdown', 9, 130);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, description) VALUES(10110, 101, 2, null, 'Basic Markdown Syntax', 10, 'This is intended as a quick reference and showcase. For more complete info, see [John Gruber''s original spec](http://daringfireball.net/projects/markdown/) and the [Github-flavored Markdown info page](http://github.github.com/github-flavored-markdown/).
 
 Note that there is also a [Cheatsheet specific to Markdown Here](./Markdown-Here-Cheatsheet) if that''s what you''re looking for. You can also check out [more Markdown tools](./Other-Markdown-Tools).
@@ -463,5 +463,5 @@ License: [CC-BY](https://creativecommons.org/licenses/by/3.0/)');
 
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, quiz_fk, title, rank) VALUES(10111, 101, 3, 10111, 10111, 'Basic Markdown Syntax Quiz', 11);
 
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10112, 101, 1, 10112, 'Markdown Syntax Practice', 12);
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank) VALUES(10113, 101, 1, 10113, 'Document Everything!', 13);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, duration_second) VALUES(10112, 101, 1, 10112, 'Markdown Syntax Practice', 12, 10);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, duration_second) VALUES(10113, 101, 1, 10113, 'Document Everything!', 13, 40);

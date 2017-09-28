@@ -8,7 +8,7 @@ spring:
 flyway:
   user: ${spring.datasource.username}
   password: ${spring.datasource.password}
-  url: ${spring.datasource.url}
+  url: ${spring.datasource.jdbcUrl}
 
 swagger:
   protocol: https

@@ -29,7 +29,7 @@ INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101083, 10108,
 INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101084, 10108, 4, true, 'Table of Content');
 INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101085, 10108, 5, false, 'Picture of your cat');
 
-INSERT INTO T_QUIZ(id, type_fk, video_fk, question, description, answer, success_message, failure_message) VALUES(10111, 4, 101061, 'Write the markdown code of the following text', '#Here is your task.
+INSERT INTO T_QUIZ(id, type_fk, video_fk, question, description, answer, success_message, failure_message) VALUES(10111, 5, 101061, 'Write the markdown code of the following text', '#Here is your task.
 This is a sample **text** to _display_', '#Here is your task.
 This is a sample **text** to _display_', 'Awesome!', 'Refer to the markup syntax!');
 

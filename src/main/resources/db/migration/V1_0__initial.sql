@@ -188,3 +188,4 @@ INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(1, 'singlechoice', 0);
 INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(2, 'multichoice', 1);
 INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(3, 'text', 2);
 INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(4, 'longtext', 3);
+INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(5, 'markdown', 4);

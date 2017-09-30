@@ -32,7 +32,7 @@ public class LongTextAnswerValidatorTest {
 
         assertThat(validator.isValid(Collections.emptyList(), quiz, choices)).isFalse();
         assertThat(validator.isValid(Arrays.asList("Hello\nWorld"), quiz, choices)).isTrue();
-        assertThat(validator.isValid(Arrays.asList("Hello\n\rWorld"), quiz, choices)).isTrue();
+        assertThat(validator.isValid(Arrays.asList("Hello\r\nWorld"), quiz, choices)).isTrue();
     }
 
     private Quiz createQuiz(String answer){

@@ -17,6 +17,6 @@ public class LongTextAnswerValidator implements AnswerValidator {
     }
 
     private String normalize(final String str){
-        return str == null ? "" : str.replaceAll("(\\n\\r)", "\n");
+        return str == null ? "" : str.replaceAll("(\\r\\n)", "\n");
     }
 }

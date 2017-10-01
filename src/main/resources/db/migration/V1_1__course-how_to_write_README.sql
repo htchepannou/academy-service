@@ -32,31 +32,7 @@ INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101085, 10108,
 INSERT INTO T_QUIZ(id, type_fk, video_fk, question, description, answer, success_message, failure_message) VALUES(10111, 5, 101061, 'Markdown Syntax Practice', 'Rewrite this HTML as Markdown. Take note of:
 - how much less code you are writing
 - how readable Markdown vs. HTML is
-Once you''re done, submit your answer.
-```
-<h1>My Fabulous Recipe</h1>
-
-<p>This recipe for <strong>cereal and milk</strong> has been passed down my family for months.</p>
-
-<h2>Ingredients</h2>
-
-<ul>
-    <li>Cereal (you can find cool cereals <a href="www.example.com/coolcereals">here</a>)</li>
-    <li>Milk</li>
-</ul>
-
-<h2>Directions</h2>
-
-<p>If I were writing these out as <em>code</em>, it might look something like this:</p>
-
-<pre><code>
-if bowl is empty:
- add cereal
-if bowl only has cereal in it:
- add milk
-</code></pre>
-</body>
-```',
+Once you''re done, submit your answer.',
 '# My Fabulous Recipe
 
 This recipe for **cereal and milk** has been passed down my family for months.
@@ -507,7 +483,34 @@ Referencing a bug by #bugID in your git commit links it to the slip. For example
 
 License: [CC-BY](https://creativecommons.org/licenses/by/3.0/)');
 
-INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, quiz_fk, title, rank) VALUES(10111, 101, 3, 10111, 10111, 'Basic Markdown Syntax Quiz', 11);
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, quiz_fk, title, rank, description) VALUES(10111, 101, 3, 10111, 10111, 'Basic Markdown Syntax Quiz', 11, 'Rewrite this HTML as Markdown. Take note of:
+- how much less code you are writing
+- how readable Markdown vs. HTML is
+Once you''re done, submit your answer.
+```
+<h1>My Fabulous Recipe</h1>
+
+<p>This recipe for <strong>cereal and milk</strong> has been passed down my family for months.</p>
+
+<h2>Ingredients</h2>
+
+<ul>
+    <li>Cereal (you can find cool cereals <a href="www.example.com/coolcereals">here</a>)</li>
+    <li>Milk</li>
+</ul>
+
+<h2>Directions</h2>
+
+<p>If I were writing these out as <em>code</em>, it might look something like this:</p>
+
+<pre><code>
+if bowl is empty:
+ add cereal
+if bowl only has cereal in it:
+ add milk
+</code></pre>
+</body>
+```');
 
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, duration_second) VALUES(10112, 101, 1, 10112, 'Markdown Syntax Practice', 12, 10);
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, duration_second) VALUES(10113, 101, 1, 10113, 'Document Everything!', 13, 40);

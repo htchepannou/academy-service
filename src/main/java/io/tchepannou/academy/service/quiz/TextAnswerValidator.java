@@ -12,7 +12,12 @@ public class TextAnswerValidator implements AnswerValidator {
             return false;
         }
 
-        final String answer = answers.get(0);
-        return answer.equalsIgnoreCase(quiz.getAnswer());
+        final String answer = normalize(answers.get(0));
+        final String expected = normalize(quiz.getAnswer());
+        return answer.equalsIgnoreCase(expected);
+    }
+
+    protected String normalize(final String str){
+        return str == null ? "" : str.replaceAll("(\\r\\n)", "\n");
     }
 }

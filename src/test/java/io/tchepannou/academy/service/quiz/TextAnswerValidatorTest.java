@@ -12,17 +12,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TextAnswerValidatorTest {
     final AnswerValidator validator = new TextAnswerValidator();
-    final Quiz quiz = createQuiz("ToTO");
     final List<QuizChoice> choices = Collections.emptyList();
 
     @Test
-    public void isValid() throws Exception {
+    public void isValidSimple() throws Exception {
+        final Quiz quiz = createQuiz("Hello World");
+
         assertThat(validator.isValid(Collections.emptyList(), quiz, choices)).isFalse();
         assertThat(validator.isValid(Arrays.asList("1"), quiz, choices)).isFalse();
-        assertThat(validator.isValid(Arrays.asList("ToTO", "2"), quiz, choices)).isFalse();
+        assertThat(validator.isValid(Arrays.asList("Hello World", "2"), quiz, choices)).isFalse();
 
-        assertThat(validator.isValid(Arrays.asList("ToTO"), quiz, choices)).isTrue();
-        assertThat(validator.isValid(Arrays.asList("toto"), quiz, choices)).isTrue();
+        assertThat(validator.isValid(Arrays.asList("Hello World"), quiz, choices)).isTrue();
+        assertThat(validator.isValid(Arrays.asList("hello world"), quiz, choices)).isTrue();
+    }
+
+    @Test
+    public void isValidTextWithCR() throws Exception {
+        final Quiz quiz = createQuiz("Hello\nWorld");
+
+        assertThat(validator.isValid(Collections.emptyList(), quiz, choices)).isFalse();
+        assertThat(validator.isValid(Arrays.asList("Hello\nWorld"), quiz, choices)).isTrue();
+        assertThat(validator.isValid(Arrays.asList("Hello\r\nWorld"), quiz, choices)).isTrue();
     }
 
     private Quiz createQuiz(String answer){

@@ -29,9 +29,55 @@ INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101083, 10108,
 INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101084, 10108, 4, true, 'Table of Content');
 INSERT INTO T_QUIZ_CHOICE(id, quiz_fk, rank, answer, text) VALUES(101085, 10108, 5, false, 'Picture of your cat');
 
-INSERT INTO T_QUIZ(id, type_fk, video_fk, question, description, answer, success_message, failure_message) VALUES(10111, 5, 101061, 'Write the markdown code of the following text', '#Here is your task.
-This is a sample **text** to _display_', '#Here is your task.
-This is a sample **text** to _display_', 'Awesome!', 'Refer to the markup syntax!');
+INSERT INTO T_QUIZ(id, type_fk, video_fk, question, description, answer, success_message, failure_message) VALUES(10111, 5, 101061, 'Markdown Syntax Practice', 'Rewrite this HTML as Markdown. Take note of:
+- how much less code you are writing
+- how readable Markdown vs. HTML is
+Once you''re done, submit your answer.
+```
+<h1>My Fabulous Recipe</h1>
+
+<p>This recipe for <strong>cereal and milk</strong> has been passed down my family for months.</p>
+
+<h2>Ingredients</h2>
+
+<ul>
+    <li>Cereal (you can find cool cereals <a href="www.example.com/coolcereals">here</a>)</li>
+    <li>Milk</li>
+</ul>
+
+<h2>Directions</h2>
+
+<p>If I were writing these out as <em>code</em>, it might look something like this:</p>
+
+<pre><code>
+if bowl is empty:
+ add cereal
+if bowl only has cereal in it:
+ add milk
+</code></pre>
+</body>
+```',
+'# My Fabulous Recipe
+
+This recipe for **cereal and milk** has been passed down my family for months.
+
+## Ingredients
+
+- Cereal (you can find cool cereals [here](www.example.com/coolcereals))
+- Milk
+
+## Directions
+
+If I were writing these out as _code_, it might look something like this:
+
+```
+if bowl is empty:
+ add cereal
+if bowl only has cereal in it:
+ add milk
+```', 'Awesome!', 'Sorry, you are not there yet!
+Make sure to respect the spacing and case.
+Refer to markdown syntax');
 
 
 INSERT INTO T_COURSE(id, status_fk, level_fk, title, summary, description, language, published_datetime, updated_datetime, segment_count)

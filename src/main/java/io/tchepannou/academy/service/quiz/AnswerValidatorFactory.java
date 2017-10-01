@@ -13,9 +13,9 @@ public class AnswerValidatorFactory {
         validators = new HashMap<>();
         validators.put("singlechoice", new SingleChoiceAnswerValidator());
         validators.put("multichoice", new MultiChoiceAnswerValidator());
-        validators.put("string", new TextAnswerValidator());
-        validators.put("text", new LongTextAnswerValidator());
-        validators.put("markdown", new LongTextAnswerValidator());
+        validators.put("string", new StringAnswerValidator());
+        validators.put("text", new TextAnswerValidator());
+        validators.put("markdown", new MarkdownAnswerValidator());
     }
     public AnswerValidator getValidator(final String name){
         final AnswerValidator validator = validators.get(name.toLowerCase());

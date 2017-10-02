@@ -1,0 +1,13 @@
+package io.tchepannou.academy.dto.instructor;
+
+import io.tchepannou.academy.domain.Instructor;
+import org.springframework.stereotype.Component;
+
+@Component
+public class InstructorMapper {
+    public InstructorDto toInstructorDto(Instructor instr){
+        final InstructorDto dto = new InstructorDto();
+        dto.setRoleId(instr.getRoleId());
+        return dto;
+    }
+}

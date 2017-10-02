@@ -28,11 +28,12 @@ INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, rank, duration_second, t
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, rank, duration_second, title) VALUES(3102, 310, 1, 3102, 2, 63, 'What is a database?');
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, rank, title) VALUES(3103, 310, 2, 3, 'SQL cheat sheet');
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, quiz_fk, rank, title) VALUES(3104, 310, 3, 3104, 3104, 4, 'Quiz: Search data');
-
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, rank, duration_second, title) VALUES(3021, 302, 1, 3101, 1, 240, 'Understanding SELECT');
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, rank, duration_second, title) VALUES(3022, 302, 2, 2, 440, 'Filter with WHERE');
-
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, rank, duration_second, title) VALUES(3031, 303, 1, 3101, 1, 40, 'Conclusion');
+
+INSERT INTO T_INSTRUCTOR(id, course_fk, role_fk) VALUES(301, 300, 1);
+INSERT INTO T_INSTRUCTOR(id, course_fk, role_fk) VALUES(302, 300, 2);
 
 -- addLeg/updateLeg
 INSERT INTO T_COURSE(id, level_fk, status_fk, language, title, summary, description, published_datetime) VALUES(400, 3, 2, 'en', 'Title of...', 'Summary of...', 'Description of...', '2017-01-02 03:30:00');

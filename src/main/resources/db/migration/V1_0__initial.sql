@@ -141,6 +141,15 @@ CREATE TABLE T_SEGMENT(
 ) ENGINE = InnoDB;
 
 
+CREATE TABLE T_INSTRUCTOR (
+  id          INT NOT NULL AUTO_INCREMENT,
+  role_fk     INT NOT NULL,
+  course_fk   INT NOT NULL REFERENCES T_COURSE(id),
+
+  UNIQUE(course_fk, role_fk),
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
 
 CREATE TABLE T_COURSE_ATTENDANCE(
   id                      INT NOT NULL AUTO_INCREMENT,
@@ -152,6 +161,7 @@ CREATE TABLE T_COURSE_ATTENDANCE(
   course_segment_count    INT,
   attended_segment_count  INT,
 
+  UNIQUE(course_fk, student_fk),
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 

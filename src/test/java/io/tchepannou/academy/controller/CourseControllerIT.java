@@ -213,6 +213,10 @@ public class CourseControllerIT extends ControllerITSupport {
                 .andExpect(jsonPath("$.course.lessons[2].segments[0].rank", is(1)))
                 .andExpect(jsonPath("$.course.lessons[2].segments[0].durationSecond", is(40)))
                 .andExpect(jsonPath("$.course.lessons[2].segments[0].title", is("Conclusion")))
+
+                .andExpect(jsonPath("$.course.instructors.length()", is(2)))
+                .andExpect(jsonPath("$.course.instructors[0].roleId", is(1)))
+                .andExpect(jsonPath("$.course.instructors[1].roleId", is(2)))
         ;
     }
 
@@ -325,119 +329,4 @@ public class CourseControllerIT extends ControllerITSupport {
         Course course = courseDao.findOne(201);
         assertThat(course.getStatusId()).isEqualTo(3);
     }
-
-
-
-    //-- LESSON
-    @Test
-    public void shouldFindLesson() throws Exception{
-        // When
-        mockMvc
-                .perform(
-                        get("/academy/v1/courses/300/lessons/310")
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
-
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.transactionId", notNullValue()))
-                .andExpect(jsonPath("$.lesson.id", is(310)))
-                .andExpect(jsonPath("$.lesson.rank", is(1)))
-                .andExpect(jsonPath("$.lesson.title", is("Introduction")))
-        ;
-    }
-
-    @Test
-    public void shouldFindLessonByCourse() throws Exception{
-        // When
-        mockMvc
-                .perform(
-                        get("/academy/v1/courses/300/lessons")
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
-
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.lessons.length()", is(3)))
-                .andExpect(jsonPath("$.lessons[0].id", is(310)))
-                .andExpect(jsonPath("$.lessons[0].rank", is(1)))
-                .andExpect(jsonPath("$.lessons[0].title", is("Introduction")))
-
-                .andExpect(jsonPath("$.lessons[1].id", is(302)))
-                .andExpect(jsonPath("$.lessons[1].rank", is(2)))
-                .andExpect(jsonPath("$.lessons[1].title", is("Querying the database")))
-
-                .andExpect(jsonPath("$.lessons[2].id", is(303)))
-                .andExpect(jsonPath("$.lessons[2].rank", is(3)))
-                .andExpect(jsonPath("$.lessons[2].title", is("Conclusion")))
-        ;
-    }
-
-
-    //-- SEGMENT
-    @Test
-    public void shouldFindSegment() throws Exception{
-        // When
-        mockMvc
-                .perform(
-                        get("/academy/v1/courses/300/segments/3101")
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
-
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.transactionId", notNullValue()))
-                .andExpect(jsonPath("$.segment.id", is(3101)))
-                .andExpect(jsonPath("$.segment.videoId", is(3101)))
-                .andExpect(jsonPath("$.segment.rank", is(1)))
-                .andExpect(jsonPath("$.segment.type", is("video")))
-                .andExpect(jsonPath("$.segment.title", is("Welcome")))
-                .andExpect(jsonPath("$.segment.summary", is("Greeting from author")))
-                .andExpect(jsonPath("$.segment.description", is("Presentation of the course and objectives from the author <b>Ray Sponsible</b>")))
-        ;
-    }
-
-    @Test
-    public void shouldFindSegmentsByLesson() throws Exception{
-        // When
-        mockMvc
-                .perform(
-                        get("/academy/v1/courses/300/segments")
-                                .param("lessonId", "310")
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
-
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.transactionId", notNullValue()))
-                .andExpect(jsonPath("$.size", is(4)))
-                .andExpect(jsonPath("$.segments.length()", is(4)))
-
-                .andExpect(jsonPath("$.segments[0].id", is(3101)))
-                .andExpect(jsonPath("$.segments[0].rank", is(1)))
-                .andExpect(jsonPath("$.segments[0].type", is("video")))
-                .andExpect(jsonPath("$.segments[0].title", is("Welcome")))
-                .andExpect(jsonPath("$.segments[0].summary", is("Greeting from author")))
-                .andExpect(jsonPath("$.segments[0].durationSecond", is(52)))
-
-                .andExpect(jsonPath("$.segments[1].id", is(3102)))
-                .andExpect(jsonPath("$.segments[1].rank", is(2)))
-                .andExpect(jsonPath("$.segments[1].type", is("video")))
-                .andExpect(jsonPath("$.segments[1].title", is("What is a database?")))
-                .andExpect(jsonPath("$.segments[1].videoId", is(3102)))
-                .andExpect(jsonPath("$.segments[1].durationSecond", is(63)))
-
-                .andExpect(jsonPath("$.segments[2].id", is(3103)))
-                .andExpect(jsonPath("$.segments[2].rank", is(3)))
-                .andExpect(jsonPath("$.segments[2].type", is("text")))
-                .andExpect(jsonPath("$.segments[2].title", is("SQL cheat sheet")))
-
-                .andExpect(jsonPath("$.segments[3].id", is(3104)))
-                .andExpect(jsonPath("$.segments[3].rank", is(4)))
-                .andExpect(jsonPath("$.segments[3].type", is("quiz")))
-                .andExpect(jsonPath("$.segments[3].title", is("Quiz: Search data")))
-                .andExpect(jsonPath("$.segments[3].videoId", is(3104)))
-                .andExpect(jsonPath("$.segments[3].quizId", is(3104)))
-        ;
-    }    
 }

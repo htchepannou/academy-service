@@ -3,12 +3,14 @@ package io.tchepannou.academy.service;
 import io.tchepannou.academy.dao.CourseDao;
 import io.tchepannou.academy.dao.CourseLevelDao;
 import io.tchepannou.academy.dao.CourseStatusDao;
+import io.tchepannou.academy.dao.InstructorDao;
 import io.tchepannou.academy.dao.LessonDao;
 import io.tchepannou.academy.dao.SegmentDao;
 import io.tchepannou.academy.dao.SegmentTypeDao;
 import io.tchepannou.academy.domain.Course;
 import io.tchepannou.academy.domain.CourseLevel;
 import io.tchepannou.academy.domain.CourseStatus;
+import io.tchepannou.academy.domain.Instructor;
 import io.tchepannou.academy.domain.Lesson;
 import io.tchepannou.academy.domain.Segment;
 import io.tchepannou.academy.domain.SegmentType;
@@ -20,6 +22,7 @@ import io.tchepannou.academy.dto.course.UpdateCourseRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseResponse;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusResponse;
+import io.tchepannou.academy.dto.instructor.InstructorMapper;
 import io.tchepannou.academy.dto.lesson.LessonDto;
 import io.tchepannou.academy.exception.BusinessError;
 import io.tchepannou.academy.exception.InvalidRequestException;
@@ -65,6 +68,12 @@ public class CourseService {
 
     @Autowired
     private SegmentMapper segmentMapper;
+
+    @Autowired
+    private InstructorDao instructorDao;
+
+    @Autowired
+    private InstructorMapper instructorMapper;
 
 
     //-- Public
@@ -148,6 +157,14 @@ public class CourseService {
                         .collect(Collectors.toList())
             );
         }
+
+        /* instructors */
+        final List<Instructor> instructors = instructorDao.findByCourseId(id);
+        dto.setInstructors(
+                instructors.stream()
+                    .map(i -> instructorMapper.toInstructorDto(i))
+                    .collect(Collectors.toList())
+        );
 
         return new CourseResponse(dto);
     }

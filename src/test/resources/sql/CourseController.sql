@@ -8,7 +8,7 @@ INSERT INTO T_COURSE(id, title, level_fk, status_fk, published_datetime, updated
 INSERT INTO T_COURSE(id, title, level_fk, status_fk, published_datetime, updated_datetime) VALUES(203, 'published -> published', 1, 2, '2017-02-01 10:00:00', '2017-02-01 10:00:00');
 
 -- findById - findSegmentById
-INSERT INTO T_COURSE(id, level_fk, status_fk, language, title, summary, description, published_datetime) VALUES(300, 3, 2, 'en', 'Title of...', 'Summary of...', 'Description of...', '2017-01-02 03:30:00');
+INSERT INTO T_COURSE(id, level_fk, status_fk, language, title, summary, description, published_datetime, segment_count) VALUES(300, 3, 2, 'en', 'Title of...', 'Summary of...', 'Description of...', '2017-01-02 03:30:00', 4);
 INSERT INTO T_LESSON(id, course_fk, rank, title) VALUES(310, 300, 1, 'Introduction');
 INSERT INTO T_LESSON(id, course_fk, rank, title) VALUES(302, 300, 2, 'Querying the database');
 INSERT INTO T_LESSON(id, course_fk, rank, title) VALUES(303, 300, 3, 'Conclusion');
@@ -29,6 +29,10 @@ INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, rank, duration_second, t
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, rank, title) VALUES(3103, 310, 2, 3, 'SQL cheat sheet');
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, quiz_fk, rank, title) VALUES(3104, 310, 3, 3104, 3104, 4, 'Quiz: Search data');
 
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, rank, duration_second, title) VALUES(3021, 302, 1, 3101, 1, 240, 'Understanding SELECT');
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, rank, duration_second, title) VALUES(3022, 302, 2, 2, 440, 'Filter with WHERE');
+
+INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, rank, duration_second, title) VALUES(3031, 303, 1, 3101, 1, 40, 'Conclusion');
 
 -- addLeg/updateLeg
 INSERT INTO T_COURSE(id, level_fk, status_fk, language, title, summary, description, published_datetime) VALUES(400, 3, 2, 'en', 'Title of...', 'Summary of...', 'Description of...', '2017-01-02 03:30:00');

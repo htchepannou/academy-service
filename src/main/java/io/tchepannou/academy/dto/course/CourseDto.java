@@ -1,6 +1,9 @@
 package io.tchepannou.academy.dto.course;
 
+import io.tchepannou.academy.dto.lesson.LessonDto;
+
 import java.util.Date;
+import java.util.List;
 
 @SuppressWarnings("CPD-START")
 public class CourseDto {
@@ -13,6 +16,7 @@ public class CourseDto {
     private String status;
     private Date publishedDateTime;
     private Date updatedDateTime;
+    private List<LessonDto> lessons;
 
     public Integer getId() {
         return id;
@@ -84,5 +88,13 @@ public class CourseDto {
 
     public void setUpdatedDateTime(final Date updatedDateTime) {
         this.updatedDateTime = updatedDateTime;
+    }
+
+    public List<LessonDto> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(final List<LessonDto> lessons) {
+        this.lessons = lessons;
     }
 }

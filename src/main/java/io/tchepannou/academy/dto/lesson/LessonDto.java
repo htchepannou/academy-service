@@ -1,10 +1,15 @@
 package io.tchepannou.academy.dto.lesson;
 
+import io.tchepannou.academy.dto.segment.SegmentDto;
+
+import java.util.List;
+
 @SuppressWarnings("CPD-START")
 public class LessonDto {
     private Integer id;
     private String title;
     private Integer rank;
+    private List<SegmentDto> segments;
 
     public Integer getId() {
         return id;
@@ -28,5 +33,13 @@ public class LessonDto {
 
     public void setRank(final Integer rank) {
         this.rank = rank;
+    }
+
+    public List<SegmentDto> getSegments() {
+        return segments;
+    }
+
+    public void setSegments(final List<SegmentDto> segments) {
+        this.segments = segments;
     }
 }

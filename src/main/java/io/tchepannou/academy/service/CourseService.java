@@ -153,7 +153,7 @@ public class CourseService {
             final List<Segment> segments = segmentDao.findByLessonId(lesson.getId(), pageable);
             lesson.setSegments(
                     segments.stream()
-                        .map(s -> segmentMapper.toSegmentSummaryDto(s, getSegmentType(s.getTypeId())))
+                        .map(s -> segmentMapper.toSegmentDto(s, getSegmentType(s.getTypeId())))
                         .collect(Collectors.toList())
             );
         }

@@ -59,6 +59,8 @@ Refer to markdown syntax');
 INSERT INTO T_COURSE(id, status_fk, level_fk, title, summary, description, language, published_datetime, updated_datetime, segment_count)
   VALUES(100, 2, 1, 'How to write README', 'Learn the importance of well documented code and see how to craft meaningful READMEs.', 'Documentation is an important part of the development process. Learn to write READMEs using Markdown so your code can be used by other humans!', 'en', now(), now(), 13);
 
+INSERT INTO T_INSTRUCTOR(course_fk, role_fk) VALUES(100, 1);
+
 INSERT INTO T_LESSON(id, course_fk, title, rank) VALUE(101, 100, 'Writing READMEs', 1);
 
 INSERT INTO T_SEGMENT(id, lesson_fk, type_fk, video_fk, title, rank, duration_second) VALUES(10101, 101, 1, 10101, 'Welcome', 1, 52);

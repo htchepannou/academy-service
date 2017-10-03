@@ -150,31 +150,30 @@ CREATE TABLE T_INSTRUCTOR (
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 
+CREATE TABLE T_STUDENT (
+  id          INT NOT NULL AUTO_INCREMENT,
+  role_fk     INT NOT NULL,
+  course_fk   INT NOT NULL REFERENCES T_COURSE(id),
 
-CREATE TABLE T_COURSE_ATTENDANCE(
-  id                      INT NOT NULL AUTO_INCREMENT,
-  student_fk              INT NOT NULL,
-  course_fk               INT NOT NULL REFERENCES T_COURSE(id),
-  current_segment_fk      INT     NULL REFERENCES T_SEGMENT(id),
-
-  attendance_datetime     DATETIME NOT NULL,
   course_segment_count    INT,
   attended_segment_count  INT,
 
-  UNIQUE(course_fk, student_fk),
+  insert_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP,
+  update_timestamp    DATETIME   DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  UNIQUE(course_fk, role_fk),
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 
-CREATE TABLE T_SEGMENT_ATTENDANCE(
-  id                    INT NOT NULL AUTO_INCREMENT,
-  course_attendance_fk  INT NOT NULL REFERENCES T_COURSE_ATTENDANCE(id),
-  segment_fk            INT NOT NULL REFERENCES T_SEGMENT(id),
+CREATE TABLE T_STUDENT_SEGMENT(
+  id          INT NOT NULL AUTO_INCREMENT,
+  student_fk  INT NOT NULL REFERENCES T_STUDENT(id),
+  segment_fk  INT NOT NULL REFERENCES T_SEGMENT(id),
 
-  attendance_datetime   DATETIME,
-
-  UNIQUE (course_attendance_fk, segment_fk),
+  UNIQUE (student_fk, segment_fk),
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
+
 
 
 

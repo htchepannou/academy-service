@@ -6,23 +6,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Entity
-@Table( name = "T_SEGMENT_ATTENDANCE")
-public class SegmentAttendance {
+@Table( name = "T_STUDENT_SEGMENT")
+public class StudentSegment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name="course_attendance_fk")
-    private Integer courseAttendanceId;
+    @Column(name="student_fk")
+    private Integer studentId;
 
     @Column(name="segment_fk")
     private Integer segmentId;
-
-    @Column(name="attendance_datetime")
-    private Date attendanceDateTime;
 
     public Integer getId() {
         return id;
@@ -32,12 +28,12 @@ public class SegmentAttendance {
         this.id = id;
     }
 
-    public Integer getCourseAttendanceId() {
-        return courseAttendanceId;
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setCourseAttendanceId(final Integer courseAttendanceId) {
-        this.courseAttendanceId = courseAttendanceId;
+    public void setStudentId(final Integer studentId) {
+        this.studentId = studentId;
     }
 
     public Integer getSegmentId() {
@@ -46,13 +42,5 @@ public class SegmentAttendance {
 
     public void setSegmentId(final Integer segmentId) {
         this.segmentId = segmentId;
-    }
-
-    public Date getAttendanceDateTime() {
-        return attendanceDateTime;
-    }
-
-    public void setAttendanceDateTime(final Date attendanceDateTime) {
-        this.attendanceDateTime = attendanceDateTime;
     }
 }

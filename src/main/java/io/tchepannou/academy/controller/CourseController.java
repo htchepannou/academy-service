@@ -9,7 +9,10 @@ import io.tchepannou.academy.dto.course.UpdateCourseRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseResponse;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusResponse;
+import io.tchepannou.academy.dto.student.StudentRequest;
+import io.tchepannou.academy.dto.student.StudentResponse;
 import io.tchepannou.academy.service.CourseService;
+import io.tchepannou.academy.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +30,8 @@ public class CourseController extends BaseController {
     @Autowired
     private CourseService courseService;
 
+    @Autowired
+    private StudentService studentService;
 
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation(value = "create", notes = "Create a new travel course")
@@ -58,5 +63,23 @@ public class CourseController extends BaseController {
     @ApiOperation(value = "findById", notes = "Find a course")
     public CourseResponse findById(@PathVariable Integer id) {
         return init(courseService.findById(id));
+    }
+
+    @RequestMapping(path = "/{id}/students", method = RequestMethod.POST)
+    @ApiOperation(value = "updateStudent")
+    public StudentResponse updateStudent(
+            @PathVariable Integer id,
+            @RequestBody @Valid StudentRequest request
+    ){
+        return init(studentService.updateStudent(id, request));
+    }
+
+    @RequestMapping(path = "/{id}/students/{roleId}", method = RequestMethod.GET)
+    @ApiOperation(value = "findStudent")
+    public StudentResponse findStudent(
+            @PathVariable Integer id,
+            @PathVariable Integer roleId
+    ){
+        return init(studentService.findByCourseAndRole(id, roleId));
     }
 }

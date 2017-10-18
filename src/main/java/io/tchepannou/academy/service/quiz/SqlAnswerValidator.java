@@ -2,10 +2,12 @@ package io.tchepannou.academy.service.quiz;
 
 import io.tchepannou.academy.domain.Quiz;
 import io.tchepannou.academy.domain.QuizChoice;
+import io.tchepannou.academy.util.SqlExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +16,7 @@ public class SqlAnswerValidator implements AnswerValidator {
     private static final Logger LOGGER = LoggerFactory.getLogger(SqlAnswerValidator.class);
 
     @Autowired
-    private QuizSqlExecutor sql;
+    private SqlExecutor sql;
 
     @Override
     public boolean isValid(final List<String> answers, final Quiz quiz, final List<QuizChoice> choices) {
@@ -24,13 +26,14 @@ public class SqlAnswerValidator implements AnswerValidator {
 
         try {
 
-            final List<Map<String, Object>> answer = sql.executeSql(quiz, answers.get(0));
-            final List<Map<String, Object>> expected = sql.executeSql(quiz, quiz.getAnswer());
+            final String initScript = quiz.getSqlInitScript();
+            final List<Map<String, Object>> answer = sql.executeSql(initScript, answers.get(0));
+            final List<Map<String, Object>> expected = sql.executeSql(initScript, quiz.getAnswer());
             return equals(answer, expected);
 
-        } catch (SQLException e){
+        } catch (SQLException | IOException e){
 
-            LOGGER.error("SQL error", e);
+            LOGGER.error("Unable to execute the query", e);
             return false;
 
         }

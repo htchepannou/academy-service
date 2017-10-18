@@ -1,6 +1,7 @@
 package io.tchepannou.academy.service.quiz;
 
 import io.tchepannou.academy.domain.Quiz;
+import io.tchepannou.academy.util.SqlExecutor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -23,7 +25,7 @@ public class SqlAnswerValidatorTest {
     private Quiz quiz;
 
     @Mock
-    private QuizSqlExecutor sql;
+    private SqlExecutor sql;
 
     @InjectMocks
     private SqlAnswerValidator validator;
@@ -34,11 +36,11 @@ public class SqlAnswerValidatorTest {
         final String expected = "SELECT * FROM test";
         final List<Map<String, Object>> expectedItems = createRecordset();
         when(quiz.getAnswer()).thenReturn(expected);
-        when(sql.executeSql(quiz, expected)).thenReturn(expectedItems);
+        when(sql.executeSql(anyString(), expected)).thenReturn(expectedItems);
 
         final String answer = "SELECT id, firstName, lastName FROM test";
         final List<Map<String, Object>> answerItems = expectedItems;
-        when(sql.executeSql(quiz, answer)).thenReturn(answerItems);
+        when(sql.executeSql(anyString(), answer)).thenReturn(answerItems);
 
         // When
         final boolean result = validator.isValid(Collections.singletonList(answer), quiz,null);
@@ -53,12 +55,12 @@ public class SqlAnswerValidatorTest {
         final String expected = "SELECT * FROM test";
         final List<Map<String, Object>> expectedItems = createRecordset();
         when(quiz.getAnswer()).thenReturn(expected);
-        when(sql.executeSql(quiz, expected)).thenReturn(expectedItems);
+        when(sql.executeSql(anyString(), expected)).thenReturn(expectedItems);
 
         final String answer = "SELECT id, firstName, lastName FROM test";
         final List<Map<String, Object>> answerItems = createRecordset();
         answerItems.add(createRecord(1, "Sean", "Connery"));
-        when(sql.executeSql(quiz, answer)).thenReturn(answerItems);
+        when(sql.executeSql(anyString(), answer)).thenReturn(answerItems);
 
         // When
         final boolean result = validator.isValid(Collections.singletonList(answer), quiz,null);
@@ -73,12 +75,12 @@ public class SqlAnswerValidatorTest {
         final String expected = "SELECT * FROM test";
         final List<Map<String, Object>> expectedItems = createRecordset();
         when(quiz.getAnswer()).thenReturn(expected);
-        when(sql.executeSql(quiz, expected)).thenReturn(expectedItems);
+        when(sql.executeSql(anyString(), expected)).thenReturn(expectedItems);
 
         final String answer = "SELECT id, firstName, lastName FROM test";
         final List<Map<String, Object>> answerItems = createRecordset();
         answerItems.get(2).remove("lastName");
-        when(sql.executeSql(quiz, answer)).thenReturn(answerItems);
+        when(sql.executeSql(anyString(), answer)).thenReturn(answerItems);
 
         // When
         final boolean result = validator.isValid(Collections.singletonList(answer), quiz,null);
@@ -93,12 +95,12 @@ public class SqlAnswerValidatorTest {
         final String expected = "SELECT * FROM test";
         final List<Map<String, Object>> expectedItems = createRecordset();
         when(quiz.getAnswer()).thenReturn(expected);
-        when(sql.executeSql(quiz, expected)).thenReturn(expectedItems);
+        when(sql.executeSql(anyString(), expected)).thenReturn(expectedItems);
 
         final String answer = "SELECT id, firstName, lastName FROM test";
         final List<Map<String, Object>> answerItems = createRecordset();
         answerItems.get(2).put("lastName", "Wu");
-        when(sql.executeSql(quiz, answer)).thenReturn(answerItems);
+        when(sql.executeSql(anyString(), answer)).thenReturn(answerItems);
 
         // When
         final boolean result = validator.isValid(Collections.singletonList(answer), quiz,null);

@@ -25,6 +25,7 @@
         <commons-io.version>2.4</commons-io.version>
         <flyway.version>4.2.0</flyway.version>
         <flyway-maven-plugin.version>3.2.1</flyway-maven-plugin.version>
+        <h2.version>1.4.196</h2.version>
         <hikari-cp.version>2.5.1</hikari-cp.version>
         <pmd.version>5.5.2</pmd.version>
         <springfox-swagger.version>2.3.1</springfox-swagger.version>
@@ -59,6 +60,11 @@
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>${hikari-cp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
         </dependency>
 
         <!-- ==== SPRING ==== -->

@@ -14,6 +14,7 @@ public class AnswerValidatorFactoryTest {
         assertThat(factory.getValidator("string")).isInstanceOf(StringAnswerValidator.class);
         assertThat(factory.getValidator("text")).isInstanceOf(TextAnswerValidator.class);
         assertThat(factory.getValidator("markdown")).isInstanceOf(MarkdownAnswerValidator.class);
+        assertThat(factory.getValidator("sql")).isInstanceOf(SqlAnswerValidator.class);
     }
 
     @Test(expected = IllegalArgumentException.class)

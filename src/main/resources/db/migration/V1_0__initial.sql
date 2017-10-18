@@ -43,6 +43,7 @@ CREATE TABLE T_QUIZ(
   answer          TEXT,
   success_message TEXT,
   failure_message TEXT,
+  sql_init_script TEXT,
 
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
@@ -198,3 +199,4 @@ INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(2, 'multichoice', 1);
 INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(3, 'text', 2);
 INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(4, 'longtext', 3);
 INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(5, 'markdown', 4);
+INSERT INTO T_QUIZ_TYPE(id, name, rank)   VALUE(6, 'sql', 5);

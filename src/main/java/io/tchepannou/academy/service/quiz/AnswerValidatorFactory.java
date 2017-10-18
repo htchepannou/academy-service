@@ -16,6 +16,7 @@ public class AnswerValidatorFactory {
         validators.put("string", new StringAnswerValidator());
         validators.put("text", new TextAnswerValidator());
         validators.put("markdown", new MarkdownAnswerValidator());
+        validators.put("sql", new SqlAnswerValidator());
     }
     public AnswerValidator getValidator(final String name){
         final AnswerValidator validator = validators.get(name.toLowerCase());

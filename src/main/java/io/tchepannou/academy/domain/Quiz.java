@@ -30,6 +30,9 @@ public class Quiz extends Persistent {
     @Column(name="failure_message")
     private String failureMessage;
 
+    @Column(name="sql_init_script")
+    private String sqlInitScript;
+
     @Override
     public Integer getId() {
         return id;
@@ -93,5 +96,13 @@ public class Quiz extends Persistent {
 
     public void setFailureMessage(final String failureMessage) {
         this.failureMessage = failureMessage;
+    }
+
+    public String getSqlInitScript() {
+        return sqlInitScript;
+    }
+
+    public void setSqlInitScript(final String sqlInitScript) {
+        this.sqlInitScript = sqlInitScript;
     }
 }

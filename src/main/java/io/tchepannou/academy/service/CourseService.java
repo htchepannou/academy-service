@@ -22,7 +22,7 @@ import io.tchepannou.academy.dto.course.UpdateCourseRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseResponse;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusRequest;
 import io.tchepannou.academy.dto.course.UpdateCourseStatusResponse;
-import io.tchepannou.academy.dto.instructor.InstructorMapper;
+import io.tchepannou.academy.mapper.InstructorMapper;
 import io.tchepannou.academy.dto.lesson.LessonDto;
 import io.tchepannou.academy.exception.BusinessError;
 import io.tchepannou.academy.exception.InvalidRequestException;

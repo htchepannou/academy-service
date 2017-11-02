@@ -1,6 +1,7 @@
-package io.tchepannou.academy.dto.instructor;
+package io.tchepannou.academy.mapper;
 
 import io.tchepannou.academy.domain.Instructor;
+import io.tchepannou.academy.dto.instructor.InstructorDto;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -2,7 +2,7 @@ package io.tchepannou.academy.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.tchepannou.academy.ControllerITSupport;
-import io.tchepannou.academy.dto.video.CreateVideoRequest;
+import io.tchepannou.academy.client.video.CreateVideoRequest;
 import io.tchepannou.academy.exception.BusinessError;
 import org.junit.Before;
 import org.junit.Test;

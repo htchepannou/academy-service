@@ -2,9 +2,9 @@ package io.tchepannou.academy.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.tchepannou.academy.dto.quiz.QuizResponse;
-import io.tchepannou.academy.dto.quiz.QuizAnswerRequest;
-import io.tchepannou.academy.dto.quiz.QuizAnswerResponse;
+import io.tchepannou.academy.client.quiz.QuizResponse;
+import io.tchepannou.academy.client.quiz.QuizAnswerRequest;
+import io.tchepannou.academy.client.quiz.QuizAnswerResponse;
 import io.tchepannou.academy.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

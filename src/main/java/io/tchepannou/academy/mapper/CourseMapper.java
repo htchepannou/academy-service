@@ -3,8 +3,8 @@ package io.tchepannou.academy.mapper;
 import io.tchepannou.academy.domain.Course;
 import io.tchepannou.academy.domain.CourseLevel;
 import io.tchepannou.academy.domain.CourseStatus;
-import io.tchepannou.academy.dto.course.CourseDto;
-import io.tchepannou.academy.dto.course.CreateCourseRequest;
+import io.tchepannou.academy.client.dto.CourseDto;
+import io.tchepannou.academy.client.course.CreateCourseRequest;
 import org.springframework.stereotype.Component;
 
 @Component

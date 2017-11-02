@@ -2,7 +2,7 @@ package io.tchepannou.academy.mapper;
 
 import io.tchepannou.academy.domain.Segment;
 import io.tchepannou.academy.domain.SegmentType;
-import io.tchepannou.academy.dto.segment.SegmentDto;
+import io.tchepannou.academy.client.dto.SegmentDto;
 import org.springframework.stereotype.Component;
 
 @Component

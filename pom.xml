@@ -45,6 +45,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>io.tchepannou.academy</groupId>
+            <artifactId>academy-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <!-- ==== DATABASE ===== -->
         <dependency>
             <groupId>mysql</groupId>

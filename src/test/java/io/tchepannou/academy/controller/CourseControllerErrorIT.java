@@ -2,9 +2,9 @@ package io.tchepannou.academy.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.tchepannou.academy.ControllerITSupport;
-import io.tchepannou.academy.dto.course.CreateCourseRequest;
-import io.tchepannou.academy.dto.course.UpdateCourseRequest;
-import io.tchepannou.academy.dto.course.UpdateCourseStatusRequest;
+import io.tchepannou.academy.client.course.CreateCourseRequest;
+import io.tchepannou.academy.client.course.UpdateCourseRequest;
+import io.tchepannou.academy.client.course.UpdateCourseStatusRequest;
 import io.tchepannou.academy.exception.BusinessError;
 import org.junit.Before;
 import org.junit.Test;

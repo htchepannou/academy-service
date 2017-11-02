@@ -2,9 +2,9 @@ package io.tchepannou.academy.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.tchepannou.academy.dto.video.CreateVideoRequest;
-import io.tchepannou.academy.dto.video.CreateVideoResponse;
-import io.tchepannou.academy.dto.video.VideoResponse;
+import io.tchepannou.academy.client.video.CreateVideoRequest;
+import io.tchepannou.academy.client.video.CreateVideoResponse;
+import io.tchepannou.academy.client.video.VideoResponse;
 import io.tchepannou.academy.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

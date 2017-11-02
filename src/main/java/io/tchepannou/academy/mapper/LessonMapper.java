@@ -1,7 +1,7 @@
 package io.tchepannou.academy.mapper;
 
 import io.tchepannou.academy.domain.Lesson;
-import io.tchepannou.academy.dto.lesson.LessonDto;
+import io.tchepannou.academy.client.dto.LessonDto;
 import org.springframework.stereotype.Component;
 
 @Component

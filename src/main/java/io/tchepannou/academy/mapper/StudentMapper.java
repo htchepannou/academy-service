@@ -2,8 +2,8 @@ package io.tchepannou.academy.mapper;
 
 import io.tchepannou.academy.domain.Student;
 import io.tchepannou.academy.domain.StudentSegment;
-import io.tchepannou.academy.dto.student.StudentDto;
-import io.tchepannou.academy.dto.student.StudentSegmentDto;
+import io.tchepannou.academy.client.dto.StudentDto;
+import io.tchepannou.academy.client.course.StudentSegmentDto;
 import org.springframework.stereotype.Component;
 
 @Component

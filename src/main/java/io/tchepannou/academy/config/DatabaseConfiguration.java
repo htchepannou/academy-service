@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 @ConfigurationProperties(prefix = "spring.datasource")
 public class DatabaseConfiguration extends HikariConfig{
     @Bean(destroyMethod = "close")
-    DataSource bookingDataSource() {
+    DataSource dataSource() {
         return new HikariDataSource(this);
     }
 }

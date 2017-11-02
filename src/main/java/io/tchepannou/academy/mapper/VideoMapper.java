@@ -2,7 +2,7 @@ package io.tchepannou.academy.mapper;
 
 import io.tchepannou.academy.domain.Video;
 import io.tchepannou.academy.domain.VideoType;
-import io.tchepannou.academy.dto.video.VideoDto;
+import io.tchepannou.academy.client.dto.VideoDto;
 import org.springframework.stereotype.Component;
 
 @Component

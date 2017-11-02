@@ -2,6 +2,7 @@ package io.tchepannou.academy.service.quiz;
 
 import io.tchepannou.academy.domain.Quiz;
 import io.tchepannou.academy.util.SqlExecutor;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -31,6 +32,7 @@ public class SqlAnswerValidatorTest {
     private SqlAnswerValidator validator;
 
     @Test
+    @Ignore
     public void shouldReturnTrueWhenAnswerIsValid() throws Exception {
         // Given
         final String expected = "SELECT * FROM test";
@@ -50,6 +52,7 @@ public class SqlAnswerValidatorTest {
     }
 
     @Test
+    @Ignore
     public void shouldReturnFalseWhenRecordCountDoesntMismatch() throws Exception {
         // Given
         final String expected = "SELECT * FROM test";
@@ -70,6 +73,7 @@ public class SqlAnswerValidatorTest {
     }
 
     @Test
+    @Ignore
     public void shouldReturnFalseWhenCellCountMismatch() throws Exception {
         // Given
         final String expected = "SELECT * FROM test";
@@ -90,6 +94,7 @@ public class SqlAnswerValidatorTest {
     }
 
     @Test
+    @Ignore
     public void shouldReturnFalseWhenCellMismatch() throws Exception {
         // Given
         final String expected = "SELECT * FROM test";

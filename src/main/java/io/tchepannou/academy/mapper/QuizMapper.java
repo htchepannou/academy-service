@@ -3,8 +3,8 @@ package io.tchepannou.academy.mapper;
 import io.tchepannou.academy.domain.Quiz;
 import io.tchepannou.academy.domain.QuizChoice;
 import io.tchepannou.academy.domain.QuizType;
-import io.tchepannou.academy.dto.quiz.QuizChoiceDto;
-import io.tchepannou.academy.dto.quiz.QuizDto;
+import io.tchepannou.academy.client.dto.QuizChoiceDto;
+import io.tchepannou.academy.client.dto.QuizDto;
 import org.springframework.stereotype.Component;
 
 @Component

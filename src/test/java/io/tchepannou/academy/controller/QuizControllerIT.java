@@ -2,7 +2,7 @@ package io.tchepannou.academy.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.tchepannou.academy.ControllerITSupport;
-import io.tchepannou.academy.dto.quiz.QuizAnswerRequest;
+import io.tchepannou.academy.client.quiz.QuizAnswerRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,7 +1,7 @@
 package io.tchepannou.academy.service;
 
 import io.tchepannou.academy.domain.Course;
-import io.tchepannou.academy.dto.course.SearchCourseRequest;
+import io.tchepannou.academy.client.course.SearchCourseRequest;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;

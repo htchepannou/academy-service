@@ -1,7 +1,7 @@
 package io.tchepannou.academy.controller;
 
+import io.tchepannou.academy.client.ErrorResponse;
 import io.tchepannou.academy.client.dto.ErrorDto;
-import io.tchepannou.academy.client.dto.ErrorResponse;
 import io.tchepannou.academy.exception.BusinessError;
 import io.tchepannou.academy.exception.BusinessException;
 import io.tchepannou.academy.exception.InvalidRequestException;
